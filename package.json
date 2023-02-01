@@ -1,5 +1,5 @@
 {
-    "name": "WebpackTemplate",
+    "name": "ResTaB",
     "version": "1.0.0",
     "description": "",
     "main": "webpack.base.config.js",
@@ -13,7 +13,11 @@
         "url": ""
     },
     "keywords": [],
-    "author": "Andrey Est",
+    "contributors": [
+        {"name":"Andrey Piarouski","email":"EstSkif@gmail.com","url":"https://andreyp.pythonanywhere.com/"},
+        {"name":"Siniak Natallia","email":"natalia.vasilevna.s@gmail.com"},
+        {"name":"Vika","email":"V@gmail.com"}
+    ],
     "license": "ISC",
     "homepage": "https://andreyp.pythonanywhere.com/",
     "devDependencies": {
