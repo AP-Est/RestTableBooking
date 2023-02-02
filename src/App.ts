@@ -18,18 +18,19 @@ export class App {
     navigate = () => {
         const pathHashes = window.location.hash.split('/');
         switch (pathHashes[0]) {
-            case 'main':
+            case '#main':
                 this.view = new MainPageView();
                 this.model = new MainPageModel();
                 this.controller = new MainPageController(this.view, this.model);
                 break;
-            case 'reservation':
+            case '#reservation':
                 this.view = new ReservationView();
                 this.model = new ReservationModel();
                 this.controller = new ReservationController(this.view, this.model);
                 break;
             default:
                 //TODO сюда можно подпихивать свое, потом нужно будет прописать 404
+                console.log(pathHashes[0]);
                 this.view = new ReservationView();
                 this.model = new ReservationModel();
                 this.controller = new ReservationController(this.view, this.model);
