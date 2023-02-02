@@ -1,3 +1,4 @@
-import './style.scss';
+import { App } from './App';
 
-console.log('Hello TS console');
+const app = new App();
+app.init();
