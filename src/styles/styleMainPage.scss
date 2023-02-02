@@ -3,3 +3,12 @@
     height: 300px;
     background-color: palevioletred;
 }
+
+.header__links_wrapper {
+    display: flex;
+    background-color: dimgray;
+    font-weight: bold;
+    .header__links_main {
+        margin: 10px;
+    }
+}

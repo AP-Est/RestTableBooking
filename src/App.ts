@@ -34,6 +34,18 @@ export class App {
                 this.model = new ReservationModel();
                 this.controller = new ReservationController(this.view, this.model);
                 break;
+            /*
+            default:
+                this.view = new MainPageView();
+                this.model = new MainPageModel();
+                this.controller = new MainPageController(this.view, this.model);
+                break;
+            default:
+                this.view = new MenuView();
+                this.model = new MenuModel();
+                this.controller = new MenuController(this.view, this.model);
+                break;
+            */
         }
     };
 }
