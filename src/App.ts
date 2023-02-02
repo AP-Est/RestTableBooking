@@ -28,6 +28,13 @@ export class App {
                 this.model = new ReservationModel();
                 this.controller = new ReservationController(this.view, this.model);
                 break;
+            /*
+            case '#menu':
+                this.view = new MenuView();
+                this.model = new MenuModel();
+                this.controller = new MenuController(this.view, this.model);
+                break;
+                */
             default:
                 //TODO сюда можно подпихивать свое, потом нужно будет прописать 404
                 console.log(pathHashes[0]);
@@ -35,18 +42,6 @@ export class App {
                 this.model = new ReservationModel();
                 this.controller = new ReservationController(this.view, this.model);
                 break;
-            /*
-            default:
-                this.view = new MainPageView();
-                this.model = new MainPageModel();
-                this.controller = new MainPageController(this.view, this.model);
-                break;
-            default:
-                this.view = new MenuView();
-                this.model = new MenuModel();
-                this.controller = new MenuController(this.view, this.model);
-                break;
-            */
         }
     };
 }
