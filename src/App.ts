@@ -6,9 +6,13 @@ import { ReservationController } from './components/ReservationController';
 import { ReservationModel } from './components/ReservationModel';
 
 export class App {
-    view: MainPageView | ReservationView | undefined;
-    controller: MainPageController | ReservationController | undefined;
-    model: MainPageModel | ReservationModel | undefined;
+    view: MainPageView | undefined;
+    controller: MainPageController | undefined;
+    model: MainPageModel | undefined;
+
+    viewReservation: ReservationView | undefined;
+    controllerReservation: ReservationController | undefined;
+    modelReservation: ReservationModel | undefined;
 
     init() {
         window.addEventListener('hashchange', this.navigate);
@@ -24,9 +28,9 @@ export class App {
                 this.controller = new MainPageController(this.view, this.model);
                 break;
             case '#reservation':
-                this.view = new ReservationView();
-                this.model = new ReservationModel();
-                this.controller = new ReservationController(this.view, this.model);
+                this.viewReservation = new ReservationView();
+                this.modelReservation = new ReservationModel();
+                this.controllerReservation = new ReservationController(this.viewReservation, this.modelReservation);
                 break;
             /*
             case '#menu':
@@ -38,9 +42,9 @@ export class App {
             default:
                 //TODO сюда можно подпихивать свое, потом нужно будет прописать 404
                 console.log(pathHashes[0]);
-                this.view = new ReservationView();
-                this.model = new ReservationModel();
-                this.controller = new ReservationController(this.view, this.model);
+                this.viewReservation = new ReservationView();
+                this.modelReservation = new ReservationModel();
+                this.controllerReservation = new ReservationController(this.viewReservation, this.modelReservation);
                 break;
         }
     };
