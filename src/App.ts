@@ -4,11 +4,18 @@ import { MainPageController } from './components/MainPageController';
 import { ReservationView } from './components/ReservationView';
 import { ReservationController } from './components/ReservationController';
 import { ReservationModel } from './components/ReservationModel';
+import { MenuView } from './components/MenuPageView';
+import { MenuModel } from './components/MenuPageModel';
+import { MenuController } from './components/MenuPageController';
 
 export class App {
     view: MainPageView | undefined;
     controller: MainPageController | undefined;
     model: MainPageModel | undefined;
+
+    viewMenu: MenuView | undefined;
+    controllerMenu: MenuController | undefined;
+    modelMenu: MenuModel | undefined;
 
     viewReservation: ReservationView | undefined;
     controllerReservation: ReservationController | undefined;
@@ -32,13 +39,13 @@ export class App {
                 this.modelReservation = new ReservationModel();
                 this.controllerReservation = new ReservationController(this.viewReservation, this.modelReservation);
                 break;
-            /*
+
             case '#menu':
-                this.view = new MenuView();
-                this.model = new MenuModel();
-                this.controller = new MenuController(this.view, this.model);
+                this.viewMenu = new MenuView();
+                this.modelMenu = new MenuModel();
+                this.controllerMenu = new MenuController(this.viewMenu, this.modelMenu);
                 break;
-                */
+
             default:
                 //TODO сюда можно подпихивать свое, потом нужно будет прописать 404
                 console.log(pathHashes[0]);
