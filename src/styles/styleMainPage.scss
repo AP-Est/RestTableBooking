@@ -33,6 +33,18 @@
     background-color: aqua;
 }
 
+.header-top-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text{
+    font-family: $mainFontFamily;
+    font-weight: $mainFontWeight;
+    font-size: $mainFontSize;
+}
+
 .header-main__wrapper{
     width: 100%;
     height: 420px;

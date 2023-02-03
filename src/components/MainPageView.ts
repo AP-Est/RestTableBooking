@@ -23,15 +23,20 @@ export class MainPageView {
         headerTop.classList.add('header-top__wrapper');
         const headerTopLogo = createElement('div', 'header-top-logo');
         const headerTopMain = createElement('div', 'header-top-main');
-        const headerTopMenu = createElement('div', 'header-top-menu');
-        const headerTopReviews = createElement('div', 'header-top-reviews');
-        const headerTopTel = createElement('div', 'header-top-tel');
+        const headerTopMenu = createElement('p', 'header-text');
+        headerTopMenu.textContent = 'Menu';
+        const headerTopReviews = createElement('p', 'header-text');
+        headerTopReviews.textContent = 'Reviews';
+        const headerTopRegistrLog = createElement('p', 'header-text');
+        headerTopRegistrLog.textContent = 'Login / Registration';
+        const headerTopTel = createElement('p', 'header-text');
+        headerTopTel.textContent = '+7 (495) 374 - 9233';
 
         const headerMain = createElement('div', 'header-main');
         headerMain.classList.add('header-main__wrapper');
 
-        headerTopMain.append(headerTopMenu, headerTopReviews);
-        headerTop.append(headerTopLogo, headerTopMenu, headerTopTel);
+        headerTopMain.append(headerTopMenu, headerTopReviews, headerTopRegistrLog);
+        headerTop.append(headerTopLogo, headerTopMain, headerTopTel);
         header.append(headerTop, headerMain);
         return header;
     }
