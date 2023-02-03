@@ -2,11 +2,11 @@ import { ReservationView } from 'ReservationView';
 import { ReservationModel } from 'ReservationModel';
 
 export class ReservationController {
-    view: ReservationView;
-    model: ReservationModel;
+    viewReservation: ReservationView;
+    modelReservation: ReservationModel;
 
     constructor(view: ReservationView, model: ReservationModel) {
-        this.view = view;
-        this.model = model;
+        this.viewReservation = view;
+        this.modelReservation = model;
     }
 }
