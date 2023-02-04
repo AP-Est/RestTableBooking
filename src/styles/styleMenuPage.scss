@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr;
+    gap: 5px 10px;
+    border-left: 2px solid $first-main-color;
+    padding: 20px;
+    .menu-category {
+        width: 90%;
+        .price {
+            text-align: end;
+        }
+    }
+}
+
+.category {
+    border-bottom: 2px solid $first-main-color;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        display: block;
+    }
+}
