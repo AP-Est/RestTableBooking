@@ -1,7 +1,7 @@
 import getElement from '../Utils/getElement';
 import createElement from '../Utils/createElement';
 import '../styles/styleReservation.scss';
-import createHeader from '../templates/createHeaderOld';
+import createHeader from '../templates/createHeader';
 import createCalendarAndTimer from '../templates/reservation/createCalendarTime';
 
 export class ReservationView {

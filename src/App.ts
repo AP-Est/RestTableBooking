@@ -29,7 +29,7 @@ export class App {
     navigate = () => {
         const pathHashes = window.location.hash.split('/');
         switch (pathHashes[0]) {
-            case '#main':
+            case '':
                 this.view = new MainPageView();
                 this.model = new MainPageModel();
                 this.controller = new MainPageController(this.view, this.model);

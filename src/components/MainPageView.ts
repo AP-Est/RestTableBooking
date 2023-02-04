@@ -46,4 +46,13 @@ export class MainPageView {
             }
         });
     }
+
+    bindClickMainPage() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('link-main-page')) {
+                window.location.hash = '';
+            }
+        });
+    }
 }

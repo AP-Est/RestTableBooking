@@ -10,6 +10,10 @@ export function displayHeader() {
     const headerTopLogo = createElement('a', 'header-top-logo') as HTMLAnchorElement;
     headerTopLogo.href = './';
     const headerTopMain = createElement('div', 'header-top-main');
+    const headerTopMainPage = createElement('p', 'header-text');
+    headerTopMainPage.classList.add('header-main-text');
+    headerTopMainPage.classList.add('link-main-page');
+    headerTopMainPage.textContent = 'Main';
     const headerTopMenu = createElement('p', 'header-text');
     headerTopMenu.classList.add('header-main-text');
     headerTopMenu.textContent = 'Menu';
@@ -52,7 +56,7 @@ export function displayHeader() {
     address.append(addressImg, addressSpan);
     phone.append(phoneRef);
     booking.append(phone, address, metro, mainBooking);
-    headerTopMain.append(headerTopMenu, headerTopReviews, headerTopRegistrLog);
+    headerTopMain.append(headerTopMainPage, headerTopMenu, headerTopReviews, headerTopRegistrLog);
     headerTop.append(headerTopLogo, headerTopMain, headerTopTel);
     headerMain.append(booking);
     header.append(headerTop, headerMain);
