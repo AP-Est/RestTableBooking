@@ -1,43 +1,49 @@
 import getElement from '../Utils/getElement';
 import createElement from '../Utils/createElement';
-import '../styles/styleMainPage.scss';
-import createHeader from '../templates/createHeader';
+import createButton from '../Utils/createButton';
+import '../styles/styleMainPageHeaderFooter.scss';
+import '../styles/styleMainPageMainPart.scss';
+import { displayHeader } from '../templates/displayHeader';
+import { displayFooter } from '../templates/displayFooter';
 
 export class MainPageView {
     body: HTMLElement;
     header: HTMLElement;
+    main: HTMLElement;
+    footer: HTMLElement;
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
 
-        this.header = this.displayHeader();
-        this.body.append(this.header);
+        this.header = displayHeader();
+        this.main = this.displayMain();
+        this.footer = displayFooter();
+        this.body.append(this.header, this.main, this.footer);
     }
 
-    displayHeader() {
-        const header = createElement('div', 'header');
-        header.classList.add('header__wrapper');
+    displayMain() {
+        const main = createElement('main', 'main');
 
-        const headerTop = createElement('div', 'header-top');
-        headerTop.classList.add('header-top__wrapper');
-        const headerTopLogo = createElement('div', 'header-top-logo');
-        const headerTopMain = createElement('div', 'header-top-main');
-        const headerTopMenu = createElement('p', 'header-text');
-        headerTopMenu.textContent = 'Menu';
-        const headerTopReviews = createElement('p', 'header-text');
-        headerTopReviews.textContent = 'Reviews';
-        const headerTopRegistrLog = createElement('p', 'header-text');
-        headerTopRegistrLog.textContent = 'Login / Registration';
-        const headerTopTel = createElement('p', 'header-text');
-        headerTopTel.textContent = '+7 (495) 374 - 9233';
+        return main;
+    }
 
-        const headerMain = createElement('div', 'header-main');
-        headerMain.classList.add('header-main__wrapper');
+    bindClickMenu() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('header-main-text')) {
+                window.location.hash = `menu`;
+            }
+        });
+    }
 
-        headerTopMain.append(headerTopMenu, headerTopReviews, headerTopRegistrLog);
-        headerTop.append(headerTopLogo, headerTopMain, headerTopTel);
-        header.append(headerTop, headerMain);
-        return header;
+    bindClickButtonReserv() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            const parent = target.parentElement as Element;
+            if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
+                window.location.hash = `reservation`;
+            }
+        });
     }
 }

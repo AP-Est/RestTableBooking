@@ -1,3 +1,15 @@
-$mainFontFamily: Gilroy, serif;
-$mainFontWeight: 500;
-$mainFontSize: 18px;
+$mainFontFamily: 'Oswald', sans-serif;
+$mainFontWeight: 300;
+$mainFontSize: 25px;
+
+%message-hover:hover{
+    transform: scale(1.1);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+%message-flexStandard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
