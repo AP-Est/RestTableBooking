@@ -1,0 +1,202 @@
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.div-test{
+    width: 300px;
+    height: 300px;
+    background-color: palevioletred;
+}
+
+.header__links_wrapper {
+    display: flex;
+    background-color: dimgray;
+    font-weight: bold;
+    .header__links_main {
+        margin: 10px;
+    }
+}
+
+.header__wrapper{
+    margin: 0 auto;
+    max-width: 1000px;
+    margin-bottom: 50px;
+}
+
+.header-top__wrapper{
+    margin: 24px 50px 24px;
+    height: 50px;
+    //background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-top-logo{
+    width: 130px;
+    height: 80px;
+    background-image: url(https://leclick.ru/img/LogoNew.svg?v=6);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover{
+        @include hoverStandard;
+    }
+}
+
+.header-top-main{
+    @include flexStandard;
+    width: 50%;
+}
+
+.header-text{
+    font-family: $mainFontFamily;
+    font-weight: $mainFontWeight;
+    font-size: $mainFontSize;
+}
+
+.header-main__wrapper{
+    width: 100%;
+    height: 420px;
+    background-image: url(https://old.leclick.ru/i/files/restaurants/photo/869780.jpg?w=1004);
+    border-radius: 20px;
+    background-position: center;
+    position: relative;
+}
+
+.header-main-text{
+    &:hover{
+        @include hoverStandard;
+    }
+}
+
+.booking{
+    width: 260px;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    position: absolute;
+    top: 80px;
+    right: 90px;
+}
+
+.booking-phone{
+    text-align: center;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px gray solid;
+}
+
+.booking-phone__ref{
+    font-family: $mainFontFamily;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.booking-address,
+.booking-metro{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+}
+
+.booking-img{
+    margin-right: 10px;
+}
+
+.booking-span{
+    font-size: 16px;
+    font-weight: 600;
+    font-family: $mainFontFamily;
+}
+
+.booking-main{
+    width: 100%;
+}
+
+.button{
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 48px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    background: #07C68E;
+    text-decoration: none;
+    display: block;
+    line-height: 48px;
+    border: 1px #07C68E solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+    &:hover{
+        @include hoverStandard;
+    }
+}
+
+.link-tel{
+    text-decoration: none;
+    color: #000;
+
+    &:hover{
+        @include hoverStandard;
+    }
+}
+
+.footer{
+    border-top: 1px #0e2244 solid;
+    padding-top: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    @include flexStandard;
+    
+}
+
+.links{
+    @include flexStandard;
+    width: 50%;
+    margin-left: 100px;
+}
+
+.links__creator{ 
+    list-style-type: none;
+
+    &:hover{
+        @include hoverStandard;
+    }
+}
+
+.links__creator-link{
+    text-decoration: none;
+    color: #000; 
+}
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 100px;
+}
+
+.logo__link{
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 5px 10px 5px;
+
+    &:hover{
+        @include hoverStandard;
+    }
+}

@@ -8,5 +8,9 @@ export class MainPageController {
     constructor(view: MainPageView, model: MainPageModel) {
         this.view = view;
         this.model = model;
+
+        this.view.bindClickMenu();
+        this.view.bindClickButtonReserv();
+        this.view.bindClickMainPage();
     }
 }
