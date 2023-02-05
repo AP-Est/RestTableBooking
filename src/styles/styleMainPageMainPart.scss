@@ -1,5 +1,27 @@
+body{
+    background-color: $backgroundMainPage;
+}
+
 .main{
-    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     height: 500px;
-    background-color: antiquewhite;
+}
+
+.inf{
+    margin-left: 93px;
+    margin-right: 93px;
+    position: relative;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 5px white solid;
+    margin-bottom: 36px;
+}
+
+.inf__text{
+    margin-top: 26px;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: $secondFontFamily;
+    padding-left: 50px;
 }

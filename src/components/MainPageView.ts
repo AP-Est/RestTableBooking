@@ -25,6 +25,13 @@ export class MainPageView {
     displayMain() {
         const main = createElement('main', 'main');
 
+        const infDiv = createElement('div', 'inf');
+        const infText = createElement('h2', 'inf__text');
+        infText.textContent = 'Information';
+
+        infDiv.append(infText);
+        main.append(infDiv);
+
         return main;
     }
 

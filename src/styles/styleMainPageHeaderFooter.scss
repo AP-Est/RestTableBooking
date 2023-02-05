@@ -41,11 +41,13 @@ ul{
     background-repeat: no-repeat;
     background-position: center;
 
-    @extend %message-hover;
+    &:hover{
+        @include hoverStandard;
+    }
 }
 
 .header-top-main{
-    @extend %message-flexStandard;
+    @include flexStandard;
     width: 50%;
 }
 
@@ -65,7 +67,9 @@ ul{
 }
 
 .header-main-text{
-    @extend %message-hover;
+    &:hover{
+        @include hoverStandard;
+    }
 }
 
 .booking{
@@ -137,13 +141,18 @@ ul{
     margin-bottom: 10px;
     font-weight: bold;
 
-    @extend %message-hover;
+    &:hover{
+        @include hoverStandard;
+    }
 }
 
 .link-tel{
-    @extend %message-hover;
     text-decoration: none;
     color: #000;
+
+    &:hover{
+        @include hoverStandard;
+    }
 }
 
 .footer{
@@ -151,12 +160,12 @@ ul{
     padding-top: 40px;
     margin-top: 50px;
     margin-bottom: 50px;
-    @extend %message-flexStandard;
+    @include flexStandard;
     
 }
 
 .links{
-    @extend %message-flexStandard;
+    @include flexStandard;
     width: 50%;
     margin-left: 100px;
 }
@@ -164,7 +173,9 @@ ul{
 .links__creator{ 
     list-style-type: none;
 
-    @extend %message-hover;
+    &:hover{
+        @include hoverStandard;
+    }
 }
 
 .links__creator-link{
@@ -185,5 +196,7 @@ ul{
     border-radius: 10px;
     padding: 5px 5px 10px 5px;
 
-    @extend %message-hover;
+    &:hover{
+        @include hoverStandard;
+    }
 }
