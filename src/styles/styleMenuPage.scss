@@ -14,7 +14,17 @@
 }
 
 .category {
+    font-family: $mainFontFamily;
     border-bottom: 2px solid $first-main-color;
+}
+
+.title {
+    font-family: $mainFontFamily;
+}
+
+.description {
+    font-family: $secondFontFamily;
+    font-style: italic;
 }
 
 @media screen and (max-width: 600px) {
