@@ -42,12 +42,12 @@ export function displayHeader() {
     const addressImg = createElement('img', 'booking-img') as HTMLImageElement;
     addressImg.src = 'https://leclick.ru/img/icons/loc.svg';
     const addressSpan = createElement('span', 'booking-span');
-    addressSpan.textContent = 'st. New Arbat 21';
+    addressSpan.textContent = 'st. Rolling Scopes q3';
     const metro = createElement('div', 'booking-metro');
     const metroImg = createElement('img', 'booking-img') as HTMLImageElement;
     metroImg.src = 'https://leclick.ru/img/icons/metro.svg';
     const metroSpan = createElement('span', 'booking-span');
-    metroSpan.textContent = 'Smolenskaya';
+    metroSpan.textContent = 'Rsclone';
     const mainBooking = createElement('div', 'booking-main');
     const mainBookingBut = createButton('RESERVATION', 'button');
 

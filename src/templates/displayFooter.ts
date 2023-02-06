@@ -2,13 +2,14 @@ import createElement from '../Utils/createElement';
 
 export function displayFooter() {
     const footer = createElement('footer', 'footer');
+    const footerWrap = createElement('div', 'footer-wrap');
 
     const links = createElement('ul', 'links');
     const creatorOne = createElement('li', 'links__creator');
     creatorOne.classList.add('header-text');
     const creatorOneLink = createElement('a', 'links__creator-link') as HTMLAnchorElement;
     creatorOneLink.href = 'https://github.com/natalliasnv';
-    creatorOne.textContent = 'Natallia Siniak';
+    creatorOneLink.textContent = 'Natallia Siniak';
     const creatorTwo = createElement('li', 'links__creator');
     creatorTwo.classList.add('header-text');
     const creatorTwoLink = createElement('a', 'links__creator-link') as HTMLAnchorElement;
@@ -34,7 +35,8 @@ export function displayFooter() {
     creatorTwo.append(creatorTwoLink);
     creatorOne.append(creatorOneLink);
     links.append(creatorOne, creatorTwo, creatorThree);
-    footer.append(links, logo);
+    footerWrap.append(links, logo);
+    footer.append(footerWrap);
 
     return footer;
 }
