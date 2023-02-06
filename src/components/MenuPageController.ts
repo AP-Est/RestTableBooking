@@ -8,5 +8,9 @@ export class MenuController {
     constructor(view: MenuView, model: MenuModel) {
         this.view = view;
         this.model = model;
+
+        this.view.bindClickMenu();
+        this.view.bindClickButtonReserv();
+        this.view.bindClickMainPage();
     }
 }

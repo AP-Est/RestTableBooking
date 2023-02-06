@@ -1,8 +1,10 @@
 import createElement from '../Utils/createElement';
 import getElement from '../Utils/getElement';
-import createHeader from '../templates/createHeader';
+// import createHeader from '../templates/createHeader';
 import Menu from '../Utils/menuObject';
 import '../styles/styleMenuPage.scss';
+import { displayHeader } from '../templates/displayHeader';
+import { displayFooter } from '../templates/displayFooter';
 
 export class MenuView {
     body: HTMLElement;
@@ -10,6 +12,7 @@ export class MenuView {
     main: HTMLElement;
     wrapper: HTMLElement;
     container: HTMLElement;
+    footer: HTMLElement;
 
     private menuCategories = ['STARTERS', 'ENTREE SALADS', 'SOUP & SALAD', 'HOUSE SALADS'];
 
@@ -17,19 +20,17 @@ export class MenuView {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
 
-        this.header = createHeader();
-        this.body.append(this.header);
-
+        this.header = displayHeader();
         this.main = createElement('main', 'main-menu');
-        this.body.append(this.header, this.main);
 
         this.wrapper = createElement('div', 'wrapper');
         this.main.append(this.wrapper);
 
         this.container = createElement('div', 'container');
         this.wrapper.append(this.container);
-
         this.createMenu();
+        this.footer = displayFooter();
+        this.body.append(this.header, this.main, this.footer);
     }
 
     public createMenu() {
@@ -55,6 +56,34 @@ export class MenuView {
                 categoryBlock.append(menuItemBlock);
             });
             this.container.append(categoryBlock);
+        });
+    }
+
+    bindClickMenu() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('header-main-text')) {
+                window.location.hash = `menu`;
+            }
+        });
+    }
+
+    bindClickButtonReserv() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            const parent = target.parentElement as Element;
+            if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
+                window.location.hash = `reservation`;
+            }
+        });
+    }
+
+    bindClickMainPage() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('link-main-page')) {
+                window.location.hash = '';
+            }
         });
     }
 }

@@ -14,7 +14,7 @@ export function displayFooter() {
     creatorTwo.classList.add('header-text');
     const creatorTwoLink = createElement('a', 'links__creator-link') as HTMLAnchorElement;
     creatorTwoLink.href = 'https://github.com/AP-Est';
-    creatorTwoLink.textContent = 'AP-Est';
+    creatorTwoLink.textContent = 'Andrey Piarouski';
     const creatorThree = createElement('li', 'links__creator');
     creatorThree.classList.add('header-text');
     const creatorThreeLink = createElement('a', 'links__creator-link') as HTMLAnchorElement;
