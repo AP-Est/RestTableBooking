@@ -30,11 +30,9 @@ export class ReservationView {
     bindTimeLine(handler: (markLine: number) => void) {
         this.body.addEventListener('click', (event) => {
             const target = event.target as HTMLDivElement;
-            console.log(target);
             if (target.classList.contains('longLine') || target.classList.contains('shortLine')) {
                 //target.classList.add('marked');
                 const markLine = parseInt(target.id);
-                console.log(target);
                 handler(markLine);
             }
         });

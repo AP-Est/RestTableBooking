@@ -25,7 +25,6 @@ export class ReservationModel {
         } else return 1;
     }
     handleTimeLine(markLine: number) {
-        console.log('timeline Model');
         this.timeView.markLine = markLine;
         this.commit();
     }

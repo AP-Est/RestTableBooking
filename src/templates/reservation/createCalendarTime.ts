@@ -23,14 +23,18 @@ function createDateInputElement() {
     const dateInputElement = createElement('input', 'date__input') as HTMLInputElement;
     dateInputElement.type = 'date';
     dateInputElement.valueAsDate = new Date();
-    console.log(dateInputElement.valueAsDate);
     return dateInputElement;
 }
 function createGuestInputElement() {
+    const guestInputElementWrap = createElement('div', 'guest__input_wrapper');
     const guestInputElement = createElement('input', 'guest__input') as HTMLInputElement;
     guestInputElement.type = 'number';
+    guestInputElement.min = '1';
     guestInputElement.defaultValue = '1';
-    return guestInputElement;
+    const text = createElement('span', 'guest__input_text');
+    text.innerText = 'Guests:';
+    guestInputElementWrap.append(text, guestInputElement);
+    return guestInputElementWrap;
 }
 
 function createTimeInputElement(timeView: ITimeView) {

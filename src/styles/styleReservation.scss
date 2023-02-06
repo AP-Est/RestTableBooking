@@ -121,12 +121,14 @@
     position: relative;
     left: -10px;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .preAfterBlocks{
     height: 15px;
     width: 100px;
     background-color: red;
+    text-align: center;
 }
 
 .marked {
@@ -135,14 +137,19 @@
     text-shadow: 0 0 10px rgb(53, 47, 47), 0 0 20px rgb(174, 145, 145), 0 0 30px red, 0 0 40px rgb(178, 172, 221);
 }
 .dateGuest__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
     .date__input {
         border-radius: 5px;
     }
     .guest__input {
         border-radius: 5px;
         width: 30px;
-        &::before{
-            content: 'Guests';
-        }
+        margin-left: 10px;
+           
+    }
+    .guest__input_text{
+        font-weight: bold;
     }
 }
