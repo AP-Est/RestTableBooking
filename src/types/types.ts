@@ -1,19 +1,29 @@
-interface ITableOrder {
+export interface ITableOrder {
     start: number;
     duration: number;
     clientID: number;
     orderID: number;
 }
 
-interface ITableCondition {
+export interface ITableCondition {
     tableID: number;
     tableCondition: ITableOrder[];
 }
-interface IHallCondition {
+export interface IHallCondition {
     hallCondition: ITableCondition[];
 }
 
-interface IOrder {
-    orderID: number;
-    order: string[];
+export interface ITimeView {
+    markLine: number;
+    currentDate: Date;
+}
+
+export interface IReservationWindowFlag {
+    modalFlag: ReservationWindow;
+}
+
+enum ReservationWindow {
+    Main = 'Main',
+    Table = 'Table',
+    Reservation = 'Reservation',
 }
