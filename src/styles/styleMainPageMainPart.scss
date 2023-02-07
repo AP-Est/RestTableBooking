@@ -2,15 +2,18 @@ body{
     background-color: $backgroundMainPage;
 }
 
+p{
+    margin: 0;
+}
+
 .main{
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
-    height: 500px;
 }
 
 .inf{
-    margin-left: 93px;
-    margin-right: 93px;
+    // margin-left: 93px;
+    // margin-right: 93px;
     position: relative;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -24,4 +27,114 @@ body{
     font-size: 30px;
     font-family: $secondFontFamily;
     padding-left: 50px;
+}
+
+.main-inf{
+    max-width: 540px;
+}
+
+.main-inf__descr-p{
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    font-family: $mainFontFamily;
+}
+
+.main-inf__descr-but{
+    text-align: right;
+    line-height: 25px;
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: $mainFontFamily;
+}
+.main-inf__descr-but::before{
+    content: 'In detail ';
+}
+
+.main-inf__addit{
+    margin-top: 50px;
+}
+
+.main-inf__content{
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: black;
+    box-sizing: border-box;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    max-height: 250px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-bottom: 5px;
+}
+
+.main-inf__item{
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.main-inf__img{
+    width: 18px;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+    filter: invert(65%) sepia(13%) saturate(297%) hue-rotate(174deg) brightness(94%) contrast(88%);
+}
+
+.main-inf__span{
+    display: block;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-family: $mainFontFamily;
+    margin-left: 30px;
+}
+
+.span_noBlock{
+    display: inline;
+}
+
+.main-inf__wTime{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.main-inf__Title{
+    margin-top: 26px;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: $mainFontFamily;
+}
+
+.main-inf__wContent{
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 10px;
+    background: white;
+    @include flexStandard;
+}
+
+.main-inf__wItem{
+    float: left;
+    width: calc(100% / 7 - 1px);
+    text-align: center;
+    background-color: #fff;
+}
+
+.main-inf__wText{
+    font-weight: 400;
+    font-size: 18px;
+    font-family: $mainFontFamily;
+}
+
+.wDay{
+    margin-bottom: 15px;
 }
