@@ -1,6 +1,6 @@
 import { ReservationView } from 'ReservationView';
 import { ReservationModel } from 'ReservationModel';
-import { ITimeView } from '../types/types';
+import { ITableState, ITimeView } from '../types/types';
 
 export class ReservationController {
     view: ReservationView;
@@ -13,10 +13,10 @@ export class ReservationController {
         this.view.bindTimeLine(this.handleTimeLine);
         //todo
         this.model.bindChangeModel(this.onChangeModel);
-        this.onChangeModel(this.model.timeView);
+        this.onChangeModel(this.model.timeView, this.model.hallView);
     }
-    onChangeModel = (timeView: ITimeView) => {
-        this.view.reservationRender(timeView);
+    onChangeModel = (timeView: ITimeView, hallView: ITableState[]) => {
+        this.view.reservationRender(timeView, hallView);
     };
 
     handleTimeLine = (markLine: number) => {

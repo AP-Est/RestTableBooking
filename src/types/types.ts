@@ -27,3 +27,14 @@ enum ReservationWindow {
     Table = 'Table',
     Reservation = 'Reservation',
 }
+
+export interface ITableState {
+    tableNumber: number;
+    tableType: number;
+    tableColor: string;
+    sitColor: string;
+}
+
+export interface IHallState {
+    hallState: ITableState[];
+}
