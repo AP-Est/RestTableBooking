@@ -25,19 +25,18 @@ ul{
 }
 
 .header-top__wrapper{
-    margin: 24px 50px 24px;
-    height: 50px;
-    //background-color: aqua;
+    margin: 20px 50px 0px 0px;
+    height: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .header-top-logo{
-    width: 130px;
-    height: 80px;
-    background-image: url(https://leclick.ru/img/LogoNew.svg?v=6);
-    background-size: contain;
+    width: 230px;
+    height: 120px;
+    background-image: url(../source/img/icon.png);
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 
@@ -156,6 +155,10 @@ ul{
 }
 
 .footer{
+    display:block;
+}
+
+.footer-wrap{
     border-top: 1px #0e2244 solid;
     padding-top: 40px;
     margin-top: 50px;
