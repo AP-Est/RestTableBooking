@@ -1,4 +1,4 @@
-import { ITableState, ITimeView } from '../types/types';
+import { IReservationWindow, ITableState, ITimeView, ReservationWindow } from '../types/types';
 export class ReservationModel {
     onChangeModel!: CallableFunction;
     markLine: number;
@@ -10,6 +10,7 @@ export class ReservationModel {
     freeElement: string;
     guestCount: number;
     chosenDate: Date;
+    reservationWindow: IReservationWindow;
     constructor() {
         this.currentDate = new Date();
         this.markLine = this.getCurrentTimeLine();
@@ -31,6 +32,10 @@ export class ReservationModel {
         this.hallView = [];
         this.busyElement = 'Red';
         this.freeElement = 'Gray';
+        this.reservationWindow = {
+            modalFlag: ReservationWindow.Main,
+            tableNumber: 0,
+        };
         this.getHallView();
         console.log(this.hallView);
     }
@@ -39,7 +44,7 @@ export class ReservationModel {
     }
     private commit() {
         this.getHallView();
-        this.onChangeModel(this.timeView, this.hallView);
+        this.onChangeModel(this.timeView, this.hallView, this.reservationWindow);
     }
     private getCurrentTimeLine() {
         const hours = this.currentDate.getHours();
@@ -72,6 +77,11 @@ export class ReservationModel {
     }
     handleGuest(guestCount: number) {
         this.timeView.guestCount = guestCount;
+        this.commit();
+    }
+    handleClickToTable(tableNumber: number) {
+        this.reservationWindow.tableNumber = tableNumber;
+        this.reservationWindow.modalFlag = ReservationWindow.Table;
         this.commit();
     }
 }

@@ -3,7 +3,9 @@
     align-items: center;
     flex-direction: column;
 }
-
+svg {
+    z-index: 1;
+}
 //.header__wrapper{
 //     margin: 0 auto;
 //     max-width: 100%;
@@ -179,6 +181,13 @@
     position: absolute;
     justify-content: center;
     align-items: center;
+    z-index: 30;
+    cursor: pointer;
+    user-select: none;
+}
+.table__text {
+    position: absolute;
+    z-index: 2;
 }
 .hall__table1{
     width: 18%;
@@ -225,10 +234,75 @@
     width: 10%;
     top: 82%;
     left: 48%;
+    .table__text {
+        transform: rotate(-90deg);
+    }
 }
 .hall__table10{
     width: 18%;
     top: 77%;
     left: 76%;
+}
+
+.tableInfo__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    z-index: 50;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    top: 40%;
+    //height: 50vh;
+    //width: 50vw;
+    background-color: #939191;
+    .infoBlock__wrapper{
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+        .tableInfoBlock__number, 
+        .tableInfoBlock__date, 
+        .tableInfoBlock__count {
+            padding: 3px;
+            margin: 3px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            background-color: darken($color: #939191, $amount: 10);
+        }
+    }
+    .scheduleBlock__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        .tableScheduleH__wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px;
+            padding: 3px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            .busyTable {
+                color: rgb(255, 0, 0);
+                background-color: #774444;
+                margin-right: 10%;
+                padding-left: 4px;
+                padding-right: 4px;
+                border-radius: 5px;
+
+            }
+            .scheduleH__time {
+                background-color: #a79c9c;
+                padding-left: 4px;
+                padding-right: 4px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            .scheduleH__status {   
+                .reservation__button{
+                    border-radius: 5px;
+                }             
+            }
+        }
+    }
 }
 

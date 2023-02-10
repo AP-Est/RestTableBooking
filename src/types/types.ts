@@ -20,14 +20,16 @@ export interface ITimeView {
     guestCount: number;
 }
 
-export interface IReservationWindowFlag {
+export interface IReservationWindow {
     modalFlag: ReservationWindow;
+    tableNumber: number;
 }
 
-enum ReservationWindow {
+export enum ReservationWindow {
     Main = 'Main',
     Table = 'Table',
     Reservation = 'Reservation',
+    ReservationUnreg = 'ReservationUnreg',
 }
 
 export interface ITableState {

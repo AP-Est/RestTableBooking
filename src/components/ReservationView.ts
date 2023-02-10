@@ -3,9 +3,10 @@ import createElement from '../Utils/createElement';
 import '../styles/styleReservation.scss';
 import createHeader from '../templates/createHeader';
 import createCalendarAndTimer from '../templates/reservation/createCalendarTime';
-import { ITableState, ITimeView } from '../types/types';
+import { IReservationWindow, ITableState, ITimeView } from '../types/types';
 import createHallBlock from '../templates/reservation/createHallBlock';
 import { displayHeaderReservation } from '../templates/displayHeaderReservation';
+import createModalTableInfo from '../templates/reservation/createModalTableInfo';
 
 export class ReservationView {
     body!: HTMLElement;
@@ -14,21 +15,40 @@ export class ReservationView {
     calendarAndTime!: HTMLElement;
     hall!: HTMLElement;
     reservationWrapper!: HTMLElement;
+    modalTableInfo!: HTMLElement;
 
     constructor() {
         console.log();
     }
 
-    reservationRender(timeView: ITimeView, hallView: ITableState[]) {
+    reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
         this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
-        //this.header = createHeader();
         this.header = displayHeaderReservation();
         this.calendarAndTime = createCalendarAndTimer(timeView);
         this.hall = createHallBlock(hallView);
-        this.reservationWrapper.append(this.calendarAndTime, this.hall);
+        this.modalTableInfo = createModalTableInfo(timeView, hallView, reservationWindow);
+        this.reservationWrapper.append(this.calendarAndTime, this.hall, this.modalTableInfo);
         this.body.append(this.header, this.reservationWrapper);
+        this.reservationModalSwitch(reservationWindow);
+    }
+    reservationModalSwitch(reservationWindow: IReservationWindow) {
+        const modalTable = getElement('.tableInfo__wrapper') as HTMLElement;
+        switch (reservationWindow.modalFlag) {
+            case 'Main': {
+                modalTable.style.display = 'none';
+                break;
+            }
+            case 'Table': {
+                modalTable.style.display = 'block';
+                break;
+            }
+            default: {
+                modalTable.style.display = 'none';
+                break;
+            }
+        }
     }
     bindTimeLine(handler: (markLine: number) => void) {
         document.body.addEventListener('click', (event) => {
@@ -54,6 +74,20 @@ export class ReservationView {
             if (target.classList.contains('guest__input')) {
                 const guestCount = +target.value;
                 handler(guestCount);
+            }
+        });
+    }
+    bindClickToTable(handler: (tableNumber: number) => void) {
+        document.body.addEventListener('click', (event) => {
+            const target = event.target as HTMLDivElement;
+            const parent = target.parentElement as HTMLDivElement;
+            const grand = parent.parentElement as HTMLDivElement;
+            if (parent.classList.contains('hall__allTables')) {
+                const tableNumber = parseInt(parent.id);
+                handler(tableNumber);
+            } else if (grand.classList.contains('hall__allTables')) {
+                const tableNumber = parseInt(grand.id);
+                handler(tableNumber);
             }
         });
     }
