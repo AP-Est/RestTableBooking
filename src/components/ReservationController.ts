@@ -11,6 +11,8 @@ export class ReservationController {
         this.model = model;
 
         this.view.bindTimeLine(this.handleTimeLine);
+        this.view.bindDate(this.handleDate);
+        this.view.bindGuest(this.handleGuest);
         //todo
         this.model.bindChangeModel(this.onChangeModel);
         this.onChangeModel(this.model.timeView, this.model.hallView);
@@ -21,5 +23,11 @@ export class ReservationController {
 
     handleTimeLine = (markLine: number) => {
         this.model.handleTimeLine(markLine);
+    };
+    handleDate = (changedDate: Date) => {
+        this.model.handleDate(changedDate);
+    };
+    handleGuest = (guestCount: number) => {
+        this.model.handleGuest(guestCount);
     };
 }

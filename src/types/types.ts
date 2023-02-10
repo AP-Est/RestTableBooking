@@ -16,6 +16,8 @@ export interface IHallCondition {
 export interface ITimeView {
     markLine: number;
     currentDate: Date;
+    chosenDate: Date;
+    guestCount: number;
 }
 
 export interface IReservationWindowFlag {

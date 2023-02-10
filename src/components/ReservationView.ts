@@ -39,4 +39,22 @@ export class ReservationView {
             }
         });
     }
+    bindDate(handler: (changedDate: Date) => void) {
+        document.body.addEventListener('change', (event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('date__input')) {
+                const changedDate = new Date(target.value);
+                handler(changedDate);
+            }
+        });
+    }
+    bindGuest(handler: (guestCount: number) => void) {
+        document.body.addEventListener('change', (event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('guest__input')) {
+                const guestCount = +target.value;
+                handler(guestCount);
+            }
+        });
+    }
 }
