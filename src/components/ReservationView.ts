@@ -3,35 +3,37 @@ import createElement from '../Utils/createElement';
 import '../styles/styleReservation.scss';
 import createHeader from '../templates/createHeader';
 import createCalendarAndTimer from '../templates/reservation/createCalendarTime';
-import { ITimeView } from '../types/types';
+import { ITableState, ITimeView } from '../types/types';
+import createHallBlock from '../templates/reservation/createHallBlock';
+import { displayHeaderReservation } from '../templates/displayHeaderReservation';
 
 export class ReservationView {
     body!: HTMLElement;
     div!: HTMLElement;
     header!: HTMLElement;
     calendarAndTime!: HTMLElement;
+    hall!: HTMLElement;
+    reservationWrapper!: HTMLElement;
 
     constructor() {
-        const timeView = {
-            markLine: 0,
-            currentDate: new Date(),
-        };
-        this.reservationRender(timeView);
+        console.log();
     }
 
-    reservationRender(timeView: ITimeView) {
+    reservationRender(timeView: ITimeView, hallView: ITableState[]) {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
-        this.header = createHeader();
+        this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
+        //this.header = createHeader();
+        this.header = displayHeaderReservation();
         this.calendarAndTime = createCalendarAndTimer(timeView);
-
-        this.body.append(this.header, this.calendarAndTime);
+        this.hall = createHallBlock(hallView);
+        this.reservationWrapper.append(this.calendarAndTime, this.hall);
+        this.body.append(this.header, this.reservationWrapper);
     }
     bindTimeLine(handler: (markLine: number) => void) {
-        this.body.addEventListener('click', (event) => {
+        document.body.addEventListener('click', (event) => {
             const target = event.target as HTMLDivElement;
             if (target.classList.contains('longLine') || target.classList.contains('shortLine')) {
-                //target.classList.add('marked');
                 const markLine = parseInt(target.id);
                 handler(markLine);
             }
