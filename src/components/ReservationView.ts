@@ -5,6 +5,7 @@ import createHeader from '../templates/createHeader';
 import createCalendarAndTimer from '../templates/reservation/createCalendarTime';
 import { ITableState, ITimeView } from '../types/types';
 import createHallBlock from '../templates/reservation/createHallBlock';
+import { displayHeaderReservation } from '../templates/displayHeaderReservation';
 
 export class ReservationView {
     body!: HTMLElement;
@@ -22,7 +23,8 @@ export class ReservationView {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
         this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
-        this.header = createHeader();
+        //this.header = createHeader();
+        this.header = displayHeaderReservation();
         this.calendarAndTime = createCalendarAndTimer(timeView);
         this.hall = createHallBlock(hallView);
         this.reservationWrapper.append(this.calendarAndTime, this.hall);
