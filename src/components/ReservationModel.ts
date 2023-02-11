@@ -90,4 +90,8 @@ export class ReservationModel {
         this.reservationWindow.modalFlag = ReservationWindow.Reservation;
         this.commit();
     }
+    handleClickToShadow() {
+        this.reservationWindow.modalFlag = ReservationWindow.Main;
+        this.commit();
+    }
 }

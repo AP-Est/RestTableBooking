@@ -18,6 +18,7 @@ export class ReservationView {
     reservationWrapper!: HTMLElement;
     modalTableInfo!: HTMLElement;
     modalReservationReg!: HTMLElement;
+    shadow!: HTMLElement;
 
     constructor() {
         console.log();
@@ -27,37 +28,43 @@ export class ReservationView {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
         this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
+        this.shadow = createElement('div', 'shadow__globalWrapper');
         this.header = displayHeaderReservation();
         this.calendarAndTime = createCalendarAndTimer(timeView);
         this.hall = createHallBlock(hallView);
         this.modalTableInfo = createModalTableInfo(timeView, hallView, reservationWindow);
         this.modalReservationReg = createModalReservationReg(timeView, hallView, reservationWindow);
         this.reservationWrapper.append(this.calendarAndTime, this.hall, this.modalTableInfo, this.modalReservationReg);
-        this.body.append(this.header, this.reservationWrapper);
+        this.body.append(this.header, this.reservationWrapper, this.shadow);
         this.reservationModalSwitch(reservationWindow);
     }
     reservationModalSwitch(reservationWindow: IReservationWindow) {
         const modalTable = getElement('.tableInfo__wrapper') as HTMLElement;
         const modalRes = getElement('.reservationReg__wrapper') as HTMLElement;
+        const shadow = getElement('.shadow__globalWrapper') as HTMLElement;
         switch (reservationWindow.modalFlag) {
             case 'Main': {
                 modalTable.style.display = 'none';
                 modalRes.style.display = 'none';
+                shadow.style.display = 'none';
                 break;
             }
             case 'Table': {
                 modalTable.style.display = 'block';
                 modalRes.style.display = 'none';
+                shadow.style.display = 'block';
                 break;
             }
             case 'Reservation': {
                 modalTable.style.display = 'none';
                 modalRes.style.display = 'block';
+                shadow.style.display = 'block';
                 break;
             }
             default: {
                 modalTable.style.display = 'none';
                 modalRes.style.display = 'block';
+                shadow.style.display = 'block';
                 break;
             }
         }
@@ -106,11 +113,18 @@ export class ReservationView {
     bindClickToRButton(handler: (resTimeNum: number) => void) {
         document.body.addEventListener('click', (event) => {
             const target = event.target as HTMLDivElement;
-            console.log(target);
             if (target.classList.contains('reservation__button')) {
                 const resTimeNum = parseInt(target.id);
                 console.log(resTimeNum);
                 handler(resTimeNum);
+            }
+        });
+    }
+    bindClickToShadow(handler: () => void) {
+        document.body.addEventListener('click', (event) => {
+            const target = event.target as HTMLDivElement;
+            if (target.classList.contains('shadow__globalWrapper')) {
+                handler();
             }
         });
     }

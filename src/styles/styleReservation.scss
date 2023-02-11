@@ -6,6 +6,16 @@
 svg {
     z-index: 1;
 }
+
+.shadow__globalWrapper {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    background-color: rgb(53, 47, 47, 0.8);
+    top: 0;
+}
 //.header__wrapper{
 //     margin: 0 auto;
 //     max-width: 100%;
