@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { authJwt } = require('../middlewares');
-const controller = require('../controllers/user.controller');
+const { verifyReservation } = require('../middlewares');
+const controller = require('../controllers/reservation.controller');
 
 module.exports = function (app) {
     app.use(function (req, res, next) {
@@ -8,7 +8,5 @@ module.exports = function (app) {
         next();
     });
 
-    app.get('/api/test/all', controller.allAccess);
-
-    app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
+    app.post('/api/reserve', [verifyReservation.checkTableIsAvailable], controller.reserve);
 };

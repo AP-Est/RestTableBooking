@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const mongoose = require('mongoose');
 
-const Role = mongoose.model(
-    'Role',
+const Review = mongoose.model(
+    'Review',
     new mongoose.Schema({
-        name: String,
+        username: String,
+        comment: String,
     })
 );
 
-module.exports = Role;
+module.exports = Review;
