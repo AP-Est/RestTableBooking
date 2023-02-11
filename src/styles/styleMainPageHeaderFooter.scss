@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 ul{
     margin: 0;
     padding: 0;
@@ -21,7 +23,6 @@ ul{
 .header__wrapper{
     margin: 0 auto;
     max-width: 1000px;
-    margin-bottom: 50px;
 }
 
 .header-top__wrapper{
@@ -59,10 +60,15 @@ ul{
 .header-main__wrapper{
     width: 100%;
     height: 420px;
-    background-image: url(https://old.leclick.ru/i/files/restaurants/photo/869780.jpg?w=1004);
+    //background-image: url(../source/img/main1.jpg);
     border-radius: 20px;
-    background-position: center;
+    //background-position: center;
     position: relative;
+}
+
+#carouselExampleIndicators{
+    width: 100%;
+    height: 100%;
 }
 
 .header-main-text{
@@ -76,7 +82,7 @@ ul{
     box-sizing: border-box;
     background-color: white;
     padding: 20px 20px 20px 20px;
-    border: 1px solid black;
+    //border: 1px solid black;
     border-radius: 15px;
     position: absolute;
     top: 80px;
@@ -202,4 +208,17 @@ ul{
     &:hover{
         @include hoverStandard;
     }
+}
+
+.carousel-inner {
+    height: 100%;
+    border-radius: 20px;
+}
+
+.d-block {
+    object-fit: revert;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: black;
 }
