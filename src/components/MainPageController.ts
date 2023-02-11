@@ -12,5 +12,21 @@ export class MainPageController {
         this.view.bindClickMenu();
         this.view.bindClickButtonReserv();
         this.view.bindClickMainPage();
+        this.view.bindClickMoreMainInf(this.handlMainInf);
+        this.view.bindClickMoreAdditInf(this.handlAdditInf);
+        this.model.bindChangeModel(this.onChangeModel);
     }
+
+    handlMainInf = () => {
+        this.model.changeMainInf();
+    };
+
+    handlAdditInf = () => {
+        this.model.changeAdditInf();
+    };
+
+    onChangeModel = (moreMainInf: boolean, moreAdditInf: boolean) => {
+        this.view.renderPage(moreMainInf, moreAdditInf);
+        console.log('onChangeModel');
+    };
 }

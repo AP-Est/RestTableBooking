@@ -29,15 +29,24 @@ p{
     padding-left: 50px;
 }
 
+.main-wrap{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
 .main-inf{
     max-width: 540px;
 }
 
 .main-inf__descr-p{
-    font-size: 20px;
+    font-size: 21px;
     line-height: 20px;
     font-weight: 400;
     font-family: $mainFontFamily;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
 }
 
 .main-inf__descr-but{
@@ -65,11 +74,11 @@ p{
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 20px;
-    max-height: 250px;
+    //max-height: 330px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    //grid-template-rows: 1fr 1fr;
     margin-bottom: 5px;
 }
 
@@ -93,7 +102,7 @@ p{
     display: block;
     font-weight: 500;
     letter-spacing: 1px;
-    font-size: 15px;
+    font-size: 18px;
     font-family: $mainFontFamily;
     margin-left: 30px;
 }
@@ -131,10 +140,54 @@ p{
 
 .main-inf__wText{
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
     font-family: $mainFontFamily;
 }
 
 .wDay{
     margin-bottom: 15px;
+}
+
+.rColumn{
+    padding: 10px;
+    background-color: white;
+    width: 217px;
+    border-radius: 12px;
+    position: sticky;
+    top: 10px;
+    background-color: #fff;
+    margin-top: 26px;
+    height: fit-content;
+}
+
+.rColumn-type{
+    font-weight: 500;
+    font-size: 20px;
+    font-family: $mainFontFamily;
+    letter-spacing: 1px;
+}
+
+.rColumn-map{
+    width: 100%;
+    height: 100px;
+    //background-color: antiquewhite;
+    margin: 20px 0px;
+}
+
+.rColumn-span{
+    font-weight: 400;
+    font-size: 18px;
+    font-family: $mainFontFamily;
+    margin-left: 5px;
+}
+
+.rColumn__address,
+.rColumn__metro{
+    display: flex;
+    align-items: center; 
+    margin-bottom: 20px;  
+}
+
+.mapClass{
+    height: 300px;
 }
