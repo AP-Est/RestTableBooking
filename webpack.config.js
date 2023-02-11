@@ -3,12 +3,13 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index'),
     mode: 'development',
     module: {
-        rules: [            
+        rules: [
             {
                 test: /\.ts$/,
                 use: 'ts-loader',
@@ -21,32 +22,29 @@ const baseConfig = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources:[
-                                'src/styles/vars.scss',
-                                'src/styles/mixins.scss',
-                            ]
-                        }
-                    }
+                            resources: ['src/styles/vars.scss', 'src/styles/mixins.scss'],
+                        },
+                    },
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                  {
-                    loader: 'file-loader',
-                  },
-                ],
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.svg$/,
-                loader: 'svg-inline-loader'
-            }
+                loader: 'svg-inline-loader',
+            },
+            {
+                test: /\.html$/i,
+                loader: 'html-loader',
+            },
         ],
     },
     resolve: {
@@ -54,7 +52,9 @@ const baseConfig = {
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, './dist'),
+        assetModuleFilename: 'assets/[hash][ext][query]',
+        clean: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -64,6 +64,9 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
         new EslintPlugin({ extensions: 'ts' }),
+        new CopyWebpackPlugin({
+            patterns: [{ from: './src/source/img', to: 'image' }],
+        }),
     ],
 };
 

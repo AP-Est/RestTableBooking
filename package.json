@@ -14,9 +14,19 @@
     },
     "keywords": [],
     "contributors": [
-        {"name":"Piarouski Andrey","email":"EstSkif@gmail.com","url":"https://andreyp.pythonanywhere.com/"},
-        {"name":"Siniak Natallia","email":"natalia.vasilevna.s@gmail.com"},
-        {"name":"Victoria Danilova","email":"v_kozulya@mail.ru"}
+        {
+            "name": "Piarouski Andrey",
+            "email": "EstSkif@gmail.com",
+            "url": "https://andreyp.pythonanywhere.com/"
+        },
+        {
+            "name": "Siniak Natallia",
+            "email": "natalia.vasilevna.s@gmail.com"
+        },
+        {
+            "name": "Victoria Danilova",
+            "email": "v_kozulya@mail.ru"
+        }
     ],
     "license": "ISC",
     "homepage": "https://andreyp.pythonanywhere.com/",
@@ -32,6 +42,7 @@
         "eslint-plugin-prettier": "^3.4.0",
         "eslint-webpack-plugin": "^3.2.0",
         "file-loader": "^6.2.0",
+        "html-loader": "^4.2.0",
         "html-webpack-plugin": "^5.2.0",
         "prettier": "2.2.1",
         "sass": "^1.56.1",
@@ -45,5 +56,9 @@
         "webpack-cli": "^4.5.0",
         "webpack-dev-server": "^3.11.2",
         "webpack-merge": "^5.7.3"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.6",
+        "bootstrap": "^5.2.3"
     }
 }
