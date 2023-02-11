@@ -136,7 +136,6 @@ export class ReservationView {
             const target = event.target as HTMLDivElement;
             if (target.classList.contains('reservation__button')) {
                 const resTimeNum = parseInt(target.id);
-                console.log(resTimeNum);
                 handler(resTimeNum);
             }
         });
@@ -146,6 +145,16 @@ export class ReservationView {
             const target = event.target as HTMLDivElement;
             if (target.classList.contains('shadow__globalWrapper')) {
                 handler();
+            }
+        });
+    }
+    bindSetDuration(handler: (tableDuration: number) => void) {
+        document.body.addEventListener('change', (event) => {
+            //event.preventDefault();
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('duration__block_input')) {
+                const tableDuration = +target.value;
+                handler(tableDuration);
             }
         });
     }

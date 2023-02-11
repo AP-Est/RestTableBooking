@@ -25,6 +25,15 @@ export interface IReservationWindow {
     modalFlag: ReservationWindow;
     tableNumber: number;
     resTimeNum: number;
+    tableDuration: number;
+    freeHours: number;
+    errors: IReservationErrors;
+}
+
+export interface IReservationErrors {
+    duration: boolean;
+    name: boolean;
+    phone: boolean;
 }
 
 export enum ReservationWindow {

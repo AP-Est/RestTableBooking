@@ -16,6 +16,7 @@ export class ReservationController {
         this.view.bindClickToTable(this.handleClickToTable);
         this.view.bindClickToRButton(this.handleClickToRButton);
         this.view.bindClickToShadow(this.handleClickToShadow);
+        this.view.bindSetDuration(this.handleSetDuration);
         //todo
         this.model.bindChangeModel(this.onChangeModel);
         this.onChangeModel(this.model.timeView, this.model.hallView, this.model.reservationWindow);
@@ -41,5 +42,8 @@ export class ReservationController {
     };
     handleClickToShadow = () => {
         this.model.handleClickToShadow();
+    };
+    handleSetDuration = (tableDuration: number) => {
+        this.model.handleSetDuration(tableDuration);
     };
 }

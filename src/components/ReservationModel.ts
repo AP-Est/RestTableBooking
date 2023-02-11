@@ -18,6 +18,7 @@ export class ReservationModel {
         this.markLine = this.getCurrentTimeLine();
         const defaultGuestCount = 1;
         const defaultView = ReservationWindow.Main;
+        const defaultTableDuration = 1;
         const defaultDayTableSchedule = [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1];
         //const defaultView = ReservationWindow.ReservationUnreg;
         this.dayTableSchedule = defaultDayTableSchedule;
@@ -45,6 +46,13 @@ export class ReservationModel {
             modalFlag: defaultView,
             tableNumber: 0,
             resTimeNum: 0,
+            tableDuration: defaultTableDuration,
+            freeHours: 1,
+            errors: {
+                duration: false,
+                name: false,
+                phone: false,
+            },
         };
         this.getHallView();
         console.log(this.hallView);
@@ -103,6 +111,22 @@ export class ReservationModel {
     }
     handleClickToShadow() {
         this.reservationWindow.modalFlag = ReservationWindow.Main;
+        this.reservationWindow.errors.duration = false;
+        this.reservationWindow.freeHours = 1;
+        this.reservationWindow.tableDuration = 1;
+        this.commit();
+    }
+    handleSetDuration(tableDuration: number) {
+        const schedule = this.timeView.dayTableSchedule;
+        let freeHours = 1;
+        for (let i = this.reservationWindow.resTimeNum; i < schedule.length; i++) {
+            if (schedule[i + 1] == 0) {
+                freeHours += 1;
+            } else break;
+        }
+        this.reservationWindow.tableDuration = tableDuration;
+        this.reservationWindow.freeHours = freeHours;
+        this.reservationWindow.errors.duration = tableDuration > freeHours;
         this.commit();
     }
 }

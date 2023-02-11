@@ -361,14 +361,22 @@ svg {
         }
     }
     .durationBlock__wrapper {
-        display: flex;
-        margin: 10px auto;
-        .duration__block_input {
-            width: 20px;
-            border-radius: 5px;
-            text-align: center;
-            margin: auto 10px;
+        .dataBlock__wrapper {
+            display: flex;
+            margin: 10px auto;
+            .duration__block_input {
+                width: 20px;
+                border-radius: 5px;
+                text-align: center;
+                margin: auto 10px;
+            }
         }
+        .errorBlock__wrapper {
+            margin: 10px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            background-color: #774444;
+        }   
     }
 
     .buttonBlock__wrapper {
