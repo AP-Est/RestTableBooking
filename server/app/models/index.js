@@ -7,8 +7,7 @@ const db = {};
 db.mongoose = mongoose;
 
 db.user = require('./user.model');
-db.role = require('./role.model');
-
-db.ROLES = ['user', 'admin', 'moderator'];
+db.reservation = require('./reservation.model');
+db.review = require('./review.model');
 
 module.exports = db;
