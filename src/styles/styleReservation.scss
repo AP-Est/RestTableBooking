@@ -1,4 +1,26 @@
-// .header__wrapper{
+ .reservation__globalWrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+svg {
+    z-index: 1;
+}
+
+.lostTime {
+    background-color: darken($color: #4c4b4b, $amount: 5);
+    user-select: none;
+}
+.shadow__globalWrapper {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 40;
+    background-color: rgb(53, 47, 47, 0.8);
+    top: 0;
+}
+//.header__wrapper{
 //     margin: 0 auto;
 //     max-width: 100%;
 //     margin-bottom: 0;
@@ -14,7 +36,7 @@
         flex-direction: column;
         align-items: center;
         padding: 10px;
-        background-color: #843465;
+        background-color: darken($color: #939191, $amount: 5);
         border-radius: 50px;
 
     }
@@ -151,5 +173,210 @@
     }
     .guest__input_text{
         font-weight: bold;
+    }
+}
+
+.hall__wrapper {
+    display: flex;
+    position: relative;
+    //width: задается из JS
+    //height: задается из JS
+    margin-top: 10px;
+    //border: 2px solid #000000;
+    border-radius: 10px;
+    //background: url('../templates/reservation/RegBG.svg');
+    background: url('../templates/reservation/hall.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.hall__allTables{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    cursor: pointer;
+    user-select: none;
+}
+.table__text {
+    position: absolute;
+    z-index: 2;
+}
+.hall__table1{
+    width: 18%;
+    top: 5%;
+    left: 80%;
+}
+.hall__table2{
+    width: 18%;
+    top: 18%;
+    left: 46%;
+}
+.hall__table3{
+    width: 10%;
+    top: 32%;
+    left: 8%;
+}
+.hall__table4{
+    width: 20%;
+    top: 30%;
+    left: 72%;
+}
+.hall__table5{
+    width: 18%;
+    top: 52%;
+    left: 20%;
+}
+.hall__table6{
+    width: 30%;
+    top: 45%;
+    left: 46%;
+}
+.hall__table7{
+    width: 10%;
+    top: 55%;
+    left: 82%;
+}
+.hall__table8{
+    width: 18%;
+    top: 77%;
+    left: 8%;
+}
+.hall__table9{
+    transform: rotate(90deg);
+    width: 10%;
+    top: 82%;
+    left: 48%;
+    .table__text {
+        transform: rotate(-90deg);
+    }
+}
+.hall__table10{
+    width: 18%;
+    top: 77%;
+    left: 76%;
+}
+
+.tableInfo__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    z-index: 50;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    top: 40%;
+    //height: 50vh;
+    //width: 50vw;
+    background-color: #939191;
+    .infoBlock__wrapper{
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+        .tableInfoBlock__number, 
+        .tableInfoBlock__date, 
+        .tableInfoBlock__count {
+            padding: 3px;
+            margin: 3px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            background-color: darken($color: #939191, $amount: 10);
+        }
+    }
+    .scheduleBlock__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        .tableScheduleH__wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px;
+            padding: 3px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            .busyTable {
+                color: rgb(255, 0, 0);
+                background-color: #774444;
+                margin-right: 10%;
+                padding-left: 4px;
+                padding-right: 4px;
+                border-radius: 5px;
+
+            }
+            .scheduleH__time {
+                background-color: #a79c9c;
+                padding-left: 4px;
+                padding-right: 4px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            .scheduleH__status {   
+                .reservation__button{
+                    border-radius: 5px;
+                }             
+            }
+        }
+    }
+}
+.reservationReg__wrapper,
+.reservationUnReg__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    z-index: 70;
+    padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    top: 40%;
+    //height: 50vh;
+    //width: 50vw;
+    background-color: #939191;
+    .infoBlock__wrapper {
+        display: flex;
+        flex-direction: column;
+        .tableNumber__wrapper {
+            display: flex;
+            justify-content: center;
+            .tableNumber__output {
+                padding: 3px;
+                margin: 3px;
+                border: 2px solid #000000;
+                border-radius: 5px;
+                background-color: darken($color: #939191, $amount: 10);
+            }
+        }
+        .tableDetailsBlock__wrapper {
+            display: flex;
+            .tableDetailsBlock__date, 
+            .tableDetailsBlock__time,
+            .tableDetailsBlock__guests {
+                padding: 3px;
+                margin: 3px;
+                border: 2px solid #000000;
+                border-radius: 5px;
+                background-color: darken($color: #939191, $amount: 10);
+            }
+        }
+    }
+    .durationBlock__wrapper {
+        display: flex;
+        margin: 10px auto;
+        .duration__block_input {
+            width: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin: auto 10px;
+        }
+    }
+
+    .buttonBlock__wrapper {
+        display: flex;
+        .button__reservation {
+            border-radius: 5px;
+            font-size: 2vw;
+            font-weight: bold;
+        }
     }
 }

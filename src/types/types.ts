@@ -16,14 +16,30 @@ export interface IHallCondition {
 export interface ITimeView {
     markLine: number;
     currentDate: Date;
+    chosenDate: Date;
+    guestCount: number;
 }
 
-export interface IReservationWindowFlag {
+export interface IReservationWindow {
     modalFlag: ReservationWindow;
+    tableNumber: number;
+    resTimeNum: number;
 }
 
-enum ReservationWindow {
+export enum ReservationWindow {
     Main = 'Main',
     Table = 'Table',
     Reservation = 'Reservation',
+    ReservationUnreg = 'ReservationUnreg',
+}
+
+export interface ITableState {
+    tableNumber: number;
+    tableType: number;
+    tableColor: string;
+    sitColor: string;
+}
+
+export interface IHallState {
+    hallState: ITableState[];
 }

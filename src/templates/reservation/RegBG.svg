@@ -1,0 +1,14 @@
+<svg width="295" height="293" viewBox="0 0 295 293" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35 35C35 33.8954 35.8954 33 37 33H293C294.105 33 295 33.8954 295 35V291C295 292.105 294.105 293 293 293H37C35.8954 293 35 292.105 35 291V35Z" fill="#E5E5E5"/>
+<rect x="35" y="33" width="260" height="260" fill="black"/>
+<rect x="38" y="37" width="254" height="253" fill="#D9D9D9"/>
+<line x1="212" y1="35" x2="185" y2="35" stroke="#EBE2E2" stroke-width="4"/>
+<path d="M188 52L215 33" stroke="black" stroke-width="4"/>
+<ellipse cx="80" cy="54" rx="60" ry="35" fill="black"/>
+<ellipse cx="72" cy="47.5" rx="53" ry="32.5" fill="#868585"/>
+<rect width="277" height="22" transform="translate(18 11)" fill="white"/>
+<line x1="128" y1="35" x2="36" y2="35" stroke="black" stroke-width="4"/>
+<line x1="36.5" y1="76" x2="36.5" y2="33" stroke="black" stroke-width="3"/>
+<rect width="35" height="98" fill="white"/>
+<path d="M37 34H293V32H37V34ZM294 35V291H296V35H294ZM293 292H37V294H293V292ZM36 291V35H34V291H36ZM37 292C36.4477 292 36 291.552 36 291H34C34 292.657 35.3432 294 37 294V292ZM294 291C294 291.552 293.552 292 293 292V294C294.657 294 296 292.657 296 291H294ZM293 34C293.552 34 294 34.4477 294 35H296C296 33.3431 294.657 32 293 32V34ZM37 32C35.3431 32 34 33.3432 34 35H36C36 34.4477 36.4477 34 37 34V32Z" fill="black" fill-opacity="0.1"/>
+</svg>
