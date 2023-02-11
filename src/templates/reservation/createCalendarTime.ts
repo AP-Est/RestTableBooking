@@ -6,8 +6,8 @@ export default function createCalendarAndTimer(timeView: ITimeView) {
     const timerAndCalendarForm = createElement('form', 'calendarTimer__form');
     const timerWrapper = createElement('div', 'timer__wrapper');
     const dateGuestInput = createElement('div', 'dateGuest__wrapper');
-    const dateInput = createDateInputElement();
-    const guestInput = createGuestInputElement();
+    const dateInput = createDateInputElement(timeView);
+    const guestInput = createGuestInputElement(timeView);
     dateGuestInput.append(dateInput, guestInput);
     const timeInput = createTimeInputElement(timeView);
     const rows = createElement('div', 'inner__rows');
@@ -19,18 +19,25 @@ export default function createCalendarAndTimer(timeView: ITimeView) {
     timerAndCalendarWrapper.append(timerAndCalendarForm);
     return timerAndCalendarWrapper;
 }
-function createDateInputElement() {
+function createDateInputElement(timeView: ITimeView) {
     const dateInputElement = createElement('input', 'date__input') as HTMLInputElement;
     dateInputElement.type = 'date';
-    dateInputElement.valueAsDate = new Date();
+    dateInputElement.valueAsDate = timeView.chosenDate || new Date();
+    const dateMax = new Date();
+    dateMax.setDate(dateMax.getDate() + 7);
+    const refDateMax = `${dateMax.getFullYear()}-${('0' + (dateMax.getMonth() + 1)).slice(-2)}-${dateMax.getDate()}`;
+    dateInputElement.max = refDateMax;
+    const dateMin = new Date();
+    const refDateMin = `${dateMin.getFullYear()}-${('0' + (dateMin.getMonth() + 1)).slice(-2)}-${dateMin.getDate()}`;
+    dateInputElement.min = refDateMin;
     return dateInputElement;
 }
-function createGuestInputElement() {
+function createGuestInputElement(timeView: ITimeView) {
     const guestInputElementWrap = createElement('div', 'guest__input_wrapper');
     const guestInputElement = createElement('input', 'guest__input') as HTMLInputElement;
     guestInputElement.type = 'number';
     guestInputElement.min = '1';
-    guestInputElement.defaultValue = '1';
+    guestInputElement.defaultValue = `${timeView.guestCount}`;
     const text = createElement('span', 'guest__input_text');
     text.innerText = 'Guests:';
     guestInputElementWrap.append(text, guestInputElement);
