@@ -15,6 +15,8 @@ export class ReservationModel {
         this.currentDate = new Date();
         this.markLine = this.getCurrentTimeLine();
         const defaultGuestCount = 1;
+        //const defaultView = ReservationWindow.Main;
+        const defaultView = ReservationWindow.Reservation;
         this.guestCount = defaultGuestCount;
         this.chosenDate = new Date();
         this.timeView = {
@@ -33,7 +35,7 @@ export class ReservationModel {
         this.busyElement = 'Red';
         this.freeElement = 'Gray';
         this.reservationWindow = {
-            modalFlag: ReservationWindow.Main,
+            modalFlag: defaultView,
             tableNumber: 0,
             resTimeNum: 0,
         };

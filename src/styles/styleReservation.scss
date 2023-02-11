@@ -327,4 +327,38 @@ svg {
     height: 50vh;
     width: 50vw;
     background-color: #939191;
+    .infoBlock__wrapper {
+        display: flex;
+        flex-direction: column;
+        .tableNumber__wrapper {
+            display: flex;
+            .tableNumber__output {
+                padding: 3px;
+                margin: 3px;
+                border: 2px solid #000000;
+                border-radius: 5px;
+                background-color: darken($color: #939191, $amount: 10);
+            }
+        }
+        .tableDetailsBlock__wrapper {
+            display: flex;
+            .tableDetailsBlock__date, 
+            .tableDetailsBlock__time,
+            .tableDetailsBlock__guests {
+                padding: 3px;
+                margin: 3px;
+                border: 2px solid #000000;
+                border-radius: 5px;
+                background-color: darken($color: #939191, $amount: 10);
+            }
+        }
+        .commentBlock__wrapper {
+            &::before {
+                content: 'Duration: ';
+            }
+        }
+        .buttonBlock__wrapper {
+
+        }
+    }
 }

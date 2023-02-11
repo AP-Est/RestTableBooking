@@ -1,6 +1,6 @@
 import { ITimeView, ITableState, IReservationWindow } from '../../types/types';
 import createElement from '../../Utils/createElement';
-import createButton from '../../Utils/createElement';
+import createButton from '../../Utils/createButton';
 
 export default function createModalReservationReg(
     timeView: ITimeView,
@@ -14,7 +14,7 @@ export default function createModalReservationReg(
     wrapper.append(infoBlock, inputComment, buttonBlock);
     return wrapper;
 }
-export function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
+function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
     const wrapper = createElement('div', 'infoBlock__wrapper');
     const tableNumber = createElement('div', 'tableNumber__wrapper');
     const tableNumberOutput = createElement('div', 'tableNumber__output');
@@ -27,23 +27,21 @@ export function createInfoBlock(timeView: ITimeView, hallView: ITableState[], re
         (timeView.chosenDate.getMonth() + 1)
     ).slice(-2)}-${timeView.chosenDate.getDate()}`;
     const tableDetailsTime = createElement('div', 'tableDetailsBlock__time');
-    tableDetailsTime.innerText = `Time: ${reservationWindow.resTimeNum}`;
+    tableDetailsTime.innerText = `Time: ${reservationWindow.resTimeNum + 12}:00`;
     const tableDetailsGuest = createElement('div', 'tableDetailsBlock__guests');
     tableDetailsGuest.innerText = `Guest: ${timeView.guestCount}`;
     tableDetailsBlock.append(tableDetailsDate, tableDetailsTime, tableDetailsGuest);
     wrapper.append(tableNumber, tableDetailsBlock);
     return wrapper;
 }
-export function createCommentBlock() {
+function createCommentBlock() {
     const wrapper = createElement('div', 'commentBlock__wrapper');
     const inputTableDuration = createElement('input', 'comment__block_input') as HTMLInputElement;
     inputTableDuration.type = 'number';
-    const inputComment = createElement('input', 'comment__block_input') as HTMLInputElement;
-    inputComment.type = 'text';
-    wrapper.append(inputComment);
+    wrapper.append(inputTableDuration);
     return wrapper;
 }
-export function createButtonBlock() {
+function createButtonBlock() {
     const wrapper = createElement('div', 'buttonBlock__wrapper');
     const buttonReservation = createButton('Reservation', 'button__reservation');
     wrapper.append(buttonReservation);

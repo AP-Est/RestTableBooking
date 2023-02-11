@@ -21,7 +21,8 @@ export class ReservationView {
     shadow!: HTMLElement;
 
     constructor() {
-        console.log();
+        const aa = Date();
+        console.log(aa);
     }
 
     reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
