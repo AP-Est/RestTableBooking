@@ -7,11 +7,15 @@ svg {
     z-index: 1;
 }
 
+.lostTime {
+    background-color: darken($color: #4c4b4b, $amount: 5);
+    user-select: none;
+}
 .shadow__globalWrapper {
     display: block;
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 40;
     background-color: rgb(53, 47, 47, 0.8);
     top: 0;
@@ -315,23 +319,26 @@ svg {
         }
     }
 }
-.reservationReg__wrapper {
+.reservationReg__wrapper,
+.reservationUnReg__wrapper {
     display: flex;
     flex-direction: column;
     position: absolute;
     align-items: center;
     z-index: 70;
+    padding: 10px;
     border: 2px solid #000000;
     border-radius: 10px;
     top: 40%;
-    height: 50vh;
-    width: 50vw;
+    //height: 50vh;
+    //width: 50vw;
     background-color: #939191;
     .infoBlock__wrapper {
         display: flex;
         flex-direction: column;
         .tableNumber__wrapper {
             display: flex;
+            justify-content: center;
             .tableNumber__output {
                 padding: 3px;
                 margin: 3px;
@@ -352,13 +359,24 @@ svg {
                 background-color: darken($color: #939191, $amount: 10);
             }
         }
-        .commentBlock__wrapper {
-            &::before {
-                content: 'Duration: ';
-            }
+    }
+    .durationBlock__wrapper {
+        display: flex;
+        margin: 10px auto;
+        .duration__block_input {
+            width: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin: auto 10px;
         }
-        .buttonBlock__wrapper {
+    }
 
+    .buttonBlock__wrapper {
+        display: flex;
+        .button__reservation {
+            border-radius: 5px;
+            font-size: 2vw;
+            font-weight: bold;
         }
     }
 }

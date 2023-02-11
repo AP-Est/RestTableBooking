@@ -9,9 +9,9 @@ export default function createModalReservationReg(
 ) {
     const wrapper = createElement('div', 'reservationReg__wrapper');
     const infoBlock = createInfoBlock(timeView, hallView, reservationWindow);
-    const inputComment = createCommentBlock();
+    const inputDuration = createDurationBlock();
     const buttonBlock = createButtonBlock();
-    wrapper.append(infoBlock, inputComment, buttonBlock);
+    wrapper.append(infoBlock, inputDuration, buttonBlock);
     return wrapper;
 }
 function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
@@ -34,11 +34,16 @@ function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservati
     wrapper.append(tableNumber, tableDetailsBlock);
     return wrapper;
 }
-function createCommentBlock() {
-    const wrapper = createElement('div', 'commentBlock__wrapper');
-    const inputTableDuration = createElement('input', 'comment__block_input') as HTMLInputElement;
+function createDurationBlock() {
+    const wrapper = createElement('div', 'durationBlock__wrapper');
+    const inputText = createElement('div', 'text');
+    inputText.innerText = 'Enter duration:';
+    const inputTableDuration = createElement('input', 'duration__block_input') as HTMLInputElement;
+    inputTableDuration.defaultValue = '1';
     inputTableDuration.type = 'number';
-    wrapper.append(inputTableDuration);
+    const inputTextPost = createElement('div', 'text');
+    inputTextPost.innerText = 'h';
+    wrapper.append(inputText, inputTableDuration, inputTextPost);
     return wrapper;
 }
 function createButtonBlock() {

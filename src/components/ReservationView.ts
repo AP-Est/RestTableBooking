@@ -8,6 +8,7 @@ import createHallBlock from '../templates/reservation/createHallBlock';
 import { displayHeaderReservation } from '../templates/displayHeaderReservation';
 import createModalTableInfo from '../templates/reservation/createModalTableInfo';
 import createModalReservationReg from '../templates/reservation/createModalReservationReg';
+import createModalReservationUnReg from '../templates/reservation/createModalReservationUnReg';
 
 export class ReservationView {
     body!: HTMLElement;
@@ -19,10 +20,10 @@ export class ReservationView {
     modalTableInfo!: HTMLElement;
     modalReservationReg!: HTMLElement;
     shadow!: HTMLElement;
+    modalReservationUnReg!: HTMLElement;
 
     constructor() {
-        const aa = Date();
-        console.log(aa);
+        console.log();
     }
 
     reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
@@ -35,37 +36,56 @@ export class ReservationView {
         this.hall = createHallBlock(hallView);
         this.modalTableInfo = createModalTableInfo(timeView, hallView, reservationWindow);
         this.modalReservationReg = createModalReservationReg(timeView, hallView, reservationWindow);
-        this.reservationWrapper.append(this.calendarAndTime, this.hall, this.modalTableInfo, this.modalReservationReg);
+        this.modalReservationUnReg = createModalReservationUnReg(timeView, hallView, reservationWindow);
+        this.reservationWrapper.append(
+            this.calendarAndTime,
+            this.hall,
+            this.modalTableInfo,
+            this.modalReservationReg,
+            this.modalReservationUnReg
+        );
         this.body.append(this.header, this.reservationWrapper, this.shadow);
         this.reservationModalSwitch(reservationWindow);
     }
     reservationModalSwitch(reservationWindow: IReservationWindow) {
         const modalTable = getElement('.tableInfo__wrapper') as HTMLElement;
         const modalRes = getElement('.reservationReg__wrapper') as HTMLElement;
+        const modalResUnReg = getElement('.reservationUnReg__wrapper') as HTMLElement;
         const shadow = getElement('.shadow__globalWrapper') as HTMLElement;
         switch (reservationWindow.modalFlag) {
             case 'Main': {
                 modalTable.style.display = 'none';
                 modalRes.style.display = 'none';
+                modalResUnReg.style.display = 'none';
                 shadow.style.display = 'none';
                 break;
             }
             case 'Table': {
-                modalTable.style.display = 'block';
+                modalTable.style.display = 'flex';
                 modalRes.style.display = 'none';
-                shadow.style.display = 'block';
+                modalResUnReg.style.display = 'none';
+                shadow.style.display = 'flex';
                 break;
             }
             case 'Reservation': {
                 modalTable.style.display = 'none';
-                modalRes.style.display = 'block';
-                shadow.style.display = 'block';
+                modalRes.style.display = 'flex';
+                modalResUnReg.style.display = 'none';
+                shadow.style.display = 'flex';
+                break;
+            }
+            case 'ReservationUnreg': {
+                modalTable.style.display = 'none';
+                modalRes.style.display = 'none';
+                modalResUnReg.style.display = 'flex';
+                shadow.style.display = 'flex';
                 break;
             }
             default: {
                 modalTable.style.display = 'none';
-                modalRes.style.display = 'block';
-                shadow.style.display = 'block';
+                modalRes.style.display = 'flex';
+                modalResUnReg.style.display = 'flex';
+                shadow.style.display = 'flex';
                 break;
             }
         }

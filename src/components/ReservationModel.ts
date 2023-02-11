@@ -11,12 +11,15 @@ export class ReservationModel {
     guestCount: number;
     chosenDate: Date;
     reservationWindow: IReservationWindow;
+    isLogin: boolean;
     constructor() {
         this.currentDate = new Date();
         this.markLine = this.getCurrentTimeLine();
         const defaultGuestCount = 1;
-        //const defaultView = ReservationWindow.Main;
-        const defaultView = ReservationWindow.Reservation;
+        const defaultView = ReservationWindow.Main;
+        //const defaultView = ReservationWindow.ReservationUnreg;
+        const isLoginDefault = false;
+        this.isLogin = isLoginDefault;
         this.guestCount = defaultGuestCount;
         this.chosenDate = new Date();
         this.timeView = {
@@ -89,7 +92,9 @@ export class ReservationModel {
     }
     handleClickToRButton(resTimeNum: number) {
         this.reservationWindow.resTimeNum = resTimeNum;
-        this.reservationWindow.modalFlag = ReservationWindow.Reservation;
+        this.reservationWindow.modalFlag = this.isLogin
+            ? ReservationWindow.Reservation
+            : ReservationWindow.ReservationUnreg;
         this.commit();
     }
     handleClickToShadow() {
