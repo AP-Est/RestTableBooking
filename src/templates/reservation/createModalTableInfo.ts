@@ -9,11 +9,11 @@ export default function createModalTableInfo(
 ) {
     const wrapper = createElement('div', 'tableInfo__wrapper');
     const infoBlock = createInfoBlock(timeView, hallView, reservationWindow);
-    const scheduleBlock = createScheduleBlock();
+    const scheduleBlock = createScheduleBlock(timeView);
     wrapper.append(infoBlock, scheduleBlock);
     return wrapper;
 }
-export function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
+function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
     const tableNumber = reservationWindow.tableNumber;
     const wrapper = createElement('div', 'infoBlock__wrapper');
     const tableInfoDate = createElement('div', 'tableInfoBlock__date');
@@ -29,12 +29,24 @@ export function createInfoBlock(timeView: ITimeView, hallView: ITableState[], re
     wrapper.append();
     return wrapper;
 }
-export function createScheduleBlock() {
+function createScheduleBlock(timeView: ITimeView) {
     const wrapper = createElement('div', 'scheduleBlock__wrapper');
     const flag = [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1];
     for (let i = 0; i < 12; i++) {
         const tableScheduleH = createElement('div', 'tableScheduleH__wrapper');
         tableScheduleH.id = `${i}_schedule`;
+        const time = `${timeView.chosenDate.getFullYear()}-${('0' + (timeView.chosenDate.getMonth() + 1)).slice(
+            -2
+        )}-${timeView.chosenDate.getDate()}T${i + 12}:00`;
+        const currentTime = `${timeView.currentDate.getFullYear()}-${(
+            '0' +
+            (timeView.currentDate.getMonth() + 1)
+        ).slice(-2)}-${timeView.currentDate.getDate()}T${timeView.currentDate.getHours()}:${(
+            '0' + timeView.currentDate.getMinutes()
+        ).slice(-2)}`;
+        if (time < currentTime) {
+            tableScheduleH.classList.add('lostTime');
+        }
         const scheduleH = createElement('div', 'scheduleH__time');
         scheduleH.innerText = `${i + 12}:00`;
         const scheduleStatus = createElement('div', 'scheduleH__status');
@@ -53,11 +65,3 @@ export function createScheduleBlock() {
     wrapper.append();
     return wrapper;
 }
-/*
-export function createButtonBlock() {
-    const wrapper = createElement('div', 'buttonBlock__wrapper');
-    const buttonReservation = createButton('Reservation', 'button__reservation');
-    wrapper.append(buttonReservation);
-    return wrapper;
-}
-*/
