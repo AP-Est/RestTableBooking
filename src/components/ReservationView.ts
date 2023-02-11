@@ -158,4 +158,22 @@ export class ReservationView {
             }
         });
     }
+    bindSetName(handler: (userName: string) => void) {
+        document.body.addEventListener('change', (event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('name__block_input')) {
+                const userName = target.value;
+                handler(userName);
+            }
+        });
+    }
+    bindSetPhone(handler: (userPhone: string) => void) {
+        document.body.addEventListener('change', (event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('phone__block_input')) {
+                const userPhone = target.value;
+                handler(userPhone);
+            }
+        });
+    }
 }

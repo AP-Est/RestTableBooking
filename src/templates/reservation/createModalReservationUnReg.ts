@@ -66,8 +66,8 @@ function createUserInfoBlock() {
     const wrapperPhone = createElement('div', 'userInfoBlock__wrapper_phone');
     const inputPhoneText = createElement('div', 'text');
     inputPhoneText.innerText = 'Enter Phone:';
-    const inputUserPhone = createElement('input', 'name__block_input') as HTMLInputElement;
-    inputUserPhone.defaultValue = '+375 () ';
+    const inputUserPhone = createElement('input', 'phone__block_input') as HTMLInputElement;
+    inputUserPhone.defaultValue = '+375 ';
     inputUserPhone.type = 'tel';
     wrapperName.append(inputNameText, inputUserName);
     wrapperPhone.append(inputPhoneText, inputUserPhone);

@@ -1,4 +1,4 @@
-import { IReservationWindow, ITableState, ITimeView, ReservationWindow } from '../types/types';
+import { IBaseTableOrder, IReservationWindow, ITableState, ITimeView, ReservationWindow } from '../types/types';
 export class ReservationModel {
     onChangeModel!: CallableFunction;
     markLine: number;
@@ -13,6 +13,7 @@ export class ReservationModel {
     reservationWindow: IReservationWindow;
     isLogin: boolean;
     dayTableSchedule: number[];
+    baseTableOrder: IBaseTableOrder;
     constructor() {
         this.currentDate = new Date();
         this.markLine = this.getCurrentTimeLine();
@@ -48,11 +49,19 @@ export class ReservationModel {
             resTimeNum: 0,
             tableDuration: defaultTableDuration,
             freeHours: 1,
+            userName: '',
+            userPhone: '',
             errors: {
                 duration: false,
                 name: false,
                 phone: false,
             },
+        };
+        this.baseTableOrder = {
+            tableId: '',
+            startAt: '',
+            endAt: '',
+            userPhone: '',
         };
         this.getHallView();
         console.log(this.hallView);
@@ -84,6 +93,29 @@ export class ReservationModel {
             };
             this.hallView.push(tableState);
         }
+    }
+    private setBaseTableOrder() {
+        if (
+            !this.reservationWindow.errors.duration &&
+            !this.reservationWindow.errors.name &&
+            !this.reservationWindow.errors.phone &&
+            this.reservationWindow.userPhone !== '' &&
+            this.reservationWindow.userName !== ''
+        ) {
+            this.baseTableOrder.tableId = `${this.reservationWindow.tableNumber}`;
+            this.baseTableOrder.startAt = `${this.timeView.chosenDate.getFullYear()}-${(
+                '0' +
+                (this.timeView.chosenDate.getMonth() + 1)
+            ).slice(-2)}-${this.timeView.chosenDate.getDate()}T${this.reservationWindow.resTimeNum + 12}:00`;
+            this.baseTableOrder.endAt = `${this.timeView.chosenDate.getFullYear()}-${(
+                '0' +
+                (this.timeView.chosenDate.getMonth() + 1)
+            ).slice(-2)}-${this.timeView.chosenDate.getDate()}T${
+                this.reservationWindow.resTimeNum + this.reservationWindow.tableDuration + 12
+            }:00`;
+            this.baseTableOrder.userPhone = this.reservationWindow.userPhone;
+        }
+        //TODO объект заделан теперь отправляем
     }
     handleTimeLine(markLine: number) {
         this.timeView.markLine = markLine;
@@ -127,6 +159,28 @@ export class ReservationModel {
         this.reservationWindow.tableDuration = tableDuration;
         this.reservationWindow.freeHours = freeHours;
         this.reservationWindow.errors.duration = tableDuration > freeHours;
+        this.commit();
+    }
+    handleSetName(userName: string) {
+        this.reservationWindow.userName = userName;
+        const letters = /^[A-Za-z]{3,}\s?\w*/;
+        if (letters.test(userName)) {
+            //TODO добавить в объект отправки
+            console.log();
+            this.reservationWindow.errors.name = false;
+        } else {
+            this.reservationWindow.errors.name = true;
+        }
+        this.commit();
+    }
+    handleSetPhone(userPhone: string) {
+        this.reservationWindow.userPhone = userPhone;
+        const letters = /^[+]+[0-9]{9,}/;
+        if (letters.test(userPhone)) {
+            this.reservationWindow.errors.phone = false;
+        } else {
+            this.reservationWindow.errors.phone = true;
+        }
         this.commit();
     }
 }

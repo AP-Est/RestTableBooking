@@ -4,6 +4,12 @@ export interface ITableOrder {
     clientID: number;
     orderID: number;
 }
+export interface IBaseTableOrder {
+    tableId: string;
+    startAt: string;
+    endAt: string;
+    userPhone: string;
+}
 
 export interface ITableCondition {
     tableID: number;
@@ -27,6 +33,8 @@ export interface IReservationWindow {
     resTimeNum: number;
     tableDuration: number;
     freeHours: number;
+    userName: string;
+    userPhone: string;
     errors: IReservationErrors;
 }
 
