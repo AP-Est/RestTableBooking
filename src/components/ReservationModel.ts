@@ -12,12 +12,15 @@ export class ReservationModel {
     chosenDate: Date;
     reservationWindow: IReservationWindow;
     isLogin: boolean;
+    dayTableSchedule: number[];
     constructor() {
         this.currentDate = new Date();
         this.markLine = this.getCurrentTimeLine();
         const defaultGuestCount = 1;
         const defaultView = ReservationWindow.Main;
+        const defaultDayTableSchedule = [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1];
         //const defaultView = ReservationWindow.ReservationUnreg;
+        this.dayTableSchedule = defaultDayTableSchedule;
         const isLoginDefault = false;
         this.isLogin = isLoginDefault;
         this.guestCount = defaultGuestCount;
@@ -27,6 +30,7 @@ export class ReservationModel {
             currentDate: this.currentDate,
             chosenDate: this.chosenDate,
             guestCount: this.guestCount,
+            dayTableSchedule: this.dayTableSchedule,
         };
         this.tableState = {
             tableNumber: 0,

@@ -18,6 +18,7 @@ export interface ITimeView {
     currentDate: Date;
     chosenDate: Date;
     guestCount: number;
+    dayTableSchedule: number[];
 }
 
 export interface IReservationWindow {

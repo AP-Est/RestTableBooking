@@ -15,12 +15,6 @@ export default function createHallBlock(hallView: ITableState[]) {
         table.appendChild(texts);
         wrapper.append(table);
     }
-    if (windowOuterWidth > windowOuterHeight) {
-        wrapper.style.width = '75vh';
-        wrapper.style.height = '75vh';
-    } else {
-        wrapper.style.width = '75vw';
-        wrapper.style.height = '75vw';
-    }
+    wrapper.style.width = wrapper.style.height = windowOuterWidth > windowOuterHeight ? '75vh' : '75vw';
     return wrapper;
 }
