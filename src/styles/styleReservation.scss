@@ -305,4 +305,16 @@ svg {
         }
     }
 }
-
+.reservationReg__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    z-index: 70;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    top: 40%;
+    height: 50vh;
+    width: 50vw;
+    background-color: #939191;
+}

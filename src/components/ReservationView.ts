@@ -7,6 +7,7 @@ import { IReservationWindow, ITableState, ITimeView } from '../types/types';
 import createHallBlock from '../templates/reservation/createHallBlock';
 import { displayHeaderReservation } from '../templates/displayHeaderReservation';
 import createModalTableInfo from '../templates/reservation/createModalTableInfo';
+import createModalReservationReg from '../templates/reservation/createModalReservationReg';
 
 export class ReservationView {
     body!: HTMLElement;
@@ -16,6 +17,7 @@ export class ReservationView {
     hall!: HTMLElement;
     reservationWrapper!: HTMLElement;
     modalTableInfo!: HTMLElement;
+    modalReservationReg!: HTMLElement;
 
     constructor() {
         console.log();
@@ -29,23 +31,33 @@ export class ReservationView {
         this.calendarAndTime = createCalendarAndTimer(timeView);
         this.hall = createHallBlock(hallView);
         this.modalTableInfo = createModalTableInfo(timeView, hallView, reservationWindow);
-        this.reservationWrapper.append(this.calendarAndTime, this.hall, this.modalTableInfo);
+        this.modalReservationReg = createModalReservationReg(timeView, hallView, reservationWindow);
+        this.reservationWrapper.append(this.calendarAndTime, this.hall, this.modalTableInfo, this.modalReservationReg);
         this.body.append(this.header, this.reservationWrapper);
         this.reservationModalSwitch(reservationWindow);
     }
     reservationModalSwitch(reservationWindow: IReservationWindow) {
         const modalTable = getElement('.tableInfo__wrapper') as HTMLElement;
+        const modalRes = getElement('.reservationReg__wrapper') as HTMLElement;
         switch (reservationWindow.modalFlag) {
             case 'Main': {
                 modalTable.style.display = 'none';
+                modalRes.style.display = 'none';
                 break;
             }
             case 'Table': {
                 modalTable.style.display = 'block';
+                modalRes.style.display = 'none';
+                break;
+            }
+            case 'Reservation': {
+                modalTable.style.display = 'none';
+                modalRes.style.display = 'block';
                 break;
             }
             default: {
                 modalTable.style.display = 'none';
+                modalRes.style.display = 'block';
                 break;
             }
         }
@@ -88,6 +100,17 @@ export class ReservationView {
             } else if (grand.classList.contains('hall__allTables')) {
                 const tableNumber = parseInt(grand.id);
                 handler(tableNumber);
+            }
+        });
+    }
+    bindClickToRButton(handler: (resTimeNum: number) => void) {
+        document.body.addEventListener('click', (event) => {
+            const target = event.target as HTMLDivElement;
+            console.log(target);
+            if (target.classList.contains('reservation__button')) {
+                const resTimeNum = parseInt(target.id);
+                console.log(resTimeNum);
+                handler(resTimeNum);
             }
         });
     }

@@ -14,6 +14,7 @@ export class ReservationController {
         this.view.bindDate(this.handleDate);
         this.view.bindGuest(this.handleGuest);
         this.view.bindClickToTable(this.handleClickToTable);
+        this.view.bindClickToRButton(this.handleClickToRButton);
         //todo
         this.model.bindChangeModel(this.onChangeModel);
         this.onChangeModel(this.model.timeView, this.model.hallView, this.model.reservationWindow);
@@ -33,5 +34,8 @@ export class ReservationController {
     };
     handleClickToTable = (tableNumber: number) => {
         this.model.handleClickToTable(tableNumber);
+    };
+    handleClickToRButton = (resTimeNum: number) => {
+        this.model.handleClickToRButton(resTimeNum);
     };
 }

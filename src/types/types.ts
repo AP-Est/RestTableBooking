@@ -23,6 +23,7 @@ export interface ITimeView {
 export interface IReservationWindow {
     modalFlag: ReservationWindow;
     tableNumber: number;
+    resTimeNum: number;
 }
 
 export enum ReservationWindow {

@@ -35,6 +35,7 @@ export class ReservationModel {
         this.reservationWindow = {
             modalFlag: ReservationWindow.Main,
             tableNumber: 0,
+            resTimeNum: 0,
         };
         this.getHallView();
         console.log(this.hallView);
@@ -82,6 +83,11 @@ export class ReservationModel {
     handleClickToTable(tableNumber: number) {
         this.reservationWindow.tableNumber = tableNumber;
         this.reservationWindow.modalFlag = ReservationWindow.Table;
+        this.commit();
+    }
+    handleClickToRButton(resTimeNum: number) {
+        this.reservationWindow.resTimeNum = resTimeNum;
+        this.reservationWindow.modalFlag = ReservationWindow.Reservation;
         this.commit();
     }
 }

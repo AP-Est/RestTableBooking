@@ -42,7 +42,8 @@ export function createScheduleBlock() {
             scheduleStatus.innerText = `Busy`;
             scheduleStatus.classList.add('busyTable');
         } else {
-            const button = createButton('Reservation', `${i}_reservationSchedule`, 'reservation__button');
+            const button = createButton('Reservation', 'reservation__button');
+            button.id = `${i}_reservationSchedule`;
             scheduleStatus.append(button);
         }
 
