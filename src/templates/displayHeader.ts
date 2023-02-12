@@ -20,6 +20,7 @@ export function displayHeader() {
     headerTopMenu.textContent = 'Menu';
     const headerTopReviews = createElement('p', 'header-text');
     headerTopReviews.classList.add('header-main-text');
+    headerTopReviews.classList.add('link-reviews-page');
     headerTopReviews.textContent = 'Reviews';
     const headerTopRegistrLog = createElement('p', 'header-text');
     headerTopRegistrLog.classList.add('header-main-text');
