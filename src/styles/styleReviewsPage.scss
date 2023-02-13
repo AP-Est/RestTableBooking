@@ -1,29 +1,27 @@
 .wrapper-reviews {
     margin: 50px auto;
     max-width: 1000px;
-    height: 600px;
+    height: 500px;
     text-align: center;
     font-family: $mainFontFamily;
 }
 
-.block {
-    @include flexStandard;
-    width: 100%;
-    height: 420px;
-    margin: 20px auto;
-}
-
 .review-item {
-    width: 30%;
-    height: 380px;
+    width: 50%;
+    height: 300px;
     overflow: hidden;
     padding: 10px;
     border: 1px solid $first-main-color;
     border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .review-button {
-    width: 300px;
+    width: 250px;
     height: 50px;
     border: none;
     font-size: $mainFontSize;
@@ -44,6 +42,9 @@
 
 .button-prev,
 .button-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
     font-size: $mainFontSize;
@@ -73,7 +74,7 @@
     background: rgba(236, 230, 230, 0.807);
     overflow: hidden;
     position: fixed;
-    top: 100px;
+    top: 70px;
     left: 20%;
     border: 1px solid $first-main-color;
     border-radius: 10px;
@@ -117,12 +118,18 @@
 }
 
 @media screen and (max-width: 600px) {
-    .block {
-        flex-direction: column;
+    .review-item {
+        width: 70%;
+        height: 330px;
     }
 
-    .review-item {
-        width: 90%;
-        height: 130px;
+    .wrapper-reviews {
+        height: 500px;
+    }
+
+    .button-prev,
+    .button-next {
+        width: 30px;
+        height: 30px;
     }
 }

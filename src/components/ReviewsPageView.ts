@@ -12,10 +12,11 @@ export class ReviewsView {
     header: HTMLElement;
     main: HTMLElement;
     wrapper: HTMLElement;
-    block: HTMLElement;
+    carouselInner: HTMLElement;
     footer: HTMLElement;
 
     public service = new ServiceReviews();
+    public carouselBlock: HTMLElement = <HTMLElement>createElement('div', 'carousel', 'slide');
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
@@ -31,8 +32,9 @@ export class ReviewsView {
         title.innerHTML = 'WHAT OUR VISITORS SAY ABOUT US';
         this.wrapper.append(title);
 
-        this.block = createElement('div', 'block');
-        this.wrapper.append(this.block);
+        this.wrapper.append(this.carouselBlock);
+        this.carouselInner = createElement('div', 'carousel-inner');
+        this.carouselBlock.append(this.carouselInner);
         this.createReviews();
         this.footer = displayFooter();
         this.body.append(this.header, this.main, this.footer);
@@ -41,22 +43,36 @@ export class ReviewsView {
     public async createReviews(): Promise<void> {
         const reviews = await this.service.getReviews();
 
-        reviews.forEach((review) => {
+        reviews.forEach((review: Reviews, index: number) => {
+            const carouselItem = createElement('div', 'carousel-item');
             const reviewItemBlock = createElement('div', 'review-item');
+            if (index === 0) {
+                carouselItem.classList.add('active');
+            }
+
             const subtitle = createElement('h3', 'subtitle');
             subtitle.innerHTML = review.username;
-            this.block.append(reviewItemBlock);
+            this.carouselInner.append(carouselItem);
+            carouselItem.append(reviewItemBlock);
             reviewItemBlock.append(subtitle);
 
             const description = createElement('div', 'description');
             description.innerHTML = review.comment;
             reviewItemBlock.append(description);
         });
+        this.carouselBlock.setAttribute('id', 'carouselControler');
+        this.carouselBlock.setAttribute('data-bs-ride', 'carousel');
         const blockCarouselButtons: HTMLButtonElement = <HTMLButtonElement>createElement('div', 'carousel-buttons');
-        this.wrapper.append(blockCarouselButtons);
+        this.carouselBlock.append(blockCarouselButtons);
 
         const buttonPrev: HTMLButtonElement = <HTMLButtonElement>createElement('button', 'button-prev');
+        buttonPrev.setAttribute('data-bs-target', '#carouselControler');
+        buttonPrev.setAttribute('data-bs-slide', 'prev');
+
         const buttonNext: HTMLButtonElement = <HTMLButtonElement>createElement('button', 'button-next');
+        buttonNext.setAttribute('data-bs-target', '#carouselControler');
+        buttonNext.setAttribute('data-bs-slide', 'next');
+
         buttonPrev.innerHTML = '<';
         buttonNext.innerHTML = '>';
         blockCarouselButtons.append(buttonPrev, buttonNext);
@@ -92,6 +108,7 @@ export class ReviewsView {
         const sendButton: HTMLButtonElement = <HTMLButtonElement>createElement('button', 'send-button');
         popupContent.append(sendButton);
         sendButton.innerText = 'Send';
+        sendButton.setAttribute('type', 'submit');
 
         popupBackground.addEventListener('click', (event) => {
             const target = event.target as Element;
@@ -113,7 +130,10 @@ export class ReviewsView {
             popupBackground.style.fontSize = '40px';
             popupBackground.style.color = 'white';
             popupBackground.style.textShadow = '2px 2px 8px #f4c430';
-            popupBackground.style.padding = '25%';
+            popupBackground.style.padding = '250px 30%';
+            setTimeout(function () {
+                location.reload();
+            }, 3000);
         });
     }
 
