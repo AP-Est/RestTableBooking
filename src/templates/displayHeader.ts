@@ -30,6 +30,11 @@ export function displayHeader() {
     headerTopTel.textContent = '+7 (495) 374 - 9233';
     headerTopTel.href = 'tel:+7 (495) 374-9233';
 
+    const headerSwitch = createElement('label', 'header-switch');
+    const headerSwitchInput = createElement('input', 'header-switch__input');
+    const headerSwitchSlider = createElement('span', 'header-switch__slider');
+    headerSwitchInput.setAttribute('type', 'checkbox');
+
     const headerMain = createElement('div', 'header-main');
     headerMain.classList.add('header-main__wrapper');
     headerMain.innerHTML = `
@@ -111,7 +116,8 @@ export function displayHeader() {
     phone.append(phoneRef);
     booking.append(phone, address, metro, mainBooking);
     headerTopMain.append(headerTopMainPage, headerTopMenu, headerTopReviews, headerTopRegistrLog);
-    headerTop.append(headerTopLogo, headerTopMain, headerTopTel);
+    headerTop.append(headerTopLogo, headerTopMain, headerTopTel, headerSwitch);
+    headerSwitch.append(headerSwitchInput, headerSwitchSlider);
     headerMain.append(booking);
     header.append(headerTop, headerMain);
     return header;
