@@ -1,0 +1,128 @@
+.wrapper-reviews {
+    margin: 50px auto;
+    max-width: 1000px;
+    height: 600px;
+    text-align: center;
+    font-family: $mainFontFamily;
+}
+
+.block {
+    @include flexStandard;
+    width: 100%;
+    height: 420px;
+    margin: 20px auto;
+}
+
+.review-item {
+    width: 30%;
+    height: 380px;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid $first-main-color;
+    border-radius: 10px;
+}
+
+.review-button {
+    width: 300px;
+    height: 50px;
+    border: none;
+    font-size: $mainFontSize;
+    border-radius: 25px;
+    background: $first-main-color;
+    transition: transform 1s ease-out 100ms;
+
+    &:hover {
+        @include hoverButton;
+    }
+}
+
+.carousel-buttons {
+    margin: 10px auto;
+    width: 20%;
+    @include flexStandard;
+}
+
+.button-prev,
+.button-next {
+    width: 40px;
+    height: 40px;
+    font-size: $mainFontSize;
+    border: none;
+    border-radius: 20px;
+    background: $first-main-color;
+    transition: transform 1s ease-out 100ms;
+
+    &:hover {
+        @include hoverButton;
+    }
+}
+
+.popup-background {
+    margin: 0px auto;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgb(39 33 33 / 85%);
+    z-index: 3;
+}
+
+.popup {
+    width: 60%;
+    height: 500px;
+    background: rgba(236, 230, 230, 0.807);
+    overflow: hidden;
+    position: fixed;
+    top: 100px;
+    left: 20%;
+    border: 1px solid $first-main-color;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+.popup-content {
+    text-align: center;
+    font-family: $mainFontFamily;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.popup-title {
+    font-size: $mainFontSize;
+}
+
+.name-input,
+.comment-input,
+.send-button {
+    width: 50%;
+}
+
+.comment-input {
+    height: 250px;
+}
+
+.send-button {
+    font-size: $mainFontSize;
+    border: none;
+    border-radius: 20px;
+    background: $first-main-color;
+    transition: transform 1s ease-out 100ms;
+
+    &:hover {
+        @include hoverButton;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .block {
+        flex-direction: column;
+    }
+
+    .review-item {
+        width: 90%;
+        height: 130px;
+    }
+}

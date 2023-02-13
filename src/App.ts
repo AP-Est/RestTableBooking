@@ -7,6 +7,9 @@ import { ReservationModel } from './components/ReservationModel';
 import { MenuView } from './components/MenuPageView';
 import { MenuModel } from './components/MenuPageModel';
 import { MenuController } from './components/MenuPageController';
+import { ReviewsView } from './components/ReviewsPageView';
+import { ReviewsModel } from './components/ReviewsPageModel';
+import { ReviewsController } from './components/ReviewsPageController';
 
 export class App {
     view: MainPageView | undefined;
@@ -20,6 +23,10 @@ export class App {
     viewReservation: ReservationView | undefined;
     controllerReservation: ReservationController | undefined;
     modelReservation: ReservationModel | undefined;
+
+    viewReviews: ReviewsView | undefined;
+    controllerReviews: ReviewsController | undefined;
+    modelReviews: ReviewsModel | undefined;
 
     init() {
         window.addEventListener('hashchange', this.navigate);
@@ -44,6 +51,12 @@ export class App {
                 this.viewMenu = new MenuView();
                 this.modelMenu = new MenuModel();
                 this.controllerMenu = new MenuController(this.viewMenu, this.modelMenu);
+                break;
+
+            case '#reviews':
+                this.viewReviews = new ReviewsView();
+                this.modelReviews = new ReviewsModel();
+                this.controllerReviews = new ReviewsController(this.viewReviews, this.modelReviews);
                 break;
 
             default:
