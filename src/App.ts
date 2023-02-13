@@ -31,6 +31,7 @@ export class App {
     init() {
         window.addEventListener('hashchange', this.navigate);
         this.navigate();
+        this.changeTheme();
     }
 
     navigate = () => {
@@ -71,4 +72,14 @@ export class App {
                 break;
         }
     };
+
+    changeTheme() {
+        const body: Element = <Element>document.querySelector('.body');
+        body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('header-switch__slider')) {
+                document.body.classList.toggle('dark');
+            }
+        });
+    }
 }
