@@ -1,11 +1,17 @@
-@mixin hoverStandard{
+@mixin hoverStandard {
     transform: scale(1.1);
     opacity: 0.7;
     cursor: pointer;
 }
 
-@mixin flexStandard{
+@mixin flexStandard {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@mixin hoverButton {
+    transform: scale(1.1);
+    background: #f8d670;
+    cursor: pointer;
 }

@@ -3,6 +3,7 @@ import createElement from '../Utils/createElement';
 import createButton from '../Utils/createButton';
 import '../styles/styleMainPageHeaderFooter.scss';
 import '../styles/styleMainPageMainPart.scss';
+import '../styles/styleSwitchTheme.scss';
 import { displayHeader } from '../templates/displayHeader';
 import { displayFooter } from '../templates/displayFooter';
 import { displayMainPageMain } from '../templates/displayMainPageMain';

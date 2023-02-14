@@ -86,4 +86,13 @@ export class MenuView {
             }
         });
     }
+
+    bindClickReviews() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('link-reviews-page')) {
+                window.location.hash = `reviews`;
+            }
+        });
+    }
 }

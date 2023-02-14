@@ -12,5 +12,6 @@ export class MenuController {
         this.view.bindClickMenu();
         this.view.bindClickButtonReserv();
         this.view.bindClickMainPage();
+        this.view.bindClickReviews();
     }
 }
