@@ -10,4 +10,5 @@ module.exports = function (app) {
     });
 
     app.post('/api/reserve', [verifyReservation.checkTableIsAvailable], controller.reserve);
+    app.get('/api/reserve', controller.reserve);
 };
