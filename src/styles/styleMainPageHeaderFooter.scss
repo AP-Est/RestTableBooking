@@ -1,11 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 
-ul{
+ul {
     margin: 0;
     padding: 0;
 }
 
-.div-test{
+.div-test {
     width: 300px;
     height: 300px;
     background-color: palevioletred;
@@ -20,12 +20,12 @@ ul{
     }
 }
 
-.header__wrapper{
+.header__wrapper {
     margin: 0 auto;
     max-width: 1000px;
 }
 
-.header-top__wrapper{
+.header-top__wrapper {
     margin: 20px 50px 0px 0px;
     height: 120px;
     display: flex;
@@ -33,7 +33,7 @@ ul{
     align-items: center;
 }
 
-.header-top-logo{
+.header-top-logo {
     width: 230px;
     height: 120px;
     background-image: url(../source/img/icon.png);
@@ -41,23 +41,23 @@ ul{
     background-repeat: no-repeat;
     background-position: center;
 
-    &:hover{
+    &:hover {
         @include hoverStandard;
     }
 }
 
-.header-top-main{
+.header-top-main {
     @include flexStandard;
     width: 50%;
 }
 
-.header-text{
+.header-text {
     font-family: $mainFontFamily;
     font-weight: $mainFontWeight;
     font-size: $mainFontSize;
 }
 
-.header-main__wrapper{
+.header-main__wrapper {
     width: 100%;
     height: 420px;
     //background-image: url(../source/img/main1.jpg);
@@ -66,18 +66,18 @@ ul{
     position: relative;
 }
 
-#carouselExampleIndicators{
+#carouselExampleIndicators {
     width: 100%;
     height: 100%;
 }
 
-.header-main-text{
-    &:hover{
+.header-main-text {
+    &:hover {
         @include hoverStandard;
     }
 }
 
-.booking{
+.booking {
     width: 260px;
     box-sizing: border-box;
     background-color: white;
@@ -89,14 +89,14 @@ ul{
     right: 90px;
 }
 
-.booking-phone{
+.booking-phone {
     text-align: center;
     padding-bottom: 12px;
     margin-bottom: 12px;
     border-bottom: 1px gray solid;
 }
 
-.booking-phone__ref{
+.booking-phone__ref {
     font-family: $mainFontFamily;
     font-size: 18px;
     font-weight: 600;
@@ -104,7 +104,7 @@ ul{
 }
 
 .booking-address,
-.booking-metro{
+.booking-metro {
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -113,21 +113,21 @@ ul{
     padding-left: 24px;
 }
 
-.booking-img{
+.booking-img {
     margin-right: 10px;
 }
 
-.booking-span{
+.booking-span {
     font-size: 16px;
     font-weight: 600;
     font-family: $mainFontFamily;
 }
 
-.booking-main{
+.booking-main {
     width: 100%;
 }
 
-.button{
+.button {
     width: 100%;
     border-radius: 10px;
     box-sizing: border-box;
@@ -137,75 +137,74 @@ ul{
     font-size: 16px;
     text-align: center;
     color: white;
-    background: #07C68E;
+    background: #07c68e;
     text-decoration: none;
     display: block;
     line-height: 48px;
-    border: 1px #07C68E solid;
+    border: 1px #07c68e solid;
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
 
-    &:hover{
+    &:hover {
         @include hoverStandard;
     }
 }
 
-.link-tel{
+.link-tel {
     text-decoration: none;
     color: #000;
 
-    &:hover{
+    &:hover {
         @include hoverStandard;
     }
 }
 
-.footer{
-    display:block;
+.footer {
+    display: block;
 }
 
-.footer-wrap{
+.footer-wrap {
     border-top: 1px #0e2244 solid;
     padding-top: 40px;
     margin-top: 50px;
     margin-bottom: 50px;
     @include flexStandard;
-    
 }
 
-.links{
+.links {
     @include flexStandard;
     width: 50%;
     margin-left: 100px;
 }
 
-.links__creator{ 
+.links__creator {
     list-style-type: none;
 
-    &:hover{
+    &:hover {
         @include hoverStandard;
     }
 }
 
-.links__creator-link{
+.links__creator-link {
     text-decoration: none;
-    color: #000; 
+    color: #000;
 }
 
-.logo{
+.logo {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 100px;
 }
 
-.logo__link{
+.logo__link {
     width: 100px;
     border: 1px solid black;
     border-radius: 10px;
     padding: 5px 5px 10px 5px;
 
-    &:hover{
+    &:hover {
         @include hoverStandard;
     }
 }
