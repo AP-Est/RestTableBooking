@@ -176,4 +176,12 @@ export class ReservationView {
             }
         });
     }
+    bindClickReservation(handler: () => void) {
+        document.body.addEventListener('click', (event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('button__reservation')) {
+                handler();
+            }
+        });
+    }
 }

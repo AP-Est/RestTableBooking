@@ -363,21 +363,26 @@ svg {
     .durationBlock__wrapper {
         .dataBlock__wrapper {
             display: flex;
+            align-items: center;
+            justify-content: center;
             margin: 10px auto;
             .duration__block_input {
-                width: 20px;
+                width: 40px;
                 border-radius: 5px;
                 text-align: center;
                 margin: auto 10px;
             }
         }
-        .errorBlock__wrapper {
-            margin: 10px;
-            border: 2px solid #000000;
-            border-radius: 5px;
-            background-color: #774444;
-        }   
     }
+    .errorBlock__wrapper,
+    .errorBlock__wrapper_name,
+    .errorBlock__wrapper_phone {
+        margin: 10px;
+        padding: 4px;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        background-color: #774444;
+    }   
 
     .buttonBlock__wrapper {
         display: flex;

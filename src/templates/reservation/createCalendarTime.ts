@@ -47,7 +47,7 @@ function createGuestInputElement(timeView: ITimeView) {
 function createTimeInputElement(timeView: ITimeView) {
     const wrapper = createElement('div', 'line__wrapper');
     const preBlock = createElement('div', 'line__wrapper_preBlock', 'preAfterBlocks');
-    preBlock.innerText = 'closed';
+    //preBlock.innerText = 'closed';
     const afterBlock = createElement('div', 'line__wrapper_afterBlock', 'preAfterBlocks');
     wrapper.append(preBlock);
     for (let i = 0; i < 12; i++) {
