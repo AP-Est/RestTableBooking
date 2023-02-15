@@ -31,7 +31,6 @@ function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservati
 }
 function createScheduleBlock(timeView: ITimeView) {
     const wrapper = createElement('div', 'scheduleBlock__wrapper');
-    const flag = [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1];
     for (let i = 0; i < 12; i++) {
         const tableScheduleH = createElement('div', 'tableScheduleH__wrapper');
         tableScheduleH.id = `${i}_schedule`;
@@ -50,7 +49,7 @@ function createScheduleBlock(timeView: ITimeView) {
         const scheduleH = createElement('div', 'scheduleH__time');
         scheduleH.innerText = `${i + 12}:00`;
         const scheduleStatus = createElement('div', 'scheduleH__status');
-        if (flag[i] === 1) {
+        if (timeView.dayTableSchedule[i] === 1) {
             scheduleStatus.innerText = `Busy`;
             scheduleStatus.classList.add('busyTable');
         } else {

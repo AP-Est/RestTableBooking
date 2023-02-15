@@ -1,5 +1,3 @@
-const colorT = '#B0ADAD';
-const colorS = '#897070';
 export const renderTable = (tableType: number, colorT: string, colorS: string): string => {
     switch (tableType) {
         case 2:
