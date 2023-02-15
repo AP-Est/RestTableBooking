@@ -9,8 +9,8 @@ export default function createModalReservationUnReg(
 ) {
     const wrapper = createElement('div', 'reservationUnReg__wrapper');
     const infoBlock = createInfoBlock(timeView, hallView, reservationWindow);
-    const inputDuration = createDurationBlock();
-    const userInfo = createUserInfoBlock();
+    const inputDuration = createDurationBlock(reservationWindow);
+    const userInfo = createUserInfoBlock(reservationWindow);
     const buttonBlock = createButtonBlock();
     wrapper.append(infoBlock, inputDuration, userInfo, buttonBlock);
     return wrapper;
@@ -35,19 +35,27 @@ function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservati
     wrapper.append(tableNumber, tableDetailsBlock);
     return wrapper;
 }
-function createDurationBlock() {
+function createDurationBlock(reservationWindow: IReservationWindow) {
     const wrapper = createElement('div', 'durationBlock__wrapper');
+    const dataWrapper = createElement('div', 'dataBlock__wrapper');
+    const errorWrapper = createElement('div', 'errorBlock__wrapper');
     const inputText = createElement('div', 'text');
     inputText.innerText = 'Enter duration:';
     const inputTableDuration = createElement('input', 'duration__block_input') as HTMLInputElement;
-    inputTableDuration.defaultValue = '1';
+    inputTableDuration.defaultValue = `${reservationWindow.tableDuration}`;
     inputTableDuration.type = 'number';
     const inputTextPost = createElement('div', 'text');
     inputTextPost.innerText = 'h';
-    wrapper.append(inputText, inputTableDuration, inputTextPost);
+    errorWrapper.innerText = `Wrong duration, table free only ${reservationWindow.freeHours} h`;
+    errorWrapper.style.display = 'none';
+    if (reservationWindow.errors.duration) {
+        errorWrapper.style.display = 'flex';
+    }
+    dataWrapper.append(inputText, inputTableDuration, inputTextPost);
+    wrapper.append(dataWrapper, errorWrapper);
     return wrapper;
 }
-function createUserInfoBlock() {
+function createUserInfoBlock(reservationWindow: IReservationWindow) {
     const wrapper = createElement('div', 'userInfoBlock__wrapper');
     const wrapperName = createElement('div', 'userInfoBlock__wrapper_name');
     const inputNameText = createElement('div', 'text');
@@ -55,15 +63,26 @@ function createUserInfoBlock() {
     const inputUserName = createElement('input', 'name__block_input') as HTMLInputElement;
     inputUserName.placeholder = 'Name';
     inputUserName.type = 'Text';
+    inputUserName.value = reservationWindow.userName || '';
+    const errorWrapperN = createElement('div', 'errorBlock__wrapper_name');
+    errorWrapperN.innerText = `Name may contain only letters`;
+    errorWrapperN.style.display = reservationWindow.errors.name ? 'flex' : 'none';
     const wrapperPhone = createElement('div', 'userInfoBlock__wrapper_phone');
     const inputPhoneText = createElement('div', 'text');
     inputPhoneText.innerText = 'Enter Phone:';
-    const inputUserPhone = createElement('input', 'name__block_input') as HTMLInputElement;
-    inputUserPhone.defaultValue = '+375 () ';
+    const inputUserPhone = createElement('input', 'phone__block_input') as HTMLInputElement;
+    inputUserPhone.defaultValue = reservationWindow.userPhone || '+375 ';
     inputUserPhone.type = 'tel';
+    const errorWrapperP = createElement('div', 'errorBlock__wrapper_phone');
+    errorWrapperP.innerText = `Phone may contain '+' and numbers`;
+    errorWrapperP.style.display = reservationWindow.errors.phone ? 'flex' : 'none';
+    const nameBlockWrapper = createElement('div', 'nameBlock__wrapper');
+    const phoneBlockWrapper = createElement('div', 'phoneBlock__wrapper');
     wrapperName.append(inputNameText, inputUserName);
     wrapperPhone.append(inputPhoneText, inputUserPhone);
-    wrapper.append(wrapperName, wrapperPhone);
+    nameBlockWrapper.append(wrapperName, errorWrapperN);
+    phoneBlockWrapper.append(wrapperPhone, errorWrapperP);
+    wrapper.append(nameBlockWrapper, phoneBlockWrapper);
     return wrapper;
 }
 

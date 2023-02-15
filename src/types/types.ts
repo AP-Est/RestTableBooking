@@ -4,6 +4,12 @@ export interface ITableOrder {
     clientID: number;
     orderID: number;
 }
+export interface IBaseTableOrder {
+    tableId: string;
+    startAt: string;
+    endAt: string;
+    userPhone: string;
+}
 
 export interface ITableCondition {
     tableID: number;
@@ -18,12 +24,24 @@ export interface ITimeView {
     currentDate: Date;
     chosenDate: Date;
     guestCount: number;
+    dayTableSchedule: number[];
 }
 
 export interface IReservationWindow {
     modalFlag: ReservationWindow;
     tableNumber: number;
     resTimeNum: number;
+    tableDuration: number;
+    freeHours: number;
+    userName: string;
+    userPhone: string;
+    errors: IReservationErrors;
+}
+
+export interface IReservationErrors {
+    duration: boolean;
+    name: boolean;
+    phone: boolean;
 }
 
 export enum ReservationWindow {
