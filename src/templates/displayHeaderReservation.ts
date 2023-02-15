@@ -15,13 +15,15 @@ export function displayHeaderReservation() {
     headerTopMainPage.textContent = 'Main';
     const headerTopMenu = createElement('p', 'header-text');
     headerTopMenu.classList.add('header-main-text');
+    headerTopMenu.classList.add('header-menu');
     headerTopMenu.textContent = 'Menu';
     const headerTopReviews = createElement('p', 'header-text');
     headerTopReviews.classList.add('header-main-text');
     headerTopReviews.textContent = 'Reviews';
     const headerTopRegistrLog = createElement('p', 'header-text');
     headerTopRegistrLog.classList.add('header-main-text');
-    headerTopRegistrLog.textContent = 'Login / Registration';
+    headerTopRegistrLog.classList.add('signup-login');
+    headerTopRegistrLog.textContent = 'SignUp / LogIn';
     const headerTopTel = createElement('a', 'header-text') as HTMLAnchorElement;
     headerTopTel.classList.add('link-tel');
     headerTopTel.textContent = '+7 (495) 374 - 9233';

@@ -55,7 +55,7 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const span1Food = createElement('span', 'main-inf__span');
     span1Food.textContent = 'Kitchen:';
     const pFood = createElement('p', 'main-inf__span');
-    console.log('displayMainPageMain moreAdditInf:', moreAdditInf);
+    //console.log('displayMainPageMain moreAdditInf:', moreAdditInf);
     if (!moreAdditInf) {
         pFood.textContent = 'European, Caucasian, Azerbaijani';
     } else {

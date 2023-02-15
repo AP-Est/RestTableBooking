@@ -9,6 +9,16 @@ p{
 .main{
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
+}
+
+.wrap{
+    position: relative;
+}
+
+.main-content{
+    position: relative;
+    z-index: 1;
 }
 
 .inf{
@@ -190,4 +200,9 @@ p{
 
 .mapClass{
     height: 300px;
+}
+
+.main-content_passive{
+    background-color: black;
+    opacity: 0.5;
 }

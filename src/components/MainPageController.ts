@@ -12,6 +12,11 @@ export class MainPageController {
         this.view.bindClickMenu();
         this.view.bindClickButtonReserv();
         this.view.bindClickMainPage();
+        this.view.bindClickLogIn();
+        this.view.bindClickSignUp();
+        this.view.bindClickSignupLogin();
+        this.view.bindClickExitFromSignupLogin();
+        //this.view.changeTheme();
         this.view.bindClickMoreMainInf(this.handlMainInf);
         this.view.bindClickMoreAdditInf(this.handlAdditInf);
         this.model.bindChangeModel(this.onChangeModel);

@@ -14,13 +14,13 @@ export class MainPageModel {
 
     changeMainInf() {
         this.mainInf = !this.mainInf;
-        console.log('this.mainInf:', this.mainInf);
+        //console.log('this.mainInf:', this.mainInf);
         this.onChangeModel(this.mainInf, this.additInf);
     }
 
     changeAdditInf() {
         this.additInf = !this.additInf;
-        console.log('this.additInf:', this.additInf);
+        //console.log('this.additInf:', this.additInf);
         this.onChangeModel(this.mainInf, this.additInf);
     }
 

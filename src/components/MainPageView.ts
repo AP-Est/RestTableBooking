@@ -1,42 +1,45 @@
 import getElement from '../Utils/getElement';
-import createElement from '../Utils/createElement';
-import createButton from '../Utils/createButton';
 import '../styles/styleMainPageHeaderFooter.scss';
 import '../styles/styleMainPageMainPart.scss';
+import '../styles/styleMainPageForm.scss';
 import '../styles/styleSwitchTheme.scss';
 import { displayHeader } from '../templates/displayHeader';
 import { displayFooter } from '../templates/displayFooter';
 import { displayMainPageMain } from '../templates/displayMainPageMain';
+import { displaySignUpLogIn } from '../templates/displaySignUp';
+import createElement from '../Utils/createElement';
 
 export class MainPageView {
     body: HTMLElement;
-    // header: HTMLElement;
-    // main: HTMLElement;
-    // footer: HTMLElement;
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
 
-        // this.header = displayHeader();
-        // this.main = displayMainPageMain();
-        // this.footer = displayFooter();
-        // this.body.append(this.header, this.main, this.footer);
         this.renderPage(false, false);
     }
 
     renderPage(moreMainInf: boolean, moreAdditInf: boolean) {
         this.body.innerHTML = '';
+        const wrap = createElement('div', 'wrap');
+        const mainContent = createElement('div', 'main-content');
+        const formWrap = createElement('div', 'form-wrap');
+
         const header = displayHeader();
         const main = displayMainPageMain(moreMainInf, moreAdditInf);
         const footer = displayFooter();
-        this.body.append(header, main, footer);
+        const form = displaySignUpLogIn();
+
+        mainContent.append(header, main, footer);
+        formWrap.append(form);
+        wrap.append(mainContent, formWrap);
+        this.body.append(wrap);
     }
 
     bindClickMenu() {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
-            if (target.classList.contains('header-main-text')) {
+            if (target.classList.contains('header-menu')) {
                 window.location.hash = `menu`;
             }
         });
@@ -61,6 +64,31 @@ export class MainPageView {
         });
     }
 
+    bindClickSignupLogin() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('signup-login')) {
+                window.location.hash = '';
+                const form = document.querySelector('.form-wrap');
+                //console.log('form', form);
+                (form as HTMLElement).style.display = 'block';
+                const main = document.querySelector('.main-content');
+                //console.log('form', form);
+                (main as HTMLElement).classList.add('main-content_passive');
+            }
+        });
+    }
+
+    bindClickExitFromSignupLogin() {
+        const main = document.querySelector('.main-content') as HTMLElement;
+        main.addEventListener('click', () => {
+            const form = document.querySelector('.form-wrap');
+            console.log('main-content');
+            (form as HTMLElement).style.display = 'none';
+            main.classList.remove('main-content_passive');
+        });
+    }
+
     bindClickMoreMainInf(handler: () => void) {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
@@ -68,7 +96,7 @@ export class MainPageView {
                 target.classList.contains('more-main-inf') ||
                 (target.parentElement as HTMLElement).classList.contains('more-main-inf')
             ) {
-                console.log('more-main-inf');
+                //console.log('more-main-inf');
                 handler();
             }
         });
@@ -81,9 +109,57 @@ export class MainPageView {
                 target.classList.contains('more-addit-inf') ||
                 (target.parentElement as HTMLElement).classList.contains('more-addit-inf')
             ) {
-                console.log('more-addit-inf');
+                //console.log('more-addit-inf');
                 handler();
             }
         });
     }
+
+    bindClickLogIn() {
+        this.body.addEventListener('click', (event) => {
+            //console.log('bindClickLogIn event', event.target);
+            const target = event.target as Element;
+            if (target.classList.contains('login')) {
+                console.log('log in');
+                const logIn = document.querySelector('.tab-content > div:last-child');
+                (logIn as HTMLElement).style.display = 'block';
+                const signUp = document.querySelector('.tab-content > div:first-child');
+                (signUp as HTMLElement).style.display = 'none';
+                const logInButton = document.querySelector('.tab-buttons > li:last-child');
+                const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
+                //console.log('logInButton', logInButton);
+                (logInButton as HTMLElement).classList.add('active');
+                (SignUpButton as HTMLElement).classList.remove('active');
+            }
+        });
+    }
+
+    bindClickSignUp() {
+        this.body.addEventListener('click', (event) => {
+            //console.log('bindClickLogIn event', event.target);
+            const target = event.target as Element;
+            if (target.classList.contains('signup')) {
+                console.log('sign up');
+                const signUp = document.querySelector('.tab-content > div:first-child');
+                (signUp as HTMLElement).style.display = 'block';
+                const logIn = document.querySelector('.tab-content > div:last-child');
+                (logIn as HTMLElement).style.display = 'none';
+                const logInButton = document.querySelector('.tab-buttons > li:last-child');
+                const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
+                (logInButton as HTMLElement).classList.remove('active');
+                (SignUpButton as HTMLElement).classList.add('active');
+            }
+        });
+    }
+
+    // changeTheme() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         console.log('changeTheme2 target', target);
+    //         if (target.classList.contains('header-switch')) {
+    //             console.log('changeTheme2 dark');
+    //             document.body.classList.toggle('dark');
+    //         }
+    //     });
+    // }
 }
