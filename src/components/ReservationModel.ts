@@ -1,6 +1,6 @@
 import { IBaseTableOrder, IReservationWindow, ITableState, ITimeView, ReservationWindow } from '../types/types';
-import createDevHall from '../Utils/createDEVexampleHall';
-import { getResInfo } from '../Utils/net';
+//import createDevHall from '../Utils/createDEVexampleHall';
+import { ServiceReviews } from '../Utils/net';
 export class ReservationModel {
     onChangeModel!: CallableFunction;
     markLine: number;
@@ -15,12 +15,13 @@ export class ReservationModel {
     isLogin: boolean;
     dayTableSchedule: number[];
     baseTableOrder: IBaseTableOrder;
-    devHallSchedule: number[][][];
+    hallScheduleArray: number[][][];
     timeBelt: number;
     isChosenDayNum: number;
+    reservationServerDataArray: IBaseTableOrder[];
     constructor() {
-        console.log(getResInfo());
-        this.devHallSchedule = createDevHall();
+        this.reservationServerDataArray = [];
+        this.getReservationArray();
         this.currentDate = new Date();
         this.markLine = this.getCurrentTimeLine();
         this.timeBelt = new Date().getTimezoneOffset();
@@ -28,7 +29,7 @@ export class ReservationModel {
         const defaultView = ReservationWindow.Main;
         const defaultTableDuration = 1;
         const defaultDay = 0;
-        const defaultDayTableSchedule = [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1];
+        const defaultDayTableSchedule: number[] = [];
         const defaultChosenDate = new Date();
         //const defaultView = ReservationWindow.ReservationUnreg;
         this.dayTableSchedule = defaultDayTableSchedule;
@@ -72,13 +73,17 @@ export class ReservationModel {
             endAt: '',
             userPhone: '',
         };
+        this.hallScheduleArray = this.createLiveHallView();
         this.getHallView();
-        console.log(this.hallView);
     }
+
+    //TODO body
     bindChangeModel(callback: CallableFunction) {
         this.onChangeModel = callback;
     }
     private commit() {
+        this.getReservationArray();
+        this.hallScheduleArray = this.createLiveHallView();
         this.getHallView();
         this.onChangeModel(this.timeView, this.hallView, this.reservationWindow);
     }
@@ -92,9 +97,8 @@ export class ReservationModel {
         this.hallView = [];
         for (let i = 0; i < 10; i++) {
             const tableType = [4, 4, 2, 4, 4, 8, 2, 6, 2, 6];
-            //const randChangeT = 5 < Math.random() * 10 ? this.busyElement : this.freeElement;
             const randChangeT =
-                this.devHallSchedule[this.isChosenDayNum][i][this.reservationWindow.resTimeNum] > 0
+                this.hallScheduleArray[this.isChosenDayNum][i][this.reservationWindow.resTimeNum] > 0
                     ? this.busyElement
                     : this.freeElement;
             const randChangeS = tableType[i] < this.timeView.guestCount ? this.busyElement : this.freeElement;
@@ -119,16 +123,56 @@ export class ReservationModel {
             this.baseTableOrder.startAt = `${this.timeView.chosenDate.getFullYear()}-${(
                 '0' +
                 (this.timeView.chosenDate.getMonth() + 1)
-            ).slice(-2)}-${this.timeView.chosenDate.getDate()}T${this.reservationWindow.resTimeNum + 12}:00`;
+            ).slice(-2)}-${this.timeView.chosenDate.getDate()}T${this.reservationWindow.resTimeNum + 12}:00:00.000Z`;
             this.baseTableOrder.endAt = `${this.timeView.chosenDate.getFullYear()}-${(
                 '0' +
                 (this.timeView.chosenDate.getMonth() + 1)
             ).slice(-2)}-${this.timeView.chosenDate.getDate()}T${
                 this.reservationWindow.resTimeNum + this.reservationWindow.tableDuration + 12
-            }:00`;
+            }:00:00.000Z`;
             this.baseTableOrder.userPhone = this.reservationWindow.userPhone;
         }
         //TODO объект заделан теперь отправляем
+        this.postReservation();
+    }
+    private postReservation() {
+        const service = new ServiceReviews();
+        service.createNewReview(this.baseTableOrder);
+    }
+    private async getReservationArray() {
+        const service = new ServiceReviews();
+        this.reservationServerDataArray = await service.getReviews();
+        console.log(this.reservationServerDataArray);
+    }
+    private createLiveHallView() {
+        const finalArr: number[][][] = [];
+        const dateNow = new Date();
+        for (let i = 0; i < 7; i++) {
+            const tableSh = [];
+            for (let j = 0; j < 10; j++) {
+                const dayTableSh = [];
+                for (let k = 0; k < 12; k++) {
+                    const dateForSchedule = `${dateNow.getFullYear()}-${('0' + (dateNow.getMonth() + 1)).slice(-2)}-${
+                        dateNow.getDate() + i
+                    }T${k + 12}:00:00.000Z`;
+                    this.reservationServerDataArray.length > 0
+                        ? dayTableSh.push(this.checkSchedule(j, dateForSchedule) ? 1 : 0)
+                        : dayTableSh.push(0);
+                }
+                tableSh.push(dayTableSh);
+            }
+            finalArr.push(tableSh);
+        }
+        return finalArr;
+    }
+    private checkSchedule(tableNumber: number, time: string): boolean {
+        let result = false;
+        this.reservationServerDataArray.forEach((e) => {
+            if (+e.tableId == tableNumber && time >= e.startAt && time < e.endAt) {
+                result = true;
+            }
+        });
+        return result;
     }
     handleTimeLine(markLine: number) {
         this.timeView.markLine = markLine;
@@ -151,6 +195,7 @@ export class ReservationModel {
     }
     handleClickToTable(tableNumber: number) {
         this.reservationWindow.tableNumber = tableNumber;
+        this.timeView.dayTableSchedule = this.hallScheduleArray[this.isChosenDayNum][tableNumber];
         this.reservationWindow.modalFlag = ReservationWindow.Table;
         this.commit();
     }
@@ -185,8 +230,6 @@ export class ReservationModel {
         this.reservationWindow.userName = userName;
         const letters = /^[A-Za-z]{3,}\s?\w*/;
         if (letters.test(userName)) {
-            //TODO добавить в объект отправки
-            console.log();
             this.reservationWindow.errors.name = false;
         } else {
             this.reservationWindow.errors.name = true;
