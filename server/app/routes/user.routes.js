@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { authJwt } = require('../middlewares');
 const controller = require('../controllers/user.controller');
 
 module.exports = function (app) {
     app.use(function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept Authorization, Cookie');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
         next();
     });
 
-    app.get('/api/test/all', controller.allAccess);
-
-    app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
+    app.get('/api/user/:id', controller.getUser);
 };
