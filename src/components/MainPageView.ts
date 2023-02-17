@@ -3,91 +3,90 @@ import '../styles/styleMainPageHeaderFooter.scss';
 import '../styles/styleMainPageMainPart.scss';
 import '../styles/styleMainPageForm.scss';
 import '../styles/styleSwitchTheme.scss';
-import { displayHeader } from '../templates/displayHeader';
+import { displayHeaderReservation } from '../templates/displayHeaderReservation';
+import { displayCarousel } from '../templates/displayCarousel';
 import { displayFooter } from '../templates/displayFooter';
 import { displayMainPageMain } from '../templates/displayMainPageMain';
 import { displaySignUpLogIn } from '../templates/displaySignUp';
 import createElement from '../Utils/createElement';
+import { BaseView } from './BaseView';
 
-export class MainPageView {
-    body: HTMLElement;
+export class MainPageView extends BaseView {
+    //body: HTMLElement;
 
     constructor() {
-        this.body = getElement('body') as HTMLElement;
-        this.body.innerHTML = '';
+        super();
 
         this.renderPage(false, false);
     }
 
     renderPage(moreMainInf: boolean, moreAdditInf: boolean) {
         this.body.innerHTML = '';
-        const wrap = createElement('div', 'wrap');
-        const mainContent = createElement('div', 'main-content');
-        const formWrap = createElement('div', 'form-wrap');
+        this.mainContent.innerHTML = '';
 
-        const header = displayHeader();
         const main = displayMainPageMain(moreMainInf, moreAdditInf);
-        const footer = displayFooter();
-        const form = displaySignUpLogIn();
+        //console.log('renderPage main', main);
+        //console.log('renderPage this.mainContent', this.mainContent);
 
-        mainContent.append(header, main, footer);
-        formWrap.append(form);
-        wrap.append(mainContent, formWrap);
-        this.body.append(wrap);
+        this.mainContent.append(this.header, this.carousel, main, this.footer);
+        this.formWrap.append(this.form);
+        this.wrap.append(this.mainContent, this.formWrap);
+        this.body.append(this.wrap);
+        //console.log('renderPage this.body 2', this.body);
     }
 
-    bindClickMenu() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (target.classList.contains('header-menu')) {
-                window.location.hash = `menu`;
-            }
-        });
-    }
+    // bindClickMenu() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('header-menu')) {
+    //             window.location.hash = `menu`;
+    //         }
+    //     });
+    // }
 
-    bindClickButtonReserv() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            const parent = target.parentElement as Element;
-            if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
-                window.location.hash = `reservation`;
-            }
-        });
-    }
+    // bindClickButtonReserv() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         const parent = target.parentElement as Element;
+    //         if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
+    //             window.location.hash = `reservation`;
+    //         }
+    //     });
+    // }
 
-    bindClickMainPage() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (target.classList.contains('link-main-page')) {
-                window.location.hash = '';
-            }
-        });
-    }
+    // bindClickMainPage() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('link-main-page')) {
+    //             window.location.hash = '';
+    //         }
+    //     });
+    // }
 
-    bindClickSignupLogin() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (target.classList.contains('signup-login')) {
-                window.location.hash = '';
-                const form = document.querySelector('.form-wrap');
-                //console.log('form', form);
-                (form as HTMLElement).style.display = 'block';
-                const main = document.querySelector('.main-content');
-                //console.log('form', form);
-                (main as HTMLElement).classList.add('main-content_passive');
-            }
-        });
-    }
+    // bindClickSignupLogin() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('signup-login')) {
+    //             window.location.hash = '';
+    //             const form = document.querySelector('.form-wrap');
+    //             //console.log('form', form);
+    //             (form as HTMLElement).style.display = 'block';
+    //             const main = document.querySelector('.main-content');
+    //             //console.log('form', form);
+    //             (main as HTMLElement).classList.add('main-content_passive');
+    //         }
+    //     });
+    // }
 
-    bindClickExitFromSignupLogin() {
-        const main = document.querySelector('.main-content') as HTMLElement;
-        main.addEventListener('click', () => {
-            const form = document.querySelector('.form-wrap');
-            console.log('main-content');
-            (form as HTMLElement).style.display = 'none';
-            main.classList.remove('main-content_passive');
-        });
-    }
+    // bindClickExitFromSignupLogin() {
+    //     const main = document.querySelector('.main-content') as HTMLElement;
+    //     main.addEventListener('click', () => {
+    //         const form = document.querySelector('.form-wrap');
+    //         console.log('main-content');
+    //         (form as HTMLElement).style.display = 'none';
+    //         main.classList.remove('main-content_passive');
+    //     });
+    // }
 
     bindClickMoreMainInf(handler: () => void) {
         this.body.addEventListener('click', (event) => {
@@ -115,42 +114,42 @@ export class MainPageView {
         });
     }
 
-    bindClickLogIn() {
-        this.body.addEventListener('click', (event) => {
-            //console.log('bindClickLogIn event', event.target);
-            const target = event.target as Element;
-            if (target.classList.contains('login')) {
-                console.log('log in');
-                const logIn = document.querySelector('.tab-content > div:last-child');
-                (logIn as HTMLElement).style.display = 'block';
-                const signUp = document.querySelector('.tab-content > div:first-child');
-                (signUp as HTMLElement).style.display = 'none';
-                const logInButton = document.querySelector('.tab-buttons > li:last-child');
-                const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
-                //console.log('logInButton', logInButton);
-                (logInButton as HTMLElement).classList.add('active');
-                (SignUpButton as HTMLElement).classList.remove('active');
-            }
-        });
-    }
+    // bindClickLogIn() {
+    //     this.body.addEventListener('click', (event) => {
+    //         //console.log('bindClickLogIn event', event.target);
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('login')) {
+    //             console.log('log in');
+    //             const logIn = document.querySelector('.tab-content > div:last-child');
+    //             (logIn as HTMLElement).style.display = 'block';
+    //             const signUp = document.querySelector('.tab-content > div:first-child');
+    //             (signUp as HTMLElement).style.display = 'none';
+    //             const logInButton = document.querySelector('.tab-buttons > li:last-child');
+    //             const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
+    //             //console.log('logInButton', logInButton);
+    //             (logInButton as HTMLElement).classList.add('active');
+    //             (SignUpButton as HTMLElement).classList.remove('active');
+    //         }
+    //     });
+    // }
 
-    bindClickSignUp() {
-        this.body.addEventListener('click', (event) => {
-            //console.log('bindClickLogIn event', event.target);
-            const target = event.target as Element;
-            if (target.classList.contains('signup')) {
-                console.log('sign up');
-                const signUp = document.querySelector('.tab-content > div:first-child');
-                (signUp as HTMLElement).style.display = 'block';
-                const logIn = document.querySelector('.tab-content > div:last-child');
-                (logIn as HTMLElement).style.display = 'none';
-                const logInButton = document.querySelector('.tab-buttons > li:last-child');
-                const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
-                (logInButton as HTMLElement).classList.remove('active');
-                (SignUpButton as HTMLElement).classList.add('active');
-            }
-        });
-    }
+    // bindClickSignUp() {
+    //     this.body.addEventListener('click', (event) => {
+    //         //console.log('bindClickLogIn event', event.target);
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('signup')) {
+    //             console.log('sign up');
+    //             const signUp = document.querySelector('.tab-content > div:first-child');
+    //             (signUp as HTMLElement).style.display = 'block';
+    //             const logIn = document.querySelector('.tab-content > div:last-child');
+    //             (logIn as HTMLElement).style.display = 'none';
+    //             const logInButton = document.querySelector('.tab-buttons > li:last-child');
+    //             const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
+    //             (logInButton as HTMLElement).classList.remove('active');
+    //             (SignUpButton as HTMLElement).classList.add('active');
+    //         }
+    //     });
+    // }
 
     // changeTheme() {
     //     this.body.addEventListener('click', (event) => {

@@ -29,18 +29,21 @@ export class App {
     modelReviews: ReviewsModel | undefined;
 
     init() {
+        //console.log('init');
         window.addEventListener('hashchange', this.navigate);
         this.navigate();
         this.changeTheme();
     }
 
     navigate = () => {
+        console.log('navigate');
         const pathHashes = window.location.hash.split('/');
         switch (pathHashes[0]) {
             case '':
                 this.view = new MainPageView();
                 this.model = new MainPageModel();
                 this.controller = new MainPageController(this.view, this.model);
+                console.log('MainPageView');
                 break;
             case '#reservation':
                 this.viewReservation = new ReservationView();
@@ -69,6 +72,7 @@ export class App {
                 this.view = new MainPageView();
                 this.model = new MainPageModel();
                 this.controller = new MainPageController(this.view, this.model);
+                console.log('MainPageView');
                 break;
         }
     };

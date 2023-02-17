@@ -1,14 +1,17 @@
 import { ReservationView } from 'ReservationView';
 import { ReservationModel } from 'ReservationModel';
 import { IReservationWindow, ITableState, ITimeView } from '../types/types';
+import { BaseController } from './BaseController';
 
-export class ReservationController {
+export class ReservationController extends BaseController {
     view: ReservationView;
     model: ReservationModel;
 
     constructor(view: ReservationView, model: ReservationModel) {
+        super(view, model);
         this.view = view;
         this.model = model;
+        //super(view, model);
 
         this.view.bindTimeLine(this.handleTimeLine);
         this.view.bindDate(this.handleDate);

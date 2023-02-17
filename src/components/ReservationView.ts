@@ -9,11 +9,12 @@ import { displayHeaderReservation } from '../templates/displayHeaderReservation'
 import createModalTableInfo from '../templates/reservation/createModalTableInfo';
 import createModalReservationReg from '../templates/reservation/createModalReservationReg';
 import createModalReservationUnReg from '../templates/reservation/createModalReservationUnReg';
+import { BaseView } from './BaseView';
 
-export class ReservationView {
-    body!: HTMLElement;
+export class ReservationView extends BaseView {
+    //body!: HTMLElement;
     div!: HTMLElement;
-    header!: HTMLElement;
+    //header!: HTMLElement;
     calendarAndTime!: HTMLElement;
     hall!: HTMLElement;
     reservationWrapper!: HTMLElement;
@@ -23,12 +24,15 @@ export class ReservationView {
     modalReservationUnReg!: HTMLElement;
 
     constructor() {
-        console.log();
+        super();
     }
 
     reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
-        this.body = getElement('body') as HTMLElement;
+        //this.body = getElement('body') as HTMLElement;
+        console.log('reservationRender');
         this.body.innerHTML = '';
+        this.mainContent.innerHTML = '';
+
         this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
         this.shadow = createElement('div', 'shadow__globalWrapper');
         this.header = displayHeaderReservation();
@@ -44,7 +48,13 @@ export class ReservationView {
             this.modalReservationReg,
             this.modalReservationUnReg
         );
-        this.body.append(this.header, this.reservationWrapper, this.shadow);
+        //this.body.append(this.header, this.reservationWrapper, this.shadow);
+        //this.reservationModalSwitch(reservationWindow);
+
+        this.mainContent.append(this.header, this.reservationWrapper, this.shadow, this.footer);
+        this.formWrap.append(this.form);
+        this.wrap.append(this.mainContent, this.formWrap);
+        this.body.append(this.wrap);
         this.reservationModalSwitch(reservationWindow);
     }
     reservationModalSwitch(reservationWindow: IReservationWindow) {
