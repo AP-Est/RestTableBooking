@@ -54,9 +54,9 @@ export class ReservationModel {
         };
         this.hallView = [];
         this.busyTableElement = 'Red';
-        this.freeTableElement = 'Gray';
+        this.freeTableElement = 'gray';
         this.busySitsElement = 'Red';
-        this.freeSitsElement = 'lime';
+        this.freeSitsElement = 'gray';
         this.reservationWindow = {
             modalFlag: defaultView,
             tableNumber: 0,
