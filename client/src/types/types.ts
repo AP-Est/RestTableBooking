@@ -35,6 +35,7 @@ export interface IReservationWindow {
     freeHours: number;
     userName: string;
     userPhone: string;
+    resComplete: boolean;
     errors: IReservationErrors;
 }
 

@@ -20,23 +20,18 @@ svg {
     background-color: rgb(53, 47, 47, 0.8);
     top: 0;
 }
-//.header__wrapper{
-//     margin: 0 auto;
-//     max-width: 100%;
-//     margin-bottom: 0;
-// }
 .calendarTimer__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
-    //background-color: rgb(114, 182, 160);
     .calendarTimer__form {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 10px;
-        background-color: darken($color: #939191, $amount: 5);
+        background-color: rgba(0, 0, 0, 0.05);
+        border: $mainBorderStyle;
         border-radius: 50px;
 
     }
@@ -49,7 +44,8 @@ svg {
         display: flex;
         flex-direction: column;
         align-items: center;
-        //width: 60vw;
+        width: 70vw;
+        margin: 5px;
         //height: 10vh;
         padding-top: 15px;
         .inner__rows {
@@ -84,11 +80,11 @@ svg {
 
 .hourBlock{
     display: flex;
+    justify-content: space-evenly;
     gap: 10px;
 }
 
 .hourTitleWrapper{
-    scroll-snap-align: center;
     user-select: none;    
 }
 
@@ -156,6 +152,7 @@ svg {
 .marked {
     background-color: gold;
     transform: scale(1.8);
+    scroll-snap-align: center;
     text-shadow: 0 0 10px rgb(53, 47, 47), 0 0 20px rgb(174, 145, 145), 0 0 30px red, 0 0 40px rgb(178, 172, 221);
 }
 .dateGuest__wrapper {
@@ -392,4 +389,20 @@ svg {
             font-weight: bold;
         }
     }
+}
+
+.successMessage__wrapper {
+    position: absolute;
+    z-index: 999;
+    color: rgb(255, 188, 17);
+    top:30%;
+    //left:10%;
+    width: 80%;
+    border: solid 3px rgb(223, 240, 40);
+    background-color: darken($color: #939191, $amount: 10);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }

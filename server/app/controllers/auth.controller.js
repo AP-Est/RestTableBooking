@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 exports.signup = (req, res) => {
     const user = new User({
         username: req.body.username,
+        userPhone: req.body.userPhone,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
     });
@@ -42,24 +43,38 @@ exports.signin = (req, res) => {
         }
 
         const token = jwt.sign({ id: user.id }, config.secret, {
-            expiresIn: 86400, // 24 hours
+            expiresIn: "24h",
         });
 
-        req.session.token = token;
-
-        res.status(200).send({
-            id: user._id,
-            username: user.username,
-            email: user.email,
-        });
+        res.cookie('access_token', token, {
+            httpOnly: true,
+            maxAge: 86400000,
+        })
+            .status(200)
+            .send({
+                id: user._id,
+                username: user.username,
+                userPhone: user.userPhone,
+                email: user.email,
+            });
     });
 };
 
 exports.signout = async (req, res) => {
     try {
-        req.session = null;
-        return res.status(200).send({ message: "You've been signed out!" });
+        return res.clearCookie('access_token').status(200).send({ message: "You've been signed out!" });
     } catch (err) {
         this.next(err);
     }
+};
+
+exports.isLogged = (req, res) => {
+    if (req.cookies.access_token) {
+        const token = req.cookies.access_token;
+        const data = jwt.verify(token, config.secret);
+        res.status(200).send({ message: 'User already loggined', userId: data.id });
+        return;
+    }
+
+    res.status(401).send({ message: 'no logged' });
 };
