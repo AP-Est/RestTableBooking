@@ -2,36 +2,35 @@
 
 const express = require('express');
 const cors = require('cors');
-const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
+const cookieOptions = {
+    httpOnly: true,
+};
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser('cookie_secret', cookieOptions));
 
 require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
 require('./routes/reservation.routes')(app);
 require('./routes/review.routes')(app);
+require('./routes/user.routes')(app);
 
 const db = require('./models/index');
 const dbConfig = require('./config/db.config');
 
 const corsOptions = {
     origin: 'http://localhost:8080',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
-
-app.use(
-    cookieSession({
-        name: 'rsclone-session',
-        secret: 'COOKIE_SECRET',
-        httpOnly: true,
-    })
-);
 
 db.mongoose
     .connect(`mongodb+srv://${dbConfig.HOST}@${dbConfig.CLUSTER}/${dbConfig.DB}`, {

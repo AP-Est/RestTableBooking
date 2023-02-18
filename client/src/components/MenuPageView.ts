@@ -5,22 +5,25 @@ import Menu from '../Utils/menuObject';
 import '../styles/styleMenuPage.scss';
 import { displayHeader } from '../templates/displayHeader';
 import { displayFooter } from '../templates/displayFooter';
+import { BaseView } from './BaseView';
 
-export class MenuView {
-    body: HTMLElement;
-    header: HTMLElement;
+export class MenuView extends BaseView {
+    // body: HTMLElement;
+    // header: HTMLElement;
     main: HTMLElement;
     wrapper: HTMLElement;
     container: HTMLElement;
-    footer: HTMLElement;
+    //footer: HTMLElement;
 
     private menuCategories = ['STARTERS', 'ENTREE SALADS', 'SOUP & SALAD', 'HOUSE SALADS'];
 
     constructor() {
-        this.body = getElement('body') as HTMLElement;
+        super();
+        // this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
+        this.mainContent.innerHTML = '';
 
-        this.header = displayHeader();
+        // this.header = displayHeader();
         this.main = createElement('main', 'main-menu');
 
         this.wrapper = createElement('div', 'wrapper');
@@ -29,8 +32,13 @@ export class MenuView {
         this.container = createElement('div', 'container');
         this.wrapper.append(this.container);
         this.createMenu();
-        this.footer = displayFooter();
-        this.body.append(this.header, this.main, this.footer);
+        // this.footer = displayFooter();
+        //this.body.append(this.header, this.main, this.footer);
+
+        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        this.formWrap.append(this.form);
+        this.wrap.append(this.mainContent, this.formWrap);
+        this.body.append(this.wrap);
     }
 
     public createMenu() {
@@ -59,40 +67,40 @@ export class MenuView {
         });
     }
 
-    bindClickMenu() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (target.classList.contains('header-main-text')) {
-                window.location.hash = `menu`;
-            }
-        });
-    }
+    // bindClickMenu() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('header-main-text')) {
+    //             window.location.hash = `menu`;
+    //         }
+    //     });
+    // }
 
-    bindClickButtonReserv() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            const parent = target.parentElement as Element;
-            if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
-                window.location.hash = `reservation`;
-            }
-        });
-    }
+    // bindClickButtonReserv() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         const parent = target.parentElement as Element;
+    //         if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
+    //             window.location.hash = `reservation`;
+    //         }
+    //     });
+    // }
 
-    bindClickMainPage() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (target.classList.contains('link-main-page')) {
-                window.location.hash = '';
-            }
-        });
-    }
+    // bindClickMainPage() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('link-main-page')) {
+    //             window.location.hash = '';
+    //         }
+    //     });
+    // }
 
-    bindClickReviews() {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (target.classList.contains('link-reviews-page')) {
-                window.location.hash = `reviews`;
-            }
-        });
-    }
+    // bindClickReviews() {
+    //     this.body.addEventListener('click', (event) => {
+    //         const target = event.target as Element;
+    //         if (target.classList.contains('link-reviews-page')) {
+    //             window.location.hash = `reviews`;
+    //         }
+    //     });
+    // }
 }

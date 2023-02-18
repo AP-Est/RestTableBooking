@@ -1,45 +1,49 @@
-import getElement from '../Utils/getElement';
-import '../styles/styleMainPageHeaderFooter.scss';
-import '../styles/styleMainPageMainPart.scss';
-import '../styles/styleMainPageForm.scss';
 import '../styles/styleSwitchTheme.scss';
-import { displayHeader } from '../templates/displayHeader';
+import '../styles/styleMainPageHeaderFooter.scss';
+import '../styles/styleMainPageForm.scss';
+import { displayHeaderReservation } from '../templates/displayHeaderReservation';
+import { displayCarousel } from '../templates/displayCarousel';
 import { displayFooter } from '../templates/displayFooter';
-import { displayMainPageMain } from '../templates/displayMainPageMain';
 import { displaySignUpLogIn } from '../templates/displaySignUp';
+import getElement from '../Utils/getElement';
 import createElement from '../Utils/createElement';
 
-export class MainPageView {
+export class BaseView {
+    header: HTMLElement;
+    carousel: HTMLElement;
+    footer: HTMLElement;
     body: HTMLElement;
+    wrap: HTMLElement;
+    mainContent: HTMLElement;
+    formWrap: HTMLElement;
+    form: HTMLElement;
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
         this.body.innerHTML = '';
+        //console.log('BaseView this.body', this.body);
 
-        this.renderPage(false, false);
-    }
+        this.wrap = createElement('div', 'wrap');
+        this.mainContent = createElement('div', 'main-content');
+        this.formWrap = createElement('div', 'form-wrap');
 
-    renderPage(moreMainInf: boolean, moreAdditInf: boolean) {
-        this.body.innerHTML = '';
-        const wrap = createElement('div', 'wrap');
-        const mainContent = createElement('div', 'main-content');
-        const formWrap = createElement('div', 'form-wrap');
+        this.form = displaySignUpLogIn();
+        this.header = displayHeaderReservation();
+        this.carousel = displayCarousel();
+        this.footer = displayFooter();
 
-        const header = displayHeader();
-        const main = displayMainPageMain(moreMainInf, moreAdditInf);
-        const footer = displayFooter();
-        const form = displaySignUpLogIn();
-
-        mainContent.append(header, main, footer);
-        formWrap.append(form);
-        wrap.append(mainContent, formWrap);
-        this.body.append(wrap);
+        // this.mainContent.append(this.header, this.carousel, this.footer);
+        // this.formWrap.append(this.form);
+        // this.wrap.append(this.mainContent, this.formWrap);
+        // this.body.append(this.wrap);
     }
 
     bindClickMenu() {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
+            //console.log('BaseView bindClickMenu');
             if (target.classList.contains('header-menu')) {
+                //console.log('BaseView bindClickMenu target', target);
                 window.location.hash = `menu`;
             }
         });
@@ -68,9 +72,10 @@ export class MainPageView {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
             if (target.classList.contains('signup-login')) {
-                window.location.hash = '';
+                //window.location.hash = '';
                 const form = document.querySelector('.form-wrap');
                 //console.log('form', form);
+                //console.log('bindClickSignupLogin');
                 (form as HTMLElement).style.display = 'block';
                 const main = document.querySelector('.main-content');
                 //console.log('form', form);
@@ -80,37 +85,25 @@ export class MainPageView {
     }
 
     bindClickExitFromSignupLogin() {
-        const main = document.querySelector('.main-content') as HTMLElement;
-        main.addEventListener('click', () => {
-            const form = document.querySelector('.form-wrap');
-            console.log('main-content');
-            (form as HTMLElement).style.display = 'none';
-            main.classList.remove('main-content_passive');
-        });
-    }
-
-    bindClickMoreMainInf(handler: () => void) {
+        // const main = document.querySelector('.main-content') as HTMLElement;
+        // if (main) {
+        //     console.log('bindClickExitFromSignupLogin main', main);
+        //     main.addEventListener('click', () => {
+        //         const form = document.querySelector('.form-wrap');
+        //         //console.log('bindClickExitFromSignupLogin');
+        //         (form as HTMLElement).style.display = 'none';
+        //         main.classList.remove('main-content_passive');
+        //     });
+        // }
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
-            if (
-                target.classList.contains('more-main-inf') ||
-                (target.parentElement as HTMLElement).classList.contains('more-main-inf')
-            ) {
-                //console.log('more-main-inf');
-                handler();
-            }
-        });
-    }
-
-    bindClickMoreAdditInf(handler: () => void) {
-        this.body.addEventListener('click', (event) => {
-            const target = event.target as Element;
-            if (
-                target.classList.contains('more-addit-inf') ||
-                (target.parentElement as HTMLElement).classList.contains('more-addit-inf')
-            ) {
-                //console.log('more-addit-inf');
-                handler();
+            //console.log('bindClickExitFromSignupLogin target', target);
+            if (target.closest('.main-content') && !target.classList.contains('signup-login')) {
+                const form = document.querySelector('.form-wrap');
+                //console.log('bindClickExitFromSignupLogin');
+                (form as HTMLElement).style.display = 'none';
+                const main = document.querySelector('.main-content') as HTMLElement;
+                main.classList.remove('main-content_passive');
             }
         });
     }
@@ -120,7 +113,7 @@ export class MainPageView {
             //console.log('bindClickLogIn event', event.target);
             const target = event.target as Element;
             if (target.classList.contains('login')) {
-                console.log('log in');
+                //console.log('log in');
                 const logIn = document.querySelector('.tab-content > div:last-child');
                 (logIn as HTMLElement).style.display = 'block';
                 const signUp = document.querySelector('.tab-content > div:first-child');
@@ -139,7 +132,7 @@ export class MainPageView {
             //console.log('bindClickLogIn event', event.target);
             const target = event.target as Element;
             if (target.classList.contains('signup')) {
-                console.log('sign up');
+                //console.log('sign up');
                 const signUp = document.querySelector('.tab-content > div:first-child');
                 (signUp as HTMLElement).style.display = 'block';
                 const logIn = document.querySelector('.tab-content > div:last-child');
@@ -152,13 +145,24 @@ export class MainPageView {
         });
     }
 
+    bindClickReviews() {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            if (target.classList.contains('link-reviews-page')) {
+                window.location.hash = `reviews`;
+            }
+        });
+    }
+
     // changeTheme() {
-    //     this.body.addEventListener('click', (event) => {
+    //     const body: Element = <Element>document.querySelector('body');
+    //     body.addEventListener('click', (event) => {
     //         const target = event.target as Element;
-    //         console.log('changeTheme2 target', target);
-    //         if (target.classList.contains('header-switch')) {
-    //             console.log('changeTheme2 dark');
-    //             document.body.classList.toggle('dark');
+    //         console.log('changeTheme target', target);
+    //         if (target.classList.contains('header-switch__slider')) {
+    //             console.log('changeTheme dark');
+    //             //const body: Element = <Element>document.querySelector('body');
+    //             body.classList.toggle('dark');
     //         }
     //     });
     // }
