@@ -87,7 +87,7 @@ $br: 10px;
   }
 }
 
-.tab-label .active {
+.tab-label-active {
   transform:translateY(50px);
   left:2px;
   font-size:14px;
@@ -96,7 +96,7 @@ $br: 10px;
   }
 }
 
-.tab-label .highlight {
+.tab-label-highlight {
 	color:$white;
 }
 

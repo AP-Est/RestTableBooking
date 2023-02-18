@@ -18,5 +18,8 @@ export class BaseController {
         this.view.bindClickExitFromSignupLogin();
         this.view.bindClickReviews();
         //this.view.changeTheme();
+        this.view.bindClickForm();
+        this.view.bindBlurForm();
+        this.view.bindClickButtonRegister();
     }
 }
