@@ -8,8 +8,10 @@ export class ReservationModel {
     currentDate: Date;
     tableState: ITableState;
     hallView: ITableState[];
-    busyElement: string;
-    freeElement: string;
+    busyTableElement: string;
+    freeTableElement: string;
+    busySitsElement: string;
+    freeSitsElement: string;
     guestCount: number;
     reservationWindow: IReservationWindow;
     isLogin: boolean;
@@ -51,8 +53,10 @@ export class ReservationModel {
             sitColor: '',
         };
         this.hallView = [];
-        this.busyElement = 'Red';
-        this.freeElement = 'Gray';
+        this.busyTableElement = 'Red';
+        this.freeTableElement = 'Gray';
+        this.busySitsElement = 'Red';
+        this.freeSitsElement = 'lime';
         this.reservationWindow = {
             modalFlag: defaultView,
             tableNumber: 0,
@@ -61,6 +65,7 @@ export class ReservationModel {
             freeHours: 1,
             userName: '',
             userPhone: '',
+            resComplete: false,
             errors: {
                 duration: false,
                 name: false,
@@ -99,9 +104,9 @@ export class ReservationModel {
             const tableType = [4, 4, 2, 4, 4, 8, 2, 6, 2, 6];
             const randChangeT =
                 this.hallScheduleArray[this.isChosenDayNum][i][this.reservationWindow.resTimeNum] > 0
-                    ? this.busyElement
-                    : this.freeElement;
-            const randChangeS = tableType[i] < this.timeView.guestCount ? this.busyElement : this.freeElement;
+                    ? this.busyTableElement
+                    : this.freeTableElement;
+            const randChangeS = tableType[i] < this.timeView.guestCount ? this.busySitsElement : this.freeSitsElement;
             const tableState = {
                 tableNumber: i + 1,
                 tableType: tableType[i],
@@ -138,6 +143,21 @@ export class ReservationModel {
     private postReservation() {
         const service = new ServiceReviews();
         service.createNewReview(this.baseTableOrder);
+        this.showSuccessMessage();
+    }
+    private showSuccessMessage() {
+        this.reservationWindow.resComplete = true;
+        this.commit();
+        setTimeout(() => {
+            this.reservationWindow.resComplete = false;
+            this.reservationWindow.modalFlag = ReservationWindow.Main;
+            this.reservationWindow.errors.duration = false;
+            this.reservationWindow.errors.name = false;
+            this.reservationWindow.errors.phone = false;
+            this.reservationWindow.freeHours = 1;
+            this.reservationWindow.tableDuration = 1;
+            this.commit();
+        }, 3000);
     }
     private async getReservationArray() {
         const service = new ServiceReviews();
@@ -247,6 +267,13 @@ export class ReservationModel {
         this.commit();
     }
     handleClickReservation() {
+        if (this.isLogin) {
+            this.reservationWindow.errors.phone = false;
+            this.reservationWindow.errors.name = false;
+            //TODO забрать из локала
+            //this.reservationWindow.userPhone = 0
+            //this.reservationWindow.userName = 0
+        }
         this.setBaseTableOrder();
         console.log(this.baseTableOrder);
         this.commit();

@@ -12,7 +12,8 @@ export default function createModalReservationUnReg(
     const inputDuration = createDurationBlock(reservationWindow);
     const userInfo = createUserInfoBlock(reservationWindow);
     const buttonBlock = createButtonBlock();
-    wrapper.append(infoBlock, inputDuration, userInfo, buttonBlock);
+    const successMessage = createSuccessWindows(reservationWindow);
+    wrapper.append(infoBlock, inputDuration, userInfo, buttonBlock, successMessage);
     return wrapper;
 }
 function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
@@ -91,4 +92,13 @@ function createButtonBlock() {
     const buttonReservation = createButton('Reservation', 'button__reservation');
     wrapper.append(buttonReservation);
     return wrapper;
+}
+
+function createSuccessWindows(reservationWindow: IReservationWindow) {
+    const createWinnerMessage = createElement('div', 'successMessage__wrapper');
+    createWinnerMessage.hidden = !reservationWindow.resComplete;
+    const createWinnerText = createElement('span', 'successMessage__text');
+    createWinnerText.innerText = 'Reservation complied';
+    createWinnerMessage.append(createWinnerText);
+    return createWinnerMessage;
 }
