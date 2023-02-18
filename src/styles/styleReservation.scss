@@ -393,3 +393,19 @@ svg {
         }
     }
 }
+
+.successMessage__wrapper {
+    position: absolute;
+    z-index: 999;
+    color: rgb(255, 188, 17);
+    top:30%;
+    //left:10%;
+    width: 80%;
+    border: solid 3px rgb(223, 240, 40);
+    background-color: darken($color: #939191, $amount: 10);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}

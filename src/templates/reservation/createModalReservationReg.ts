@@ -9,9 +9,10 @@ export default function createModalReservationReg(
 ) {
     const wrapper = createElement('div', 'reservationReg__wrapper');
     const infoBlock = createInfoBlock(timeView, hallView, reservationWindow);
-    const inputDuration = createDurationBlock();
+    const inputDuration = createDurationBlock(reservationWindow);
     const buttonBlock = createButtonBlock();
-    wrapper.append(infoBlock, inputDuration, buttonBlock);
+    const successMessage = createSuccessWindows(reservationWindow);
+    wrapper.append(infoBlock, inputDuration, buttonBlock, successMessage);
     return wrapper;
 }
 function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
@@ -34,16 +35,24 @@ function createInfoBlock(timeView: ITimeView, hallView: ITableState[], reservati
     wrapper.append(tableNumber, tableDetailsBlock);
     return wrapper;
 }
-function createDurationBlock() {
+function createDurationBlock(reservationWindow: IReservationWindow) {
     const wrapper = createElement('div', 'durationBlock__wrapper');
+    const dataWrapper = createElement('div', 'dataBlock__wrapper');
+    const errorWrapper = createElement('div', 'errorBlock__wrapper');
     const inputText = createElement('div', 'text');
     inputText.innerText = 'Enter duration:';
     const inputTableDuration = createElement('input', 'duration__block_input') as HTMLInputElement;
-    inputTableDuration.defaultValue = '1';
+    inputTableDuration.defaultValue = `${reservationWindow.tableDuration}`;
     inputTableDuration.type = 'number';
     const inputTextPost = createElement('div', 'text');
     inputTextPost.innerText = 'h';
-    wrapper.append(inputText, inputTableDuration, inputTextPost);
+    errorWrapper.innerText = `Wrong duration, table free only ${reservationWindow.freeHours} h`;
+    errorWrapper.style.display = 'none';
+    if (reservationWindow.errors.duration) {
+        errorWrapper.style.display = 'flex';
+    }
+    dataWrapper.append(inputText, inputTableDuration, inputTextPost);
+    wrapper.append(dataWrapper, errorWrapper);
     return wrapper;
 }
 function createButtonBlock() {
@@ -51,4 +60,13 @@ function createButtonBlock() {
     const buttonReservation = createButton('Reservation', 'button__reservation');
     wrapper.append(buttonReservation);
     return wrapper;
+}
+
+function createSuccessWindows(reservationWindow: IReservationWindow) {
+    const createWinnerMessage = createElement('div', 'successMessage__wrapper');
+    createWinnerMessage.hidden = !reservationWindow.resComplete;
+    const createWinnerText = createElement('span', 'successMessage__text');
+    createWinnerText.innerText = 'Reservation complied';
+    createWinnerMessage.append(createWinnerText);
+    return createWinnerMessage;
 }
