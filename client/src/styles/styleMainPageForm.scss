@@ -81,13 +81,14 @@ $br: 10px;
   backface-visibility: hidden;
   pointer-events: none;
   font-size:22px;
+  letter-spacing: 1px;
   .req {
   	margin:2px;
   	color:$main;
   }
 }
 
-.tab-label .active {
+.tab-label-active {
   transform:translateY(50px);
   left:2px;
   font-size:14px;
@@ -96,7 +97,7 @@ $br: 10px;
   }
 }
 
-.tab-label .highlight {
+.tab-label-highlight {
 	color:$white;
 }
 

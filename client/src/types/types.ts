@@ -62,3 +62,15 @@ export interface ITableState {
 export interface IHallState {
     hallState: ITableState[];
 }
+
+export interface IRegisteredUser {
+    username: string;
+    userPhone: string;
+    email: string;
+    password: string;
+}
+
+export interface ISignIn {
+    email: string;
+    password: string;
+}
