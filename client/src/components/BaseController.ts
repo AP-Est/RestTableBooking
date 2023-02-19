@@ -21,5 +21,6 @@ export class BaseController {
         this.view.bindClickForm();
         this.view.bindBlurForm();
         this.view.bindClickButtonRegister();
+        this.view.bindClickButtonLogIn();
     }
 }

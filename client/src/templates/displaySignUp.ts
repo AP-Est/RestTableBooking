@@ -55,17 +55,17 @@ export function displaySignUpLogIn() {
         <label class="tab-label">
           Email Address<span class="req">*</span>
         </label>
-        <input class="tab-input" type="email"required />
+        <input class="tab-input tab-input-second input-login-email" type="email"required />
       </div>
       
       <div class="field-wrap">
         <label class="tab-label">
           Password<span class="req">*</span>
         </label>
-        <input class="tab-input" type="password"required autocomplete="off"/>
+        <input class="tab-input tab-input-second input-login-password" type="password" minlength="6" required autocomplete="off"/>
       </div>
       
-      <button class="button button-block"/>Log In</button>
+      <button class="button button-block button-login"/>Log In</button>
       
       </form>
 

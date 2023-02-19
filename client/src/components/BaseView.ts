@@ -184,7 +184,7 @@ export class BaseView {
     }
 
     bindClickButtonRegister() {
-        this.form.addEventListener('click', (event) => {
+        this.form.addEventListener('click', async (event) => {
             const target = event.target as HTMLInputElement;
             if (target.classList.contains('button-register')) {
                 const inputArray = document.querySelectorAll('.tab-input-first');
@@ -211,10 +211,48 @@ export class BaseView {
                         email: inputEmail.value,
                         password: inputPassword.value,
                     };
-                    console.log(registeredUserObject);
-                    this.serviceRegisteredUsers.createNewUser(registeredUserObject);
-                    this.serviceRegisteredUsers.signInUser(signInUserObject);
-                    event.preventDefault();
+                    //console.log(registeredUserObject);
+                    //event.preventDefault();
+                    await this.serviceRegisteredUsers.createNewUser(registeredUserObject);
+                    const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
+                    console.log('bindClickButtonRegister signInUser', await signInUser);
+                    await localStorage.clear();
+                    await localStorage.setItem('signInUser', signInUser);
+                    //await event.preventDefault();
+                } else {
+                    console.log('all not ok');
+                }
+            }
+        });
+    }
+
+    bindClickButtonLogIn() {
+        this.form.addEventListener('click', async (event) => {
+            const target = event.target as HTMLInputElement;
+            if (target.classList.contains('button-login')) {
+                const inputArray = document.querySelectorAll('.tab-input-second');
+                let valid = true;
+                for (let i = 0; i < inputArray.length; i++) {
+                    if ((inputArray[i] as HTMLInputElement).validity.valid === false) {
+                        valid = false;
+                        console.log('inputArray[i]', inputArray[i]);
+                    }
+                }
+                if (valid) {
+                    console.log('all ok');
+                    const inputEmailLogIn = document.querySelector('.input-login-email') as HTMLInputElement;
+                    const inputPasswordLogIn = document.querySelector('.input-login-password') as HTMLInputElement;
+                    const signInUserObject: ISignIn = {
+                        email: inputEmailLogIn.value,
+                        password: inputPasswordLogIn.value,
+                    };
+                    //console.log(registeredUserObject);
+                    //event.preventDefault();
+                    const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
+                    console.log('bindClickButtonLogIn signInUser', await signInUser);
+                    await localStorage.clear();
+                    await localStorage.setItem('signInUser', signInUser);
+                    //await event.preventDefault();
                 } else {
                     console.log('all not ok');
                 }
