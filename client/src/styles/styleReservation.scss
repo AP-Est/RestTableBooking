@@ -13,11 +13,12 @@ svg {
 }
 .shadow__globalWrapper {
     display: block;
-    position: absolute;
+    //position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: 40;
-    background-color: rgb(53, 47, 47, 0.8);
+    background-color: $shadowWrapper;
     top: 0;
 }
 .calendarTimer__wrapper {
@@ -25,19 +26,20 @@ svg {
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 30px;
     .calendarTimer__form {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 10px;
-        background-color: rgba(0, 0, 0, 0.05);
+        //background-color: rgba(0, 0, 0, 0.05);
         border: $mainBorderStyle;
         border-radius: 50px;
 
     }
     .timeFromOutput__wrapper {
-        font-size: 2vh;
-        font-weight: bold;
+        font-size: 3vh;
+        //font-weight: bold;
         margin: 10px;
     }
     .timer__wrapper {
@@ -95,7 +97,7 @@ svg {
     width: 2px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: red;
+    background-color: #b8310e;
     border-radius: 5px;
     cursor: pointer;
     &:hover {
@@ -118,7 +120,7 @@ svg {
     width: 2px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: red;
+    background-color: rgb(0, 0, 0);
     border-radius: 5px;
     cursor: pointer;    
     &:hover {
@@ -143,15 +145,15 @@ svg {
 }
 
 .preAfterBlocks{
-    height: 15px;
+    height: 5px;
     width: 100px;
-    background-color: red;
+    background-color: rgb(0, 0, 0);
     text-align: center;
 }
 
 .marked {
-    background-color: gold;
-    transform: scale(1.8);
+    background-color: $first-main-color;
+    transform: scale(2.5);
     scroll-snap-align: center;
     text-shadow: 0 0 10px rgb(53, 47, 47), 0 0 20px rgb(174, 145, 145), 0 0 30px red, 0 0 40px rgb(178, 172, 221);
 }
@@ -169,7 +171,8 @@ svg {
            
     }
     .guest__input_text{
-        font-weight: bold;
+        font-size: 2.5vw;
+        //font-weight: bold;
     }
 }
 
@@ -178,11 +181,17 @@ svg {
     position: relative;
     //width: задается из JS
     //height: задается из JS
+    width: 70vw;
+    height: 70vw;
     margin-top: 10px;
     //border: 2px solid #000000;
     border-radius: 10px;
     //background: url('../templates/reservation/RegBG.svg');
-    background: url('../templates/reservation/hall.png');
+    //background: url('../templates/reservation/hall.png');
+    background: url('../templates/reservation/HallPNG.png');
+    //background: url('../templates/reservation/HallDarkPNG.png');
+    //background-color: #a39c9c;
+    //border: $mainBorderStyle;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -263,10 +272,10 @@ svg {
     z-index: 50;
     border: 2px solid #000000;
     border-radius: 10px;
-    top: 40%;
+    top: 20%;
     //height: 50vh;
     //width: 50vw;
-    background-color: #939191;
+    background-color: $modalBackground;
     .infoBlock__wrapper{
         display: flex;
         justify-content: space-around;
@@ -278,7 +287,7 @@ svg {
             margin: 3px;
             border: 2px solid #000000;
             border-radius: 5px;
-            background-color: darken($color: #939191, $amount: 10);
+            background-color: darken($color: $modalBackground, $amount: 10);
         }
     }
     .scheduleBlock__wrapper {
@@ -329,7 +338,7 @@ svg {
     top: 40%;
     //height: 50vh;
     //width: 50vw;
-    background-color: #939191;
+    background-color: $modalBackground;
     .infoBlock__wrapper {
         display: flex;
         flex-direction: column;
@@ -341,7 +350,7 @@ svg {
                 margin: 3px;
                 border: 2px solid #000000;
                 border-radius: 5px;
-                background-color: darken($color: #939191, $amount: 10);
+                background-color: darken($color: $modalBackground, $amount: 10);
             }
         }
         .tableDetailsBlock__wrapper {
@@ -353,7 +362,7 @@ svg {
                 margin: 3px;
                 border: 2px solid #000000;
                 border-radius: 5px;
-                background-color: darken($color: #939191, $amount: 10);
+                background-color: darken($color: $modalBackground, $amount: 10);
             }
         }
     }
@@ -399,7 +408,7 @@ svg {
     //left:10%;
     width: 80%;
     border: solid 3px rgb(223, 240, 40);
-    background-color: darken($color: #939191, $amount: 10);
+    background-color: darken($color: $modalBackground, $amount: 10);
     border-radius: 10px;
     padding: 10px;
     font-size: 30px;
