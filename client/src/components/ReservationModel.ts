@@ -220,8 +220,9 @@ export class ReservationModel {
         this.commit();
     }
     handleClickToRButton(resTimeNum: number) {
+        const localStorageUserData = JSON.parse(localStorage.signInUser);
         this.reservationWindow.resTimeNum = resTimeNum;
-        this.reservationWindow.modalFlag = this.isLogin
+        this.reservationWindow.modalFlag = localStorageUserData.id
             ? ReservationWindow.Reservation
             : ReservationWindow.ReservationUnreg;
         this.commit();
@@ -258,7 +259,7 @@ export class ReservationModel {
     }
     handleSetPhone(userPhone: string) {
         this.reservationWindow.userPhone = userPhone;
-        const letters = /^[+]+[0-9]{9,}/;
+        const letters = /^[+]+[0-9\s]{9,}/;
         if (letters.test(userPhone)) {
             this.reservationWindow.errors.phone = false;
         } else {
@@ -267,12 +268,13 @@ export class ReservationModel {
         this.commit();
     }
     handleClickReservation() {
-        if (this.isLogin) {
+        const localStorageUserData = JSON.parse(localStorage.signInUser);
+        if (localStorageUserData.id) {
             this.reservationWindow.errors.phone = false;
             this.reservationWindow.errors.name = false;
             //TODO забрать из локала
-            //this.reservationWindow.userPhone = 0
-            //this.reservationWindow.userName = 0
+            this.reservationWindow.userPhone = localStorageUserData.userPhone;
+            this.reservationWindow.userName = localStorageUserData.userName;
         }
         this.setBaseTableOrder();
         console.log(this.baseTableOrder);
