@@ -198,10 +198,12 @@ export class BaseView {
                 if (valid) {
                     console.log('all ok');
                     const inputName = document.querySelector('.input-reg-name') as HTMLInputElement;
+                    const inputPhone = document.querySelector('.input-reg-tel') as HTMLInputElement;
                     const inputEmail = document.querySelector('.input-reg-email') as HTMLInputElement;
                     const inputPassword = document.querySelector('.input-reg-password') as HTMLInputElement;
                     const registeredUserObject: IRegisteredUser = {
                         username: inputName.value,
+                        userPhone: inputPhone.value,
                         email: inputEmail.value,
                         password: inputPassword.value,
                     };
@@ -211,7 +213,7 @@ export class BaseView {
                     };
                     console.log(registeredUserObject);
                     this.serviceRegisteredUsers.createNewUser(registeredUserObject);
-                    //this.serviceRegisteredUsers.signInUser(signInUserObject);
+                    this.serviceRegisteredUsers.signInUser(signInUserObject);
                     event.preventDefault();
                 } else {
                     console.log('all not ok');

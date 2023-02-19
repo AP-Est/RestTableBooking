@@ -65,6 +65,7 @@ export interface IHallState {
 
 export interface IRegisteredUser {
     username: string;
+    userPhone: string;
     email: string;
     password: string;
 }
