@@ -56,6 +56,9 @@ function createScheduleBlock(timeView: ITimeView) {
             const button = createButton('Reservation', 'reservation__button');
             button.id = `${i}_reservationSchedule`;
             scheduleStatus.append(button);
+            if (time < currentTime) {
+                button.disabled = true;
+            }
         }
 
         tableScheduleH.append(scheduleH, scheduleStatus);

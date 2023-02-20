@@ -220,7 +220,7 @@ export class ReservationModel {
         this.commit();
     }
     handleClickToRButton(resTimeNum: number) {
-        const localStorageUserData = JSON.parse(localStorage.signInUser);
+        const localStorageUserData = localStorage.signInUser ? JSON.parse(localStorage.signInUser) : {};
         this.reservationWindow.resTimeNum = resTimeNum;
         this.reservationWindow.modalFlag = localStorageUserData.id
             ? ReservationWindow.Reservation
@@ -268,7 +268,7 @@ export class ReservationModel {
         this.commit();
     }
     handleClickReservation() {
-        const localStorageUserData = JSON.parse(localStorage.signInUser);
+        const localStorageUserData = localStorage.signInUser ? JSON.parse(localStorage.signInUser) : {};
         if (localStorageUserData.id) {
             this.reservationWindow.errors.phone = false;
             this.reservationWindow.errors.name = false;
