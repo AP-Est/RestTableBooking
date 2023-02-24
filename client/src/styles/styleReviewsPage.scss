@@ -20,7 +20,8 @@
     justify-content: center;
 }
 
-.review-button {
+.review-button,
+.send-button {
     width: 250px;
     height: 48px;
     text-align: center;
@@ -110,17 +111,17 @@
     height: 250px;
 }
 
-.send-button {
-    font-size: $mainFontSize;
-    border: none;
-    border-radius: 20px;
-    background: #07c68e;
-    transition: transform 1s ease-out 100ms;
+// .send-button {
+//     font-size: $mainFontSize;
+//     border: none;
+//     border-radius: 20px;
+//     background: #07c68e;
+//     transition: transform 1s ease-out 100ms;
 
-    &:hover {
-        @include hoverButton;
-    }
-}
+//     &:hover {
+//         @include hoverButton;
+//     }
+// }
 
 @media screen and (max-width: 600px) {
     .review-item {
