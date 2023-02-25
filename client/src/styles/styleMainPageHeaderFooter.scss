@@ -38,10 +38,15 @@ ul {
     align-items: center;
 }
 
+.header-top-div-logo{
+    @include flexStandard;
+}
+
 .header-top-logo {
-    width: 230px;
-    height: 120px;
-    background-image: url(../source/img/icon.png);
+    display: block;
+    width: 200px;
+    height: 90px;
+    background-image: url(../source/img/logo2.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -226,3 +231,51 @@ ul {
 .carousel-indicators [data-bs-target] {
     background-color: black;
 }
+
+.none{
+    display: none;
+}
+
+.user{
+    position: relative;
+}
+
+.user-wrap{
+    @include flexStandard;
+}
+
+.user__logo{
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+}
+
+.user__text{
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #07c68e;
+}
+
+.user-button{
+    display: none;
+    position: absolute;
+    left: 5px;
+    top: 50px;
+    z-index: 100;
+    margin-top: 0;
+    opacity: 0.8;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+
+    &:hover{
+        opacity: 1;
+        display: block;
+    }
+}
+
+.user-wrap:hover + .user-button {
+    display: block;
+}
+

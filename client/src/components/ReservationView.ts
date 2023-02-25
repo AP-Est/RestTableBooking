@@ -1,11 +1,9 @@
 import getElement from '../Utils/getElement';
 import createElement from '../Utils/createElement';
 import '../styles/styleReservation.scss';
-import createHeader from '../templates/createHeader';
 import createCalendarAndTimer from '../templates/reservation/createCalendarTime';
 import { IReservationWindow, ITableState, ITimeView } from '../types/types';
 import createHallBlock from '../templates/reservation/createHallBlock';
-import { displayHeaderReservation } from '../templates/displayHeaderReservation';
 import createModalTableInfo from '../templates/reservation/createModalTableInfo';
 import createModalReservationReg from '../templates/reservation/createModalReservationReg';
 import createModalReservationUnReg from '../templates/reservation/createModalReservationUnReg';
@@ -30,12 +28,12 @@ export class ReservationView extends BaseView {
     reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
         //this.body = getElement('body') as HTMLElement;
         console.log('reservationRender');
-        this.body.innerHTML = '';
-        this.mainContent.innerHTML = '';
+        //this.body.innerHTML = '';
+        //this.mainContent.innerHTML = '';
+        this.main.innerHTML = '';
 
         this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
         this.shadow = createElement('div', 'shadow__globalWrapper');
-        this.header = displayHeaderReservation();
         this.calendarAndTime = createCalendarAndTimer(timeView);
         this.hall = createHallBlock(hallView);
         this.modalTableInfo = createModalTableInfo(timeView, hallView, reservationWindow);
@@ -51,11 +49,13 @@ export class ReservationView extends BaseView {
         //this.body.append(this.header, this.reservationWrapper, this.shadow);
         //this.reservationModalSwitch(reservationWindow);
 
-        this.mainContent.append(this.header, this.reservationWrapper, this.shadow, this.footer);
-        this.formWrap.append(this.form);
-        this.wrap.append(this.mainContent, this.formWrap);
-        this.body.append(this.wrap);
+        this.main.append(this.reservationWrapper, this.shadow);
+        //this.mainContent.append(this.header, this.reservationWrapper, this.shadow, this.footer);
+        //this.formWrap.append(this.form);
+        //this.wrap.append(this.mainContent, this.formWrap);
+        ///this.body.append(this.wrap);
         this.reservationModalSwitch(reservationWindow);
+        //this.main.append(this.reservationWrapper, this.shadow);
     }
     reservationModalSwitch(reservationWindow: IReservationWindow) {
         const modalTable = getElement('.tableInfo__wrapper') as HTMLElement;

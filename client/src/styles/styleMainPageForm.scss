@@ -126,7 +126,17 @@ $br: 10px;
 
 .field-wrap {
   position:relative;
-  margin-bottom:40px;
+  margin-bottom: 40px;
+}
+
+.field-before-error,
+.field-before-error-login
+{
+    margin-bottom: 30px;
+}
+
+.field-wrap-last{
+    margin-bottom: 20px;
 }
 
 .top-row {
@@ -163,4 +173,14 @@ $br: 10px;
     color:$white;
     font-weight:$thin;
     margin:0 0 40px;
-  }
+}
+
+.error-text{
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-family: $mainFontFamily;
+    color: #b8310e;
+    margin-bottom: 10px;
+    text-align: center;
+}

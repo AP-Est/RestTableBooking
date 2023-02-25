@@ -1,9 +1,12 @@
-export class MainPageModel {
+import { BaseModel } from './BaseModel';
+
+export class MainPageModel extends BaseModel {
     mainInf: boolean;
     additInf: boolean;
     onChangeModel: (moreMainInf: boolean, moreAdditInf: boolean) => void;
 
     constructor() {
+        super();
         this.mainInf = false;
         this.additInf = false;
 

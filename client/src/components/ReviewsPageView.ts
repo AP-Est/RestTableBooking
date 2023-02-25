@@ -11,7 +11,7 @@ import { BaseView } from './BaseView';
 export class ReviewsView extends BaseView {
     //body: HTMLElement;
     //header: HTMLElement;
-    main: HTMLElement;
+    mainReviews: HTMLElement;
     wrapper: HTMLElement;
     carouselInner: HTMLElement;
     //footer: HTMLElement;
@@ -22,14 +22,15 @@ export class ReviewsView extends BaseView {
     constructor() {
         super();
         //this.body = getElement('body') as HTMLElement;
-        this.body.innerHTML = '';
-        this.mainContent.innerHTML = '';
+        //this.body.innerHTML = '';
+        //this.mainContent.innerHTML = '';
 
         //this.header = displayHeader();
-        this.main = createElement('main', 'main-reviews');
+        this.main.innerHTML = '';
+        this.mainReviews = createElement('main', 'main-reviews');
 
         this.wrapper = createElement('div', 'wrapper-reviews');
-        this.main.append(this.wrapper);
+        this.mainReviews.append(this.wrapper);
 
         const title: HTMLElement = <HTMLElement>createElement('h2', 'reviews-title');
         title.innerHTML = 'WHAT OUR VISITORS SAY ABOUT US';
@@ -39,13 +40,15 @@ export class ReviewsView extends BaseView {
         this.carouselInner = createElement('div', 'carousel-inner');
         this.carouselBlock.append(this.carouselInner);
         this.createReviews();
+
+        this.main.append(this.mainReviews);
         //this.footer = displayFooter();
         //this.body.append(this.header, this.main, this.footer);
 
-        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
-        this.formWrap.append(this.form);
-        this.wrap.append(this.mainContent, this.formWrap);
-        this.body.append(this.wrap);
+        //this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        //this.formWrap.append(this.form);
+        //this.wrap.append(this.mainContent, this.formWrap);
+        //this.body.append(this.wrap);
     }
 
     public async createReviews(): Promise<void> {

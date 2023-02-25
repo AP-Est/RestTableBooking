@@ -1,5 +1,6 @@
 import { BaseView } from 'BaseView';
 import { BaseModel } from 'BaseModel';
+import { IRegisteredUser, ISignIn } from '../types/types';
 
 export class BaseController {
     view: BaseView;
@@ -20,7 +21,26 @@ export class BaseController {
         //this.view.changeTheme();
         this.view.bindClickForm();
         this.view.bindBlurForm();
-        this.view.bindClickButtonRegister();
-        this.view.bindClickButtonLogIn();
+        this.view.bindClickButtonRegister(this.handleRegisterUsers);
+        this.view.bindClickButtonLogIn(this.handleSignInUser);
+        this.model.bindChangeModelBase(this.onChangeModelBase);
+        //this.view.bindLoad(this.handleWindowLoad);
     }
+
+    handleRegisterUsers = (registeredUserObject: IRegisteredUser) => {
+        this.model.createNewUser(registeredUserObject);
+    };
+
+    handleSignInUser = (signInObject: ISignIn) => {
+        this.model.signInUser(signInObject);
+    };
+
+    handleWindowLoad = () => {
+        this.model.loadWindow();
+    };
+
+    onChangeModelBase = (state: string) => {
+        //console.log('onChangeModelBase');
+        this.view.renderBasePage(state);
+    };
 }
