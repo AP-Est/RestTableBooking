@@ -35,7 +35,6 @@ export class ReservationModel extends BaseModel {
         const defaultDay = 0;
         const defaultDayTableSchedule: number[] = [];
         const defaultChosenDate = new Date();
-        //const defaultView = ReservationWindow.ReservationUnreg;
         this.dayTableSchedule = defaultDayTableSchedule;
         const isLoginDefault = false;
         this.isLogin = isLoginDefault;
@@ -84,7 +83,6 @@ export class ReservationModel extends BaseModel {
         this.getHallView();
     }
 
-    //TODO body
     bindChangeModel(callback: CallableFunction) {
         this.onChangeModel = callback;
     }
@@ -139,7 +137,6 @@ export class ReservationModel extends BaseModel {
             }:00:00.000Z`;
             this.baseTableOrder.userPhone = this.reservationWindow.userPhone;
         }
-        //TODO объект заделан теперь отправляем
         this.postReservation();
     }
     private postReservation() {
@@ -164,7 +161,6 @@ export class ReservationModel extends BaseModel {
     private async getReservationArray() {
         const service = new ServiceReviews();
         this.reservationServerDataArray = await service.getReviews();
-        console.log(this.reservationServerDataArray);
     }
     private createLiveHallView() {
         const finalArr: number[][][] = [];
@@ -208,7 +204,6 @@ export class ReservationModel extends BaseModel {
             Math.ceil(
                 (Date.parse(`${this.timeView.chosenDate}`) - Date.parse(`${this.currentDate}`)) / 1000 / 60 / 60 / 24
             );
-        console.log(this.isChosenDayNum);
         this.commit();
     }
     handleGuest(guestCount: number) {
@@ -274,12 +269,10 @@ export class ReservationModel extends BaseModel {
         if (localStorageUserData.id) {
             this.reservationWindow.errors.phone = false;
             this.reservationWindow.errors.name = false;
-            //TODO забрать из локала
             this.reservationWindow.userPhone = localStorageUserData.userPhone;
             this.reservationWindow.userName = localStorageUserData.userName;
         }
         this.setBaseTableOrder();
-        console.log(this.baseTableOrder);
         this.commit();
     }
 }
