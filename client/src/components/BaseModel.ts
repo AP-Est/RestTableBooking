@@ -29,6 +29,7 @@ export class BaseModel {
         this.state = 'signOutOk';
         localStorage.setItem('state', 'signOutOk');
         this.onChangeModelBase(this.state);
+        localStorage.removeItem('signInUser');
     }
 
     async createNewUser(registeredUserObject: IRegisteredUser) {
