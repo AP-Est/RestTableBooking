@@ -272,12 +272,14 @@ svg {
 .tableInfo__wrapper {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    //position: absolute;
+    position: fixed;
     align-items: center;
     z-index: 50;
-    border: 2px solid #000000;
+    border: $mainBorderStyle;
     border-radius: 10px;
-    top: 20%;
+    //top: 20%;
+    top: 30vh;
     //height: 50vh;
     //width: 50vw;
     background-color: $modalBackground;
@@ -324,6 +326,9 @@ svg {
             .scheduleH__status {
                 .reservation__button {
                     border-radius: 5px;
+                    &:hover {
+                        @include hoverButton;
+                    }
                 }
             }
         }
@@ -400,6 +405,9 @@ svg {
             border-radius: 5px;
             font-size: 2vw;
             font-weight: bold;
+            &:hover {
+                @include hoverButton;
+            }
         }
     }
 }

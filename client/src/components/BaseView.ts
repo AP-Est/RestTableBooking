@@ -61,7 +61,9 @@ export class BaseView {
         this.carousel = displayCarousel();
         this.footer = displayFooter();
 
-        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        window.location.hash.split('/')[0] == '#reservation'
+            ? this.mainContent.append(this.header, this.main, this.footer)
+            : this.mainContent.append(this.header, this.carousel, this.main, this.footer);
         this.formWrap.append(this.form);
         this.wrap.append(this.mainContent, this.formWrap);
         this.body.append(this.wrap);

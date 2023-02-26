@@ -24,8 +24,6 @@ export class ReservationView extends BaseView {
 
     constructor() {
         super();
-        this.slider = getElement('.header-main__wrapper') as HTMLElement;
-        this.slider.remove();
     }
 
     reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
@@ -33,7 +31,6 @@ export class ReservationView extends BaseView {
         //this.body.innerHTML = '';
         //this.mainContent.innerHTML = '';
         this.main.innerHTML = '';
-
         this.reservationWrapper = createElement('div', 'reservation__globalWrapper');
         this.shadow = createElement('div', 'shadow__globalWrapper');
         this.calendarAndTime = createCalendarAndTimer(timeView);
@@ -50,7 +47,6 @@ export class ReservationView extends BaseView {
         );
         //this.body.append(this.header, this.reservationWrapper, this.shadow);
         //this.reservationModalSwitch(reservationWindow);
-
         this.main.append(this.reservationWrapper, this.shadow);
         //this.mainContent.append(this.header, this.reservationWrapper, this.shadow, this.footer);
         //this.formWrap.append(this.form);
