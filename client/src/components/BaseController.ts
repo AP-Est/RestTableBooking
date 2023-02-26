@@ -18,13 +18,13 @@ export class BaseController {
         this.view.bindClickSignupLogin();
         this.view.bindClickExitFromSignupLogin();
         this.view.bindClickReviews();
-        //this.view.changeTheme();
         this.view.bindClickForm();
         this.view.bindBlurForm();
         this.view.bindClickButtonRegister(this.handleRegisterUsers);
         this.view.bindClickButtonLogIn(this.handleSignInUser);
         this.model.bindChangeModelBase(this.onChangeModelBase);
-        //this.view.bindLoad(this.handleWindowLoad);
+        this.view.bindLoad(this.handleWindowLoad);
+        this.view.bindClickExitSignInButton(this.handleClickExitSignInButton);
     }
 
     handleRegisterUsers = (registeredUserObject: IRegisteredUser) => {
@@ -36,11 +36,16 @@ export class BaseController {
     };
 
     handleWindowLoad = () => {
+        console.log('handleWindowLoad');
         this.model.loadWindow();
     };
 
+    handleClickExitSignInButton = () => {
+        this.model.changeStateExit();
+    };
+
     onChangeModelBase = (state: string) => {
-        //console.log('onChangeModelBase');
+        console.log('onChangeModelBase state', state);
         this.view.renderBasePage(state);
     };
 }

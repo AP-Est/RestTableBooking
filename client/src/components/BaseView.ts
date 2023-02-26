@@ -25,29 +25,12 @@ export class BaseView {
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
-        // this.body.innerHTML = '';
-        // //console.log('BaseView this.body', this.body);
-
-        // this.wrap = createElement('div', 'wrap');
-        // this.mainContent = createElement('div', 'main-content');
-        // this.formWrap = createElement('div', 'form-wrap');
-
-        // this.form = displaySignUpLogIn();
-        // this.header = displayHeader();
-        // this.carousel = displayCarousel();
-        // this.footer = displayFooter();
-
-        // // this.mainContent.append(this.header, this.carousel, this.footer);
-        // // this.formWrap.append(this.form);
-        // // this.wrap.append(this.mainContent, this.formWrap);
-        // // this.body.append(this.wrap);
-
-        this.renderBasePage(stateHeader.signOutOk);
+        this.renderBasePage('signOutOk');
     }
 
     renderBasePage(state: string) {
-        this.body.innerHTML = '';
         console.log('renderBasePage state', state);
+        this.body.innerHTML = '';
 
         this.wrap = createElement('div', 'wrap');
         this.mainContent = createElement('div', 'main-content');
@@ -58,12 +41,14 @@ export class BaseView {
         if (!this.main) {
             this.main = createElement('main');
         }
+        console.log('renderBasePage this.main', this.main);
         this.carousel = displayCarousel();
         this.footer = displayFooter();
 
-        window.location.hash.split('/')[0] == '#reservation'
-            ? this.mainContent.append(this.header, this.main, this.footer)
-            : this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        // window.location.hash.split('/')[0] == '#reservation'
+        //     ? this.mainContent.append(this.header, this.main, this.footer)
+        //     : this.mainContent.append(this.header, this.carousel, this.main, this.footer);
         this.formWrap.append(this.form);
         this.wrap.append(this.mainContent, this.formWrap);
         this.body.append(this.wrap);
@@ -134,6 +119,22 @@ export class BaseView {
             div.classList.add('field-wrap-last');
             const p1 = createElement('p', 'error-text');
             p1.textContent = 'Invalid password';
+            const p2 = createElement('p', 'error-text');
+            p2.textContent = 'Please, try again';
+
+            const fieldBeforeError = document.querySelector('.field-before-error-login');
+            console.log('fieldBeforeError', fieldBeforeError);
+
+            div.append(p1, p2);
+            fieldBeforeError?.after(div);
+        }
+        if (state === 'signInError') {
+            signUpLogInEnable();
+            displayLogIn();
+            const div = createElement('div', 'field-wrap');
+            div.classList.add('field-wrap-last');
+            const p1 = createElement('p', 'error-text');
+            p1.textContent = 'Error!';
             const p2 = createElement('p', 'error-text');
             p2.textContent = 'Please, try again';
 
@@ -284,18 +285,8 @@ export class BaseView {
                         email: inputEmail.value,
                         password: inputPassword.value,
                     };
-                    // const signInUserObject: ISignIn = {
-                    //     email: inputEmail.value,
-                    //     password: inputPassword.value,
-                    // };
-                    //console.log(registeredUserObject);
                     event.preventDefault();
                     handler(registeredUserObject);
-                    // await this.serviceRegisteredUsers.createNewUser(registeredUserObject);
-                    // const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
-                    // console.log('bindClickButtonRegister signInUser', await signInUser);
-                    // await localStorage.clear();
-                    // await localStorage.setItem('signInUser', signInUser);
                 } else {
                     console.log('all not ok');
                 }
@@ -326,11 +317,6 @@ export class BaseView {
                     console.log('bindClickButtonLogIn');
                     event.preventDefault();
                     handler(signInUserObject);
-                    // const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
-                    // console.log('bindClickButtonLogIn signInUser', await signInUser);
-                    // await localStorage.clear();
-                    // await localStorage.setItem('signInUser', signInUser);
-                    //await event.preventDefault();
                 } else {
                     console.log('all not ok');
                 }
@@ -339,9 +325,20 @@ export class BaseView {
     }
 
     bindLoad(handler: () => void) {
-        document.addEventListener('load', () => {
+        window.addEventListener('load', () => {
             console.log('bindLoad');
             handler();
+        });
+    }
+
+    bindClickExitSignInButton(handler: () => void) {
+        this.body.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            //console.log('bindClickExitSignInButton target', target);
+            if (target.classList.contains('user-button')) {
+                //console.log('yes');
+                handler();
+            }
         });
     }
 }

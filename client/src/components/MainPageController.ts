@@ -22,6 +22,7 @@ export class MainPageController extends BaseController {
         this.view.bindClickMoreMainInf(this.handlMainInf);
         this.view.bindClickMoreAdditInf(this.handlAdditInf);
         this.model.bindChangeModel(this.onChangeModel);
+        this.onChangeModel(this.model.mainInf, this.model.additInf);
     }
 
     handlMainInf = () => {
