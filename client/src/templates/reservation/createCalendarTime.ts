@@ -25,10 +25,14 @@ function createDateInputElement(timeView: ITimeView) {
     dateInputElement.valueAsDate = timeView.chosenDate || new Date();
     const dateMax = new Date();
     dateMax.setDate(dateMax.getDate() + 7);
-    const refDateMax = `${dateMax.getFullYear()}-${('0' + (dateMax.getMonth() + 1)).slice(-2)}-${dateMax.getDate()}`;
+    const refDateMax = `${dateMax.getFullYear()}-${('0' + (dateMax.getMonth() + 1)).slice(-2)}-${(
+        '0' + dateMax.getDate()
+    ).slice(-2)}`;
     dateInputElement.max = refDateMax;
     const dateMin = new Date();
-    const refDateMin = `${dateMin.getFullYear()}-${('0' + (dateMin.getMonth() + 1)).slice(-2)}-${dateMin.getDate()}`;
+    const refDateMin = `${dateMin.getFullYear()}-${('0' + (dateMin.getMonth() + 1)).slice(-2)}-${(
+        '0' + dateMin.getDate()
+    ).slice(-2)}`;
     dateInputElement.min = refDateMin;
     return dateInputElement;
 }
