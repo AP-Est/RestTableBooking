@@ -20,14 +20,16 @@ export class ReservationView extends BaseView {
     modalReservationReg!: HTMLElement;
     shadow!: HTMLElement;
     modalReservationUnReg!: HTMLElement;
+    slider!: HTMLElement;
 
     constructor() {
         super();
+        this.slider = getElement('.header-main__wrapper') as HTMLElement;
+        this.slider.remove();
     }
 
     reservationRender(timeView: ITimeView, hallView: ITableState[], reservationWindow: IReservationWindow) {
         //this.body = getElement('body') as HTMLElement;
-        console.log('reservationRender');
         //this.body.innerHTML = '';
         //this.mainContent.innerHTML = '';
         this.main.innerHTML = '';
