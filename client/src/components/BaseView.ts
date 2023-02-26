@@ -1,45 +1,151 @@
 import '../styles/styleSwitchTheme.scss';
 import '../styles/styleMainPageHeaderFooter.scss';
 import '../styles/styleMainPageForm.scss';
-import { displayHeaderReservation } from '../templates/displayHeaderReservation';
+import { displayHeader } from '../templates/displayHeader';
 import { displayCarousel } from '../templates/displayCarousel';
 import { displayFooter } from '../templates/displayFooter';
-import { displaySignUpLogIn } from '../templates/displaySignUp';
+import { displaySignUpLogIn } from '../templates/displaySignUpLogIn';
+import { signUpLogInEnable } from '../templates/signUpLogInEnable';
+import { signUpLogInDisable } from '../templates/signUpLogInDisable';
+import { displayLogIn } from '../templates/displayLogIn';
 import getElement from '../Utils/getElement';
 import createElement from '../Utils/createElement';
-import { ServiceRegistration } from './../Utils/registration.service';
-import { IRegisteredUser, ISignIn } from '../types/types';
+import { IRegisteredUser, ISignIn, stateHeader } from '../types/types';
 
 export class BaseView {
-    header: HTMLElement;
-    carousel: HTMLElement;
-    footer: HTMLElement;
+    header!: HTMLElement;
+    carousel!: HTMLElement;
+    footer!: HTMLElement;
     body: HTMLElement;
-    wrap: HTMLElement;
-    mainContent: HTMLElement;
-    formWrap: HTMLElement;
-    form: HTMLElement;
-
-    public serviceRegisteredUsers = new ServiceRegistration();
+    wrap!: HTMLElement;
+    mainContent!: HTMLElement;
+    formWrap!: HTMLElement;
+    form!: HTMLElement;
+    main!: HTMLElement;
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
+        // this.body.innerHTML = '';
+        // //console.log('BaseView this.body', this.body);
+
+        // this.wrap = createElement('div', 'wrap');
+        // this.mainContent = createElement('div', 'main-content');
+        // this.formWrap = createElement('div', 'form-wrap');
+
+        // this.form = displaySignUpLogIn();
+        // this.header = displayHeader();
+        // this.carousel = displayCarousel();
+        // this.footer = displayFooter();
+
+        // // this.mainContent.append(this.header, this.carousel, this.footer);
+        // // this.formWrap.append(this.form);
+        // // this.wrap.append(this.mainContent, this.formWrap);
+        // // this.body.append(this.wrap);
+
+        this.renderBasePage(stateHeader.signOutOk);
+    }
+
+    renderBasePage(state: string) {
         this.body.innerHTML = '';
-        //console.log('BaseView this.body', this.body);
+        console.log('renderBasePage state', state);
 
         this.wrap = createElement('div', 'wrap');
         this.mainContent = createElement('div', 'main-content');
         this.formWrap = createElement('div', 'form-wrap');
 
         this.form = displaySignUpLogIn();
-        this.header = displayHeaderReservation();
+        this.header = displayHeader(state);
+        if (!this.main) {
+            this.main = createElement('main');
+        }
         this.carousel = displayCarousel();
         this.footer = displayFooter();
 
-        // this.mainContent.append(this.header, this.carousel, this.footer);
-        // this.formWrap.append(this.form);
-        // this.wrap.append(this.mainContent, this.formWrap);
-        // this.body.append(this.wrap);
+        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        this.formWrap.append(this.form);
+        this.wrap.append(this.mainContent, this.formWrap);
+        this.body.append(this.wrap);
+
+        if (state === 'signUpEmailAlreadyUse') {
+            signUpLogInEnable();
+            const div = createElement('div', 'field-wrap');
+            div.classList.add('field-wrap-last');
+            const p1 = createElement('p', 'error-text');
+            p1.textContent = 'Email is already in use! ';
+            const p2 = createElement('p', 'error-text');
+            p2.textContent = 'Please, enter another email';
+
+            const fieldBeforeError = document.querySelector('.field-before-error');
+            console.log('fieldBeforeError', fieldBeforeError);
+
+            div.append(p1, p2);
+            fieldBeforeError?.after(div);
+        }
+        if (state === 'signUpError') {
+            signUpLogInEnable();
+            const div = createElement('div', 'field-wrap');
+            div.classList.add('field-wrap-last');
+            const p1 = createElement('p', 'error-text');
+            p1.textContent = 'Error! ';
+            const p2 = createElement('p', 'error-text');
+            p2.textContent = 'Please, try again';
+
+            const fieldBeforeError = document.querySelector('.field-before-error');
+            console.log('fieldBeforeError', fieldBeforeError);
+
+            div.append(p1, p2);
+            fieldBeforeError?.after(div);
+        }
+        if (state === 'signUpOk') {
+            signUpLogInEnable();
+            const div = createElement('div', 'field-wrap');
+            div.classList.add('field-wrap-last');
+            const p1 = createElement('p', 'error-text');
+            p1.textContent = 'You are registered! ';
+
+            const fieldBeforeError = document.querySelector('.field-before-error');
+            console.log('fieldBeforeError', fieldBeforeError);
+
+            div.append(p1);
+            fieldBeforeError?.after(div);
+        }
+        if (state === 'signInUserNotFound') {
+            signUpLogInEnable();
+            displayLogIn();
+            const div = createElement('div', 'field-wrap');
+            div.classList.add('field-wrap-last');
+            const p1 = createElement('p', 'error-text');
+            p1.textContent = 'User not found!';
+            const p2 = createElement('p', 'error-text');
+            p2.textContent = 'Please, try again';
+
+            const fieldBeforeError = document.querySelector('.field-before-error-login');
+            console.log('fieldBeforeError', fieldBeforeError);
+
+            div.append(p1, p2);
+            fieldBeforeError?.after(div);
+        }
+        if (state === 'signInInvalidPassword') {
+            signUpLogInEnable();
+            displayLogIn();
+            const div = createElement('div', 'field-wrap');
+            div.classList.add('field-wrap-last');
+            const p1 = createElement('p', 'error-text');
+            p1.textContent = 'Invalid password';
+            const p2 = createElement('p', 'error-text');
+            p2.textContent = 'Please, try again';
+
+            const fieldBeforeError = document.querySelector('.field-before-error-login');
+            console.log('fieldBeforeError', fieldBeforeError);
+
+            div.append(p1, p2);
+            fieldBeforeError?.after(div);
+        }
+        if (state === 'signOutOk') {
+            signUpLogInDisable();
+            //signUpLogInEnable();
+            //displayLogIn();
+        }
     }
 
     bindClickMenu() {
@@ -76,57 +182,25 @@ export class BaseView {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
             if (target.classList.contains('signup-login')) {
-                //window.location.hash = '';
-                const form = document.querySelector('.form-wrap');
-                //console.log('form', form);
-                //console.log('bindClickSignupLogin');
-                (form as HTMLElement).style.display = 'block';
-                const main = document.querySelector('.main-content');
-                //console.log('form', form);
-                (main as HTMLElement).classList.add('main-content_passive');
+                signUpLogInEnable();
             }
         });
     }
 
     bindClickExitFromSignupLogin() {
-        // const main = document.querySelector('.main-content') as HTMLElement;
-        // if (main) {
-        //     console.log('bindClickExitFromSignupLogin main', main);
-        //     main.addEventListener('click', () => {
-        //         const form = document.querySelector('.form-wrap');
-        //         //console.log('bindClickExitFromSignupLogin');
-        //         (form as HTMLElement).style.display = 'none';
-        //         main.classList.remove('main-content_passive');
-        //     });
-        // }
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
-            //console.log('bindClickExitFromSignupLogin target', target);
             if (target.closest('.main-content') && !target.classList.contains('signup-login')) {
-                const form = document.querySelector('.form-wrap');
-                //console.log('bindClickExitFromSignupLogin');
-                (form as HTMLElement).style.display = 'none';
-                const main = document.querySelector('.main-content') as HTMLElement;
-                main.classList.remove('main-content_passive');
+                signUpLogInDisable();
             }
         });
     }
 
     bindClickLogIn() {
         this.body.addEventListener('click', (event) => {
-            //console.log('bindClickLogIn event', event.target);
             const target = event.target as Element;
             if (target.classList.contains('login')) {
-                //console.log('log in');
-                const logIn = document.querySelector('.tab-content > div:last-child');
-                (logIn as HTMLElement).style.display = 'block';
-                const signUp = document.querySelector('.tab-content > div:first-child');
-                (signUp as HTMLElement).style.display = 'none';
-                const logInButton = document.querySelector('.tab-buttons > li:last-child');
-                const SignUpButton = document.querySelector('.tab-buttons > li:first-child');
-                //console.log('logInButton', logInButton);
-                (logInButton as HTMLElement).classList.add('active');
-                (SignUpButton as HTMLElement).classList.remove('active');
+                displayLogIn();
             }
         });
     }
@@ -159,11 +233,12 @@ export class BaseView {
     }
 
     bindClickForm() {
-        this.form.addEventListener('click', (event) => {
+        this.body.addEventListener('click', (event) => {
             const target = event.target as HTMLInputElement;
+            //console.log('bindClickForm target', target);
             if (target.classList.contains('tab-input')) {
                 const label = target.previousElementSibling;
-                //console.log('bindEnterForm label', label);
+                //console.log('bindClickForm label', label);
                 label?.classList.add('tab-label-active');
                 label?.classList.add('tab-label-highlight');
             }
@@ -171,20 +246,20 @@ export class BaseView {
     }
 
     bindBlurForm() {
-        this.form.addEventListener('focusout', (event) => {
+        this.body.addEventListener('focusout', (event) => {
             const target = event.target as HTMLInputElement;
             //console.log('bindBlurForm target', target);
             if (target.classList.contains('tab-input') && target.value === '') {
                 const label = target.previousElementSibling;
-                //console.log('bindEnterForm label', label);
+                console.log('bindBlurForm label', label);
                 label?.classList.remove('tab-label-active');
                 label?.classList.remove('tab-label-highlight');
             }
         });
     }
 
-    bindClickButtonRegister() {
-        this.form.addEventListener('click', async (event) => {
+    bindClickButtonRegister(handler: (registeredUserObject: IRegisteredUser) => void) {
+        this.body.addEventListener('click', async (event) => {
             const target = event.target as HTMLInputElement;
             if (target.classList.contains('button-register')) {
                 const inputArray = document.querySelectorAll('.tab-input-first');
@@ -207,18 +282,18 @@ export class BaseView {
                         email: inputEmail.value,
                         password: inputPassword.value,
                     };
-                    const signInUserObject: ISignIn = {
-                        email: inputEmail.value,
-                        password: inputPassword.value,
-                    };
+                    // const signInUserObject: ISignIn = {
+                    //     email: inputEmail.value,
+                    //     password: inputPassword.value,
+                    // };
                     //console.log(registeredUserObject);
-                    //event.preventDefault();
-                    await this.serviceRegisteredUsers.createNewUser(registeredUserObject);
-                    const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
-                    console.log('bindClickButtonRegister signInUser', await signInUser);
-                    await localStorage.clear();
-                    await localStorage.setItem('signInUser', signInUser);
-                    //await event.preventDefault();
+                    event.preventDefault();
+                    handler(registeredUserObject);
+                    // await this.serviceRegisteredUsers.createNewUser(registeredUserObject);
+                    // const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
+                    // console.log('bindClickButtonRegister signInUser', await signInUser);
+                    // await localStorage.clear();
+                    // await localStorage.setItem('signInUser', signInUser);
                 } else {
                     console.log('all not ok');
                 }
@@ -226,8 +301,8 @@ export class BaseView {
         });
     }
 
-    bindClickButtonLogIn() {
-        this.form.addEventListener('click', async (event) => {
+    bindClickButtonLogIn(handler: (signInObject: ISignIn) => void) {
+        this.body.addEventListener('click', async (event) => {
             const target = event.target as HTMLInputElement;
             if (target.classList.contains('button-login')) {
                 const inputArray = document.querySelectorAll('.tab-input-second');
@@ -246,12 +321,13 @@ export class BaseView {
                         email: inputEmailLogIn.value,
                         password: inputPasswordLogIn.value,
                     };
-                    //console.log(registeredUserObject);
-                    //event.preventDefault();
-                    const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
-                    console.log('bindClickButtonLogIn signInUser', await signInUser);
-                    await localStorage.clear();
-                    await localStorage.setItem('signInUser', signInUser);
+                    console.log('bindClickButtonLogIn');
+                    event.preventDefault();
+                    handler(signInUserObject);
+                    // const signInUser = JSON.stringify(await this.serviceRegisteredUsers.signInUser(signInUserObject));
+                    // console.log('bindClickButtonLogIn signInUser', await signInUser);
+                    // await localStorage.clear();
+                    // await localStorage.setItem('signInUser', signInUser);
                     //await event.preventDefault();
                 } else {
                     console.log('all not ok');
@@ -260,16 +336,10 @@ export class BaseView {
         });
     }
 
-    // changeTheme() {
-    //     const body: Element = <Element>document.querySelector('body');
-    //     body.addEventListener('click', (event) => {
-    //         const target = event.target as Element;
-    //         console.log('changeTheme target', target);
-    //         if (target.classList.contains('header-switch__slider')) {
-    //             console.log('changeTheme dark');
-    //             //const body: Element = <Element>document.querySelector('body');
-    //             body.classList.toggle('dark');
-    //         }
-    //     });
-    // }
+    bindLoad(handler: () => void) {
+        document.addEventListener('load', () => {
+            console.log('bindLoad');
+            handler();
+        });
+    }
 }

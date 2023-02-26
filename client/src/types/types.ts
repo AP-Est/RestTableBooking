@@ -74,3 +74,15 @@ export interface ISignIn {
     email: string;
     password: string;
 }
+
+export enum stateHeader {
+    signInOk = 'signInOk',
+    signInUserNotFound = 'signInUserNotFound',
+    signInInvalidPassword = 'signInInvalidPassword',
+    signInError = 'signInError',
+    signUpOk = 'signUpOk',
+    signUpEmailAlreadyUse = 'signUpEmailAlreadyUse',
+    signUpError = 'signUpError',
+    signOutOk = 'signOutOk',
+    signOutError = 'signOutError',
+}

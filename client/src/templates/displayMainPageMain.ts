@@ -170,7 +170,7 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const rightColumnTitle = createElement('div', 'rColumn-type');
     rightColumnTitle.textContent = 'VAgoN';
     const rightColumnMap = createElement('div', 'mapClass');
-    rightColumnMap.id = 'mapMy';
+    //rightColumnMap.id = 'mapMy';
     const address = createElement('div', 'rColumn__address');
     const addressImg = createElement('img', 'rColumn-img') as HTMLImageElement;
     addressImg.src = 'https://leclick.ru/img/icons/loc.svg';

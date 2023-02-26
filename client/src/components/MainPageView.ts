@@ -1,14 +1,8 @@
-import getElement from '../Utils/getElement';
 import '../styles/styleMainPageHeaderFooter.scss';
 import '../styles/styleMainPageMainPart.scss';
 import '../styles/styleMainPageForm.scss';
 import '../styles/styleSwitchTheme.scss';
-import { displayHeaderReservation } from '../templates/displayHeaderReservation';
-import { displayCarousel } from '../templates/displayCarousel';
-import { displayFooter } from '../templates/displayFooter';
 import { displayMainPageMain } from '../templates/displayMainPageMain';
-import { displaySignUpLogIn } from '../templates/displaySignUp';
-import createElement from '../Utils/createElement';
 import { BaseView } from './BaseView';
 
 export class MainPageView extends BaseView {
@@ -21,18 +15,13 @@ export class MainPageView extends BaseView {
     }
 
     renderPage(moreMainInf: boolean, moreAdditInf: boolean) {
-        this.body.innerHTML = '';
-        this.mainContent.innerHTML = '';
+        //this.body.innerHTML = '';
+        //this.mainContent.innerHTML = '';
+        this.main.innerHTML = '';
+        console.log('renderMainPage');
+        const mainMainPage = displayMainPageMain(moreMainInf, moreAdditInf);
 
-        const main = displayMainPageMain(moreMainInf, moreAdditInf);
-        //console.log('renderPage main', main);
-        //console.log('renderPage this.mainContent', this.mainContent);
-
-        this.mainContent.append(this.header, this.carousel, main, this.footer);
-        this.formWrap.append(this.form);
-        this.wrap.append(this.mainContent, this.formWrap);
-        this.body.append(this.wrap);
-        //console.log('renderPage this.body 2', this.body);
+        this.main.append(mainMainPage);
     }
 
     // bindClickMenu() {

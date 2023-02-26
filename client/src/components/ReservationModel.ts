@@ -1,7 +1,8 @@
 import { IBaseTableOrder, IReservationWindow, ITableState, ITimeView, ReservationWindow } from '../types/types';
 //import createDevHall from '../Utils/createDEVexampleHall';
 import { ServiceReviews } from '../Utils/net';
-export class ReservationModel {
+import { BaseModel } from './BaseModel';
+export class ReservationModel extends BaseModel {
     onChangeModel!: CallableFunction;
     markLine: number;
     timeView: ITimeView;
@@ -22,6 +23,7 @@ export class ReservationModel {
     isChosenDayNum: number;
     reservationServerDataArray: IBaseTableOrder[];
     constructor() {
+        super();
         this.reservationServerDataArray = [];
         this.getReservationArray();
         this.currentDate = new Date();

@@ -10,7 +10,7 @@ import { BaseView } from './BaseView';
 export class MenuView extends BaseView {
     // body: HTMLElement;
     // header: HTMLElement;
-    main: HTMLElement;
+    mainMenu: HTMLElement;
     wrapper: HTMLElement;
     container: HTMLElement;
     //footer: HTMLElement;
@@ -20,25 +20,30 @@ export class MenuView extends BaseView {
     constructor() {
         super();
         // this.body = getElement('body') as HTMLElement;
-        this.body.innerHTML = '';
-        this.mainContent.innerHTML = '';
+        //this.body.innerHTML = '';
+        //this.mainContent.innerHTML = '';
 
         // this.header = displayHeader();
-        this.main = createElement('main', 'main-menu');
+        //this.main = createElement('main', 'main-menu');
+
+        this.main.innerHTML = '';
+        this.mainMenu = createElement('main', 'main-menu');
 
         this.wrapper = createElement('div', 'wrapper');
-        this.main.append(this.wrapper);
 
         this.container = createElement('div', 'container');
         this.wrapper.append(this.container);
         this.createMenu();
+
+        this.mainMenu.append(this.wrapper);
+        this.main.append(this.mainMenu);
         // this.footer = displayFooter();
         //this.body.append(this.header, this.main, this.footer);
 
-        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
-        this.formWrap.append(this.form);
-        this.wrap.append(this.mainContent, this.formWrap);
-        this.body.append(this.wrap);
+        //this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        //this.formWrap.append(this.form);
+        //this.wrap.append(this.mainContent, this.formWrap);
+        //this.body.append(this.wrap);
     }
 
     public createMenu() {
