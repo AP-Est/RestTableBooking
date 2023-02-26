@@ -170,7 +170,7 @@ svg {
         align-items: center;
         .guest__input {
             border-radius: 5px;
-            width: 30px;
+            width: 40px;
             margin-left: 10px;
             align-items: center;
         }
@@ -402,8 +402,8 @@ svg {
     .buttonBlock__wrapper {
         display: flex;
         .button__reservation {
-            border-radius: 5px;
-            font-size: 2vw;
+            border-radius: 8px;
+            font-size: 1.4vw;
             font-weight: bold;
             &:hover {
                 @include hoverButton;
