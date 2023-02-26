@@ -139,6 +139,7 @@ export class ReviewsView extends BaseView {
             popupBackground.style.color = 'white';
             popupBackground.style.textShadow = '2px 2px 8px #f4c430';
             popupBackground.style.padding = '250px 30%';
+            popupBackground.style.textAlign = 'center';
             setTimeout(function () {
                 location.reload();
             }, 3000);

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
 const db = {};
 

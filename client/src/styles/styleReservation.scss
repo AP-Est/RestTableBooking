@@ -1,4 +1,4 @@
- .reservation__globalWrapper{
+.reservation__globalWrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -35,7 +35,6 @@ svg {
         //background-color: rgba(0, 0, 0, 0.05);
         border: $mainBorderStyle;
         border-radius: 50px;
-
     }
     .timeFromOutput__wrapper {
         font-size: 3vh;
@@ -54,18 +53,17 @@ svg {
             position: relative;
             font-size: 3vw;
         }
-        
     }
 }
 
-.line__wrapper{
+.line__wrapper {
     display: flex;
     gap: 10px;
     max-width: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
         width: 0px; /* ширина для вертикального скролла */
-       // height: 8px; /* высота для горизонтального скролла */
+        // height: 8px; /* высота для горизонтального скролла */
         height: 0px; /* высота для горизонтального скролла */
         background-color: #143861;
     }
@@ -80,14 +78,14 @@ svg {
     scroll-snap-type: x mandatory;
 }
 
-.hourBlock{
+.hourBlock {
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
 }
 
-.hourTitleWrapper{
-    user-select: none;    
+.hourTitleWrapper {
+    user-select: none;
 }
 
 .shortLine {
@@ -101,10 +99,10 @@ svg {
     border-radius: 5px;
     cursor: pointer;
     &:hover {
-        background-color:gold;
+        background-color: gold;
     }
     &:after {
-        content: '';
+        content: "";
         position: absolute;
         z-index: 1;
         //background-color: #843465;
@@ -122,12 +120,12 @@ svg {
     margin-right: 5px;
     background-color: rgb(0, 0, 0);
     border-radius: 5px;
-    cursor: pointer;    
+    cursor: pointer;
     &:hover {
-        background-color:gold;
+        background-color: gold;
     }
     &:after {
-        content: '';
+        content: "";
         position: absolute;
         z-index: 1;
         //background-color: #843465;
@@ -144,7 +142,7 @@ svg {
     font-weight: bold;
 }
 
-.preAfterBlocks{
+.preAfterBlocks {
     height: 5px;
     width: 100px;
     background-color: rgb(0, 0, 0);
@@ -167,16 +165,16 @@ svg {
         height: 30px;
         cursor: pointer;
     }
-    .guest__input_wrapper{
+    .guest__input_wrapper {
         display: flex;
         align-items: center;
         .guest__input {
             border-radius: 5px;
             width: 30px;
             margin-left: 10px;
-            align-items: center;            
+            align-items: center;
         }
-        .guest__input_text{
+        .guest__input_text {
             font-size: 20px;
             //font-weight: bold;
         }
@@ -195,7 +193,7 @@ svg {
     border-radius: 10px;
     //background: url('../templates/reservation/RegBG.svg');
     //background: url('../templates/reservation/hall.png');
-    background: url('../templates/reservation/HallPNG.png');
+    background: url("../../src/source/img/background1.png");
     //background: url('../templates/reservation/HallDarkPNG.png');
     //background-color: #a39c9c;
     //border: $mainBorderStyle;
@@ -203,7 +201,7 @@ svg {
     background-size: contain;
     background-repeat: no-repeat;
 }
-.hall__allTables{
+.hall__allTables {
     display: flex;
     position: absolute;
     justify-content: center;
@@ -216,47 +214,47 @@ svg {
     position: absolute;
     z-index: 2;
 }
-.hall__table1{
+.hall__table1 {
     width: 18%;
     top: 5%;
     left: 80%;
 }
-.hall__table2{
+.hall__table2 {
     width: 18%;
     top: 18%;
     left: 46%;
 }
-.hall__table3{
+.hall__table3 {
     width: 10%;
     top: 32%;
     left: 8%;
 }
-.hall__table4{
+.hall__table4 {
     width: 20%;
     top: 30%;
     left: 72%;
 }
-.hall__table5{
+.hall__table5 {
     width: 18%;
     top: 52%;
     left: 20%;
 }
-.hall__table6{
+.hall__table6 {
     width: 30%;
     top: 45%;
     left: 46%;
 }
-.hall__table7{
+.hall__table7 {
     width: 10%;
     top: 55%;
     left: 82%;
 }
-.hall__table8{
+.hall__table8 {
     width: 18%;
     top: 77%;
     left: 8%;
 }
-.hall__table9{
+.hall__table9 {
     transform: rotate(90deg);
     width: 10%;
     top: 82%;
@@ -265,7 +263,7 @@ svg {
         transform: rotate(-90deg);
     }
 }
-.hall__table10{
+.hall__table10 {
     width: 18%;
     top: 77%;
     left: 76%;
@@ -283,12 +281,12 @@ svg {
     //height: 50vh;
     //width: 50vw;
     background-color: $modalBackground;
-    .infoBlock__wrapper{
+    .infoBlock__wrapper {
         display: flex;
         justify-content: space-around;
         margin: 10px;
-        .tableInfoBlock__number, 
-        .tableInfoBlock__date, 
+        .tableInfoBlock__number,
+        .tableInfoBlock__date,
         .tableInfoBlock__count {
             padding: 3px;
             margin: 3px;
@@ -315,7 +313,6 @@ svg {
                 padding-left: 4px;
                 padding-right: 4px;
                 border-radius: 5px;
-
             }
             .scheduleH__time {
                 background-color: #a79c9c;
@@ -324,10 +321,10 @@ svg {
                 border-radius: 5px;
                 font-weight: bold;
             }
-            .scheduleH__status {   
-                .reservation__button{
+            .scheduleH__status {
+                .reservation__button {
                     border-radius: 5px;
-                }             
+                }
             }
         }
     }
@@ -362,7 +359,7 @@ svg {
         }
         .tableDetailsBlock__wrapper {
             display: flex;
-            .tableDetailsBlock__date, 
+            .tableDetailsBlock__date,
             .tableDetailsBlock__time,
             .tableDetailsBlock__guests {
                 padding: 3px;
@@ -395,7 +392,7 @@ svg {
         border: 2px solid #000000;
         border-radius: 5px;
         background-color: #774444;
-    }   
+    }
 
     .buttonBlock__wrapper {
         display: flex;
@@ -411,7 +408,7 @@ svg {
     position: absolute;
     z-index: 999;
     color: rgb(255, 188, 17);
-    top:30%;
+    top: 30%;
     //left:10%;
     width: 80%;
     border: solid 3px rgb(223, 240, 40);
