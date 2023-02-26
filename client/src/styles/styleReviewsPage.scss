@@ -17,16 +17,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
-.review-button {
+.review-button,
+.send-button {
     width: 250px;
-    height: 50px;
+    height: 48px;
+    text-align: center;
+    color: white;
+    background: #07c68e;
     border: none;
+    text-decoration: none;
+    box-sizing: border-box;
     font-size: $mainFontSize;
-    border-radius: 25px;
-    background: $first-main-color;
+    border-radius: 10px;
     transition: transform 1s ease-out 100ms;
 
     &:hover {
@@ -47,10 +52,11 @@
     justify-content: center;
     width: 40px;
     height: 40px;
+    color: white;
     font-size: $mainFontSize;
     border: none;
     border-radius: 20px;
-    background: $first-main-color;
+    background: #07c68e;
     transition: transform 1s ease-out 100ms;
 
     &:hover {
@@ -64,7 +70,7 @@
     height: 100%;
     position: fixed;
     top: 0;
-    background: rgb(39 33 33 / 85%);
+    background: $shadowWrapper;
     z-index: 3;
 }
 
@@ -105,17 +111,17 @@
     height: 250px;
 }
 
-.send-button {
-    font-size: $mainFontSize;
-    border: none;
-    border-radius: 20px;
-    background: $first-main-color;
-    transition: transform 1s ease-out 100ms;
+// .send-button {
+//     font-size: $mainFontSize;
+//     border: none;
+//     border-radius: 20px;
+//     background: #07c68e;
+//     transition: transform 1s ease-out 100ms;
 
-    &:hover {
-        @include hoverButton;
-    }
-}
+//     &:hover {
+//         @include hoverButton;
+//     }
+// }
 
 @media screen and (max-width: 600px) {
     .review-item {
