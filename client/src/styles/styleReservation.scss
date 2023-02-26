@@ -170,7 +170,7 @@ svg {
         align-items: center;
         .guest__input {
             border-radius: 5px;
-            width: 30px;
+            width: 40px;
             margin-left: 10px;
             align-items: center;
         }
@@ -272,12 +272,14 @@ svg {
 .tableInfo__wrapper {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    //position: absolute;
+    position: fixed;
     align-items: center;
     z-index: 50;
-    border: 2px solid #000000;
+    border: $mainBorderStyle;
     border-radius: 10px;
-    top: 20%;
+    //top: 20%;
+    top: 30vh;
     //height: 50vh;
     //width: 50vw;
     background-color: $modalBackground;
@@ -324,6 +326,9 @@ svg {
             .scheduleH__status {
                 .reservation__button {
                     border-radius: 5px;
+                    &:hover {
+                        @include hoverButton;
+                    }
                 }
             }
         }
@@ -397,9 +402,12 @@ svg {
     .buttonBlock__wrapper {
         display: flex;
         .button__reservation {
-            border-radius: 5px;
-            font-size: 2vw;
+            border-radius: 8px;
+            font-size: 1.4vw;
             font-weight: bold;
+            &:hover {
+                @include hoverButton;
+            }
         }
     }
 }

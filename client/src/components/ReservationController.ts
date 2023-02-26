@@ -1,6 +1,6 @@
+import { IReservationWindow, ITableState, ITimeView } from '../types/types';
 import { ReservationView } from 'ReservationView';
 import { ReservationModel } from 'ReservationModel';
-import { IReservationWindow, ITableState, ITimeView } from '../types/types';
 import { BaseController } from './BaseController';
 
 export class ReservationController extends BaseController {
@@ -11,7 +11,6 @@ export class ReservationController extends BaseController {
         super(view, model);
         this.view = view;
         this.model = model;
-        //super(view, model);
 
         this.view.bindTimeLine(this.handleTimeLine);
         this.view.bindDate(this.handleDate);
@@ -23,7 +22,7 @@ export class ReservationController extends BaseController {
         this.view.bindSetName(this.handleSetName);
         this.view.bindSetPhone(this.handleSetPhone);
         this.view.bindClickReservation(this.handleClickReservation);
-        //todo
+
         this.model.bindChangeModel(this.onChangeModel);
         this.onChangeModel(this.model.timeView, this.model.hallView, this.model.reservationWindow);
     }
