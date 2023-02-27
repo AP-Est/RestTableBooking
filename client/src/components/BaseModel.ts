@@ -33,7 +33,7 @@ export class BaseModel {
     }
 
     async createNewUser(registeredUserObject: IRegisteredUser) {
-        const MAIN_URL = 'http://localhost:3000';
+        const MAIN_URL = 'https://vagon.herokuapp.com';
         try {
             const response = await fetch(MAIN_URL + '/api/auth/signup', {
                 method: 'POST',
@@ -68,7 +68,7 @@ export class BaseModel {
     }
 
     async signInUser(signInObject: ISignIn) {
-        const MAIN_URL = 'http://localhost:3000';
+        const MAIN_URL = 'https://vagon.herokuapp.com';
         try {
             const response = await fetch(MAIN_URL + '/api/auth/signin', {
                 method: 'POST',
