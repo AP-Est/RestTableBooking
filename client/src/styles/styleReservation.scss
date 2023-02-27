@@ -261,7 +261,9 @@ svg {
     z-index: 50;
     border: $mainBorderStyle;
     border-radius: 10px;
-    top: 30vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: $modalBackground;
     .infoBlock__wrapper {
         display: flex;
@@ -318,13 +320,15 @@ svg {
 .reservationUnReg__wrapper {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     align-items: center;
     z-index: 70;
     padding: 10px;
     border: 2px solid #000000;
     border-radius: 10px;
-    top: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: $modalBackground;
     .infoBlock__wrapper {
         display: flex;

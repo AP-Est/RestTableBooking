@@ -184,3 +184,129 @@ $br: 10px;
     margin-bottom: 10px;
     text-align: center;
 }
+
+@media screen and (max-width: 950px) {
+    .form {
+        max-width: 400px;
+    }
+
+    .form-wrap {
+        width: 70%;
+    }
+
+    .tab-label {
+        font-size: 20px;
+    }
+
+    .button-register{
+        font-size: 20px;
+    }
+
+    .tab-buttons {
+        li a {
+            font-size: 25px;
+        }
+    }
+
+    // .field-wrap {
+    //     margin-bottom: 20px;
+    // }
+
+    .form {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+
+    .tab-label {
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width: 670px) {
+
+    .tab-label {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 620px) {
+
+    .tab-label {
+        font-size: 14px;
+    }
+
+    .button-register{
+        font-size: 18px;
+    }
+
+    .tab-buttons {
+        margin: 0 0 20px 0;
+    }
+
+}
+
+@media screen and (max-width: 570px) {
+
+    .tab-label {
+        font-size: 12px;
+    }
+
+    .tab-buttons {
+        li a {
+            font-size: 22px;
+        }
+    }
+
+    .tab-input {
+        padding: 0px;
+    }
+
+    .field-wrap {
+        margin-bottom: 30px;
+    }
+
+    .tab-label-active {
+        transform: translateY(40px);
+    }
+
+}
+
+@media screen and (max-width: 520px) {
+
+    .tab-label {
+        font-size: 10px;
+    }
+
+    .button-register {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 460px) {
+
+    .tab-label {
+        font-size: 8px;
+    }
+
+    .tab-buttons li a {
+        font-size: 18px;
+    }
+
+    .button-register {
+        font-size: 14px;
+    }
+
+    .tab-input {
+        font-size: 18px;
+    }
+
+    .tab-label-active {
+        transform: translateY(30px);
+    }
+
+}
