@@ -170,7 +170,10 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const rightColumnTitle = createElement('div', 'rColumn-type');
     rightColumnTitle.textContent = 'VAgoN';
     const rightColumnMap = createElement('div', 'mapClass');
-    //rightColumnMap.id = 'mapMy';
+    rightColumnMap.innerHTML = `
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11924.948726301061!2d41.61372989416121!3d41.650617208112344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406787f4087c1555%3A0x59f93ff273143125!2sSunflower%20Restaurant!5e0!3m2!1sen!2sge!4v1677494506362!5m2!1sen!2sge" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    `;
+    //rightColumnMap.src = `https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb03a1a3b01070c7148f5c9ea5d3c393b8bcb3eacad1468f0bc1a4c45512cd76&amp;width=100%25&amp;height=100%25&amp;lang=en_US&amp;scroll=true&amp;id=mapMy`;
     const address = createElement('div', 'rColumn__address');
     const addressImg = createElement('img', 'rColumn-img') as HTMLImageElement;
     addressImg.src = 'https://leclick.ru/img/icons/loc.svg';

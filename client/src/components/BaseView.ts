@@ -25,7 +25,12 @@ export class BaseView {
 
     constructor() {
         this.body = getElement('body') as HTMLElement;
-        this.renderBasePage('signOutOk');
+
+        let state = localStorage.getItem('state');
+        if (!state) {
+            state = 'signOutOk';
+        }
+        this.renderBasePage(state);
     }
 
     renderBasePage(state: string) {
@@ -45,10 +50,10 @@ export class BaseView {
         this.carousel = displayCarousel();
         this.footer = displayFooter();
 
-        this.mainContent.append(this.header, this.carousel, this.main, this.footer);
-        // window.location.hash.split('/')[0] == '#reservation'
-        //     ? this.mainContent.append(this.header, this.main, this.footer)
-        //     : this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        //this.mainContent.append(this.header, this.carousel, this.main, this.footer);
+        window.location.hash.split('/')[0] == '#reservation'
+            ? this.mainContent.append(this.header, this.main, this.footer)
+            : this.mainContent.append(this.header, this.carousel, this.main, this.footer);
         this.formWrap.append(this.form);
         this.wrap.append(this.mainContent, this.formWrap);
         this.body.append(this.wrap);
