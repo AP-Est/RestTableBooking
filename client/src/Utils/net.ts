@@ -1,6 +1,6 @@
 import { IBaseTableOrder } from '../types/types';
 
-const MAIN_URL = 'http://localhost:3000';
+const MAIN_URL = 'https://vagon.herokuapp.com';
 
 export class ServiceReviews {
     public async getReviews(): Promise<IBaseTableOrder[]> {
