@@ -4,12 +4,9 @@ import '../styles/styleMenuPage.scss';
 import { BaseView } from './BaseView';
 
 export class MenuView extends BaseView {
-    // body: HTMLElement;
-    // header: HTMLElement;
     mainMenu!: HTMLElement;
     wrapper!: HTMLElement;
     container!: HTMLElement;
-    //footer: HTMLElement;
 
     private menuCategories = ['STARTERS', 'ENTREE SALADS', 'SOUP & SALAD', 'HOUSE SALADS'];
 
@@ -28,20 +25,6 @@ export class MenuView extends BaseView {
         this.mainMenu.append(this.wrapper);
         this.main.append(this.mainMenu);
     }
-
-    // createMenuPage() {
-    //     this.main.innerHTML = '';
-    //     this.mainMenu = createElement('main', 'main-menu');
-
-    //     this.wrapper = createElement('div', 'wrapper');
-
-    //     this.container = createElement('div', 'container');
-    //     this.wrapper.append(this.container);
-    //     this.createMenu();
-
-    //     this.mainMenu.append(this.wrapper);
-    //     this.main.append(this.mainMenu);
-    // }
 
     public createMenu() {
         this.menuCategories.forEach((category) => {
@@ -68,41 +51,4 @@ export class MenuView extends BaseView {
             this.container.append(categoryBlock);
         });
     }
-
-    // bindClickMenu() {
-    //     this.body.addEventListener('click', (event) => {
-    //         const target = event.target as Element;
-    //         if (target.classList.contains('header-main-text')) {
-    //             window.location.hash = `menu`;
-    //         }
-    //     });
-    // }
-
-    // bindClickButtonReserv() {
-    //     this.body.addEventListener('click', (event) => {
-    //         const target = event.target as Element;
-    //         const parent = target.parentElement as Element;
-    //         if (target.classList.contains('booking-main') || parent.classList.contains('booking-main')) {
-    //             window.location.hash = `reservation`;
-    //         }
-    //     });
-    // }
-
-    // bindClickMainPage() {
-    //     this.body.addEventListener('click', (event) => {
-    //         const target = event.target as Element;
-    //         if (target.classList.contains('link-main-page')) {
-    //             window.location.hash = '';
-    //         }
-    //     });
-    // }
-
-    // bindClickReviews() {
-    //     this.body.addEventListener('click', (event) => {
-    //         const target = event.target as Element;
-    //         if (target.classList.contains('link-reviews-page')) {
-    //             window.location.hash = `reviews`;
-    //         }
-    //     });
-    // }
 }

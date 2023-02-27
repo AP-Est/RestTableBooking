@@ -10,10 +10,5 @@ export class ReviewsController extends BaseController {
         super(view, model);
         this.view = view;
         this.model = model;
-
-        // this.view.bindClickMenu();
-        // this.view.bindClickButtonReserv();
-        // this.view.bindClickMainPage();
-        // this.view.bindClickReviews();
     }
 }

@@ -16,8 +16,6 @@ export class ServiceReviews {
             },
         });
         const data = await response.json();
-        console.log(data);
-        console.log(data.username);
         return data;
     }
 }
