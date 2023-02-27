@@ -1,5 +1,4 @@
 import { IBaseTableOrder, IReservationWindow, ITableState, ITimeView, ReservationWindow } from '../types/types';
-//import createDevHall from '../Utils/createDEVexampleHall';
 import { ServiceReviews } from '../Utils/net';
 import { BaseModel } from './BaseModel';
 export class ReservationModel extends BaseModel {

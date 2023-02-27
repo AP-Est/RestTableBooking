@@ -13,7 +13,6 @@ svg {
 }
 .shadow__globalWrapper {
     display: block;
-    //position: absolute;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -32,13 +31,11 @@ svg {
         flex-direction: column;
         align-items: center;
         padding: 10px;
-        //background-color: rgba(0, 0, 0, 0.05);
         border: $mainBorderStyle;
         border-radius: 50px;
     }
     .timeFromOutput__wrapper {
         font-size: 3vh;
-        //font-weight: bold;
         margin: 10px;
     }
     .timer__wrapper {
@@ -47,7 +44,6 @@ svg {
         align-items: center;
         width: 70vw;
         margin: 5px;
-        //height: 10vh;
         padding-top: 15px;
         .inner__rows {
             position: relative;
@@ -62,9 +58,8 @@ svg {
     max-width: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
-        width: 0px; /* ширина для вертикального скролла */
-        // height: 8px; /* высота для горизонтального скролла */
-        height: 0px; /* высота для горизонтального скролла */
+        width: 0px; 
+        height: 0px;
         background-color: #143861;
     }
     &::-webkit-scrollbar-thumb {
@@ -105,7 +100,6 @@ svg {
         content: "";
         position: absolute;
         z-index: 1;
-        //background-color: #843465;
         width: 20px;
         height: 20px;
         left: -10px;
@@ -128,7 +122,6 @@ svg {
         content: "";
         position: absolute;
         z-index: 1;
-        //background-color: #843465;
         width: 20px;
         height: 20px;
         left: -10px;
@@ -176,7 +169,6 @@ svg {
         }
         .guest__input_text {
             font-size: 20px;
-            //font-weight: bold;
         }
     }
 }
@@ -184,19 +176,11 @@ svg {
 .hall__wrapper {
     display: flex;
     position: relative;
-    //width: задается из JS
-    //height: задается из JS
     width: 70vw;
     height: 70vw;
     margin-top: 10px;
-    //border: 2px solid #000000;
     border-radius: 10px;
-    //background: url('../templates/reservation/RegBG.svg');
-    //background: url('../templates/reservation/hall.png');
     background: url("../../src/source/img/background1.png");
-    //background: url('../templates/reservation/HallDarkPNG.png');
-    //background-color: #a39c9c;
-    //border: $mainBorderStyle;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -272,16 +256,12 @@ svg {
 .tableInfo__wrapper {
     display: flex;
     flex-direction: column;
-    //position: absolute;
     position: fixed;
     align-items: center;
     z-index: 50;
     border: $mainBorderStyle;
     border-radius: 10px;
-    //top: 20%;
     top: 30vh;
-    //height: 50vh;
-    //width: 50vw;
     background-color: $modalBackground;
     .infoBlock__wrapper {
         display: flex;
@@ -345,8 +325,6 @@ svg {
     border: 2px solid #000000;
     border-radius: 10px;
     top: 40%;
-    //height: 50vh;
-    //width: 50vw;
     background-color: $modalBackground;
     .infoBlock__wrapper {
         display: flex;
