@@ -20,9 +20,13 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
         'VAgoN Restaurant is a combination of a cozy atmosphere, excellent cuisine and caring for guests. The project of actor and restaurateur Sergey Svetlakov. A modern incarnation of a traditional oriental restaurant.';
     const descrTextTwo = createElement('p', 'main-inf__descr-p');
     descrText.append(descrTextOne, descrTextTwo);
+    const descrBut = createElement('div', 'main-inf__descr-but');
+    descrBut.classList.add('more-main-inf');
+    const descrButArrow = createElement('span', 'main-inf__descr-but-arrow');
     if (!moreMainInf) {
         descrTextTwo.textContent =
             'The East is a delicate matter. For ALBA GROUP and actor, producer Sergey Svetlakov, these are not empty words. How...';
+        descrButArrow.innerHTML = `&#8681;`;
     } else {
         descrTextTwo.textContent =
             'The East is a delicate matter. For ALBA GROUP and actor, producer Sergey Svetlakov, these are not empty words. How to successfully combine European chic and Oriental hospitality in one restaurant? As a visual answer – the concept of the VAgoN restaurant chain in Odintsovo, on Novy Arbat, on Rublevsky Highway, in Kazan, Kiev and Dubai.';
@@ -33,12 +37,8 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
         const descrTextFive = createElement('p', 'main-inf__descr-p');
         descrTextFive.textContent = `"Forming our large menu, we strive to please every guest with delicious food, sensitively guessing his desires," says Sergey Svetlakov and offers to try the hit of the VAgoN restaurant - juicy horse meat steak in spicy sauce. Haven't met yet? So it's time, the evening is just around the corner!`;
         descrText.append(descrTextThree, descrTextFour, descrTextFive);
+        descrButArrow.innerHTML = `&#8679;`;
     }
-
-    const descrBut = createElement('div', 'main-inf__descr-but');
-    descrBut.classList.add('more-main-inf');
-    const descrButArrow = createElement('span', 'main-inf__descr-but-arrow');
-    descrButArrow.innerHTML = `&#8681;`;
 
     const additInf = createElement('div', 'main-inf__addit');
     const additContent = createElement('div', 'main-inf__content');
@@ -86,6 +86,10 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const span5Specifics = createElement('span', 'main-inf__span');
     span5Specifics.textContent = 'Children’s menu';
     itemSpecifics.append(imgSpecifics, span1Specifics, span2Specifics, span3Specifics, span4Specifics, span5Specifics);
+    const descrBut2 = createElement('div', 'main-inf__descr-but');
+    descrBut2.classList.add('more-addit-inf');
+    const descrButArrow2 = createElement('span', 'main-inf__descr-but-arrow');
+    descrButArrow2.innerHTML = `&#8681;`;
     if (moreAdditInf) {
         const span6Specifics = createElement('span', 'main-inf__span');
         span6Specifics.textContent = 'Breakfast';
@@ -96,12 +100,8 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
         const span9Specifics = createElement('span', 'main-inf__span');
         span9Specifics.textContent = 'With an interesting view';
         itemSpecifics.append(span6Specifics, span7Specifics, span8Specifics, span9Specifics);
+        descrButArrow2.innerHTML = `&#8679;`;
     }
-
-    const descrBut2 = createElement('div', 'main-inf__descr-but');
-    descrBut2.classList.add('more-addit-inf');
-    const descrButArrow2 = createElement('span', 'main-inf__descr-but-arrow');
-    descrButArrow2.innerHTML = `&#8681;`;
 
     const workTime = createElement('div', 'main-inf__wTime');
     const workTimeTitle = createElement('h3', 'main-inf__Title');
@@ -146,7 +146,7 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const workTimeFrom5 = createElement('p', 'main-inf__wText');
     workTimeFrom5.textContent = '12:00';
     const workTimeTo5 = createElement('p', 'main-inf__wText');
-    workTimeTo5.textContent = '06:00';
+    workTimeTo5.textContent = '00:00';
     const workTimeItem6 = createElement('div', 'main-inf__wItem');
     const workTimeDay6 = createElement('p', 'main-inf__wText');
     workTimeDay6.classList.add('wDay');
@@ -154,7 +154,7 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const workTimeFrom6 = createElement('p', 'main-inf__wText');
     workTimeFrom6.textContent = '12:00';
     const workTimeTo6 = createElement('p', 'main-inf__wText');
-    workTimeTo6.textContent = '06:00';
+    workTimeTo6.textContent = '00:00';
     const workTimeItem7 = createElement('div', 'main-inf__wItem');
     const workTimeDay7 = createElement('p', 'main-inf__wText');
     workTimeDay7.classList.add('wDay');

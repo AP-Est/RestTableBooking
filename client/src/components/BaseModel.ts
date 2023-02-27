@@ -16,12 +16,24 @@ export class BaseModel {
     }
 
     loadWindow() {
-        console.log('loadWindow');
+        const state = localStorage.getItem('state');
+        if (state) {
+            this.state = state;
+        } else {
+            this.state = 'signOutOk';
+        }
         this.onChangeModelBase(this.state);
     }
 
+    changeStateExit() {
+        this.state = 'signOutOk';
+        localStorage.setItem('state', 'signOutOk');
+        this.onChangeModelBase(this.state);
+        localStorage.removeItem('signInUser');
+    }
+
     async createNewUser(registeredUserObject: IRegisteredUser) {
-        const MAIN_URL = 'http://localhost:3000';
+        const MAIN_URL = 'https://vagon.herokuapp.com';
         try {
             const response = await fetch(MAIN_URL + '/api/auth/signup', {
                 method: 'POST',
@@ -34,10 +46,12 @@ export class BaseModel {
                 console.log('createNewUser response', response);
                 console.log('400');
                 this.state = stateHeader.signUpEmailAlreadyUse;
+                localStorage.setItem('state', 'signUpEmailAlreadyUse');
             } else {
                 console.log('createNewUser response', response);
                 console.log('ok');
                 this.state = stateHeader.signUpOk;
+                localStorage.setItem('state', 'signUpOk');
                 const signInObject = {
                     email: registeredUserObject.email,
                     password: registeredUserObject.password,
@@ -49,11 +63,12 @@ export class BaseModel {
             console.log('createNewUser err', err);
             this.state = stateHeader.signUpError;
             this.onChangeModelBase(this.state);
+            localStorage.setItem('state', 'signUpError');
         }
     }
 
     async signInUser(signInObject: ISignIn) {
-        const MAIN_URL = 'http://localhost:3000';
+        const MAIN_URL = 'https://vagon.herokuapp.com';
         try {
             const response = await fetch(MAIN_URL + '/api/auth/signin', {
                 method: 'POST',
@@ -67,10 +82,12 @@ export class BaseModel {
                 console.log('signInUser response if', response);
                 console.log('404');
                 this.state = stateHeader.signInUserNotFound;
+                localStorage.setItem('state', 'signInUserNotFound');
             } else if (response.status === 401) {
                 console.log('signInUser response if', response);
                 console.log('401');
                 this.state = stateHeader.signInInvalidPassword;
+                localStorage.setItem('state', 'signInInvalidPassword');
             } else {
                 console.log('signInUser response if', response);
                 console.log('signInUser ok');
@@ -79,12 +96,14 @@ export class BaseModel {
                 const data = await response.json();
                 const signInUser = JSON.stringify(await data);
                 localStorage.setItem('signInUser', signInUser);
+                localStorage.setItem('state', 'signInOk');
                 console.log('localStorage signInUser', signInUser);
             }
             this.onChangeModelBase(this.state);
         } catch (err) {
             console.log('signInUser err', err);
             this.state = stateHeader.signInError;
+            localStorage.setItem('state', 'signInError');
             this.onChangeModelBase(this.state);
         }
     }

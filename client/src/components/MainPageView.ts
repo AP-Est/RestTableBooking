@@ -10,8 +10,6 @@ export class MainPageView extends BaseView {
 
     constructor() {
         super();
-
-        this.renderPage(false, false);
     }
 
     renderPage(moreMainInf: boolean, moreAdditInf: boolean) {
