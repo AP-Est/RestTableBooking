@@ -10,6 +10,7 @@ export class BaseController {
         this.view = view;
         this.model = model;
 
+        //this.onChangeModelBase(this.model.state);
         this.view.bindClickMenu();
         this.view.bindClickButtonReserv();
         this.view.bindClickMainPage();
