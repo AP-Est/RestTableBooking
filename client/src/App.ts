@@ -29,21 +29,18 @@ export class App {
     modelReviews: ReviewsModel | undefined;
 
     init() {
-        //console.log('init');
         window.addEventListener('hashchange', this.navigate);
         this.navigate();
         this.changeTheme();
     }
 
     navigate = () => {
-        console.log('navigate');
         const pathHashes = window.location.hash.split('/');
         switch (pathHashes[0]) {
             case '':
                 this.view = new MainPageView();
                 this.model = new MainPageModel();
                 this.controller = new MainPageController(this.view, this.model);
-                console.log('MainPageView');
                 break;
             case '#reservation':
                 this.viewReservation = new ReservationView();
@@ -65,14 +62,9 @@ export class App {
 
             default:
                 //TODO сюда можно подпихивать свое, потом нужно будет прописать 404
-                console.log(pathHashes[0]);
-                // this.viewReservation = new ReservationView();
-                // this.modelReservation = new ReservationModel();
-                // this.controllerReservation = new ReservationController(this.viewReservation, this.modelReservation);
                 this.view = new MainPageView();
                 this.model = new MainPageModel();
                 this.controller = new MainPageController(this.view, this.model);
-                console.log('MainPageView');
                 break;
         }
     };

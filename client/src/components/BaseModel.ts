@@ -1,11 +1,7 @@
 import { stateHeader, IRegisteredUser, ISignIn } from '../types/types';
-import { ServiceRegistration } from './../Utils/registration.service';
-
 export class BaseModel {
     state: string;
     onChangeModelBase: (state: string) => void;
-
-    public registeredUsersService = new ServiceRegistration();
 
     constructor() {
         this.state = stateHeader.signOutOk;
@@ -43,13 +39,9 @@ export class BaseModel {
                 },
             });
             if (response.status === 400) {
-                console.log('createNewUser response', response);
-                console.log('400');
                 this.state = stateHeader.signUpEmailAlreadyUse;
                 localStorage.setItem('state', 'signUpEmailAlreadyUse');
             } else {
-                console.log('createNewUser response', response);
-                console.log('ok');
                 this.state = stateHeader.signUpOk;
                 localStorage.setItem('state', 'signUpOk');
                 const signInObject = {
@@ -60,7 +52,6 @@ export class BaseModel {
             }
             this.onChangeModelBase(this.state);
         } catch (err) {
-            console.log('createNewUser err', err);
             this.state = stateHeader.signUpError;
             this.onChangeModelBase(this.state);
             localStorage.setItem('state', 'signUpError');
@@ -77,31 +68,22 @@ export class BaseModel {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log('signInUser response', response);
             if (response.status === 404) {
-                console.log('signInUser response if', response);
-                console.log('404');
                 this.state = stateHeader.signInUserNotFound;
                 localStorage.setItem('state', 'signInUserNotFound');
             } else if (response.status === 401) {
-                console.log('signInUser response if', response);
-                console.log('401');
                 this.state = stateHeader.signInInvalidPassword;
                 localStorage.setItem('state', 'signInInvalidPassword');
             } else {
-                console.log('signInUser response if', response);
-                console.log('signInUser ok');
                 this.state = stateHeader.signInOk;
                 localStorage.clear();
                 const data = await response.json();
                 const signInUser = JSON.stringify(await data);
                 localStorage.setItem('signInUser', signInUser);
                 localStorage.setItem('state', 'signInOk');
-                console.log('localStorage signInUser', signInUser);
             }
             this.onChangeModelBase(this.state);
         } catch (err) {
-            console.log('signInUser err', err);
             this.state = stateHeader.signInError;
             localStorage.setItem('state', 'signInError');
             this.onChangeModelBase(this.state);

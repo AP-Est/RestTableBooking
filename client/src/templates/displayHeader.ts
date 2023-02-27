@@ -34,6 +34,7 @@ export function displayHeader(state: string) {
     headerTopRegistrLog.textContent = 'SignUp / LogIn';
     const headerTopTel = createElement('a', 'header-text') as HTMLAnchorElement;
     headerTopTel.classList.add('link-tel');
+    headerTopTel.classList.add('link-tel-header');
     headerTopTel.textContent = '+(375) 25 - 374 - 9233';
     headerTopTel.href = 'tel:+(375) 25 - 374-9233';
 
@@ -62,7 +63,7 @@ export function displayHeader(state: string) {
         userButton.textContent = 'EXIT';
 
         headerTopRegistrLog.classList.add('none');
-        headerTopMain.style.width = '20%';
+        headerTopMain.style.width = '200px';
 
         userWrap.append(userLogo, userName);
         user.append(userWrap, userButton);
@@ -70,6 +71,5 @@ export function displayHeader(state: string) {
     }
 
     header.append(headerTop);
-    //console.log('displayHeader header', header);
     return header;
 }

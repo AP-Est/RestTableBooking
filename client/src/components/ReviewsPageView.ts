@@ -1,9 +1,5 @@
 import createElement from '../Utils/createElement';
-import getElement from '../Utils/getElement';
-// import createHeader from '../templates/createHeader';
 import '../styles/styleReviewsPage.scss';
-import { displayHeader } from '../templates/displayHeader';
-import { displayFooter } from '../templates/displayFooter';
 import { ServiceReviews } from './../Utils/reviews.service';
 import { Reviews } from './../Utils/reviews.interface';
 import { BaseView } from './BaseView';

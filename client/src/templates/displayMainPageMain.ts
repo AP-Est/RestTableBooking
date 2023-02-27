@@ -44,18 +44,17 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     const additContent = createElement('div', 'main-inf__content');
     const itemReceipt = createElement('div', 'main-inf__item');
     const imgReceipt = createElement('img', 'main-inf__img') as HTMLImageElement;
-    imgReceipt.src = 'https://leclick.ru/img/icons/price_w.svg';
+    imgReceipt.src = './image/price_w.svg';
     const span1Receipt = createElement('span', 'main-inf__span');
     span1Receipt.textContent = 'Average check:';
     const span2Receipt = createElement('span', 'main-inf__span');
     span2Receipt.textContent = '2000 - 2500';
     const itemFood = createElement('div', 'main-inf__item');
     const imgFood = createElement('img', 'main-inf__img') as HTMLImageElement;
-    imgFood.src = 'https://leclick.ru/img/icons/kitchen_w.svg';
+    imgFood.src = './image/kitchen_w.svg';
     const span1Food = createElement('span', 'main-inf__span');
     span1Food.textContent = 'Kitchen:';
     const pFood = createElement('p', 'main-inf__span');
-    //console.log('displayMainPageMain moreAdditInf:', moreAdditInf);
     if (!moreAdditInf) {
         pFood.textContent = 'European, Caucasian, Azerbaijani';
     } else {
@@ -63,7 +62,7 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     }
     const itemPurpose = createElement('div', 'main-inf__item');
     const imgPurpose = createElement('img', 'main-inf__img') as HTMLImageElement;
-    imgPurpose.src = 'https://leclick.ru/img/icons/recommended_w.svg';
+    imgPurpose.src = './image/recommended_w.svg';
     const span1Purpose = createElement('span', 'main-inf__span');
     span1Purpose.textContent = 'Visit purpose:';
     const span2Purpose = createElement('span', 'main-inf__span');
@@ -74,7 +73,7 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     span4Purpose.textContent = 'Family dinner';
     const itemSpecifics = createElement('div', 'main-inf__item');
     const imgSpecifics = createElement('img', 'main-inf__img') as HTMLImageElement;
-    imgSpecifics.src = 'https://leclick.ru/img/icons/features_w.svg';
+    imgSpecifics.src = './image/features_w.svg';
     const span1Specifics = createElement('span', 'main-inf__span');
     span1Specifics.textContent = 'Features:';
     const span2Specifics = createElement('span', 'main-inf__span');
@@ -173,15 +172,14 @@ export function displayMainPageMain(moreMainInf: boolean, moreAdditInf: boolean)
     rightColumnMap.innerHTML = `
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11924.948726301061!2d41.61372989416121!3d41.650617208112344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406787f4087c1555%3A0x59f93ff273143125!2sSunflower%20Restaurant!5e0!3m2!1sen!2sge!4v1677494506362!5m2!1sen!2sge" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     `;
-    //rightColumnMap.src = `https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb03a1a3b01070c7148f5c9ea5d3c393b8bcb3eacad1468f0bc1a4c45512cd76&amp;width=100%25&amp;height=100%25&amp;lang=en_US&amp;scroll=true&amp;id=mapMy`;
     const address = createElement('div', 'rColumn__address');
     const addressImg = createElement('img', 'rColumn-img') as HTMLImageElement;
-    addressImg.src = 'https://leclick.ru/img/icons/loc.svg';
+    addressImg.src = './image/loc.svg';
     const addressSpan = createElement('span', 'rColumn-span');
     addressSpan.textContent = 'st. Rolling Scopes q3';
     const metro = createElement('div', 'rColumn__metro');
     const metroImg = createElement('img', 'rColumn-img') as HTMLImageElement;
-    metroImg.src = 'https://leclick.ru/img/icons/metro.svg';
+    metroImg.src = './image/metro.svg';
     const metroSpan = createElement('span', 'rColumn-span');
     metroSpan.textContent = 'Rsclone';
     const rightColumnReserv = createElement('div', 'booking-main');

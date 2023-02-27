@@ -1,30 +1,20 @@
 import createElement from '../Utils/createElement';
-import getElement from '../Utils/getElement';
-// import createHeader from '../templates/createHeader';
 import Menu from '../Utils/menuObject';
 import '../styles/styleMenuPage.scss';
-import { displayHeader } from '../templates/displayHeader';
-import { displayFooter } from '../templates/displayFooter';
 import { BaseView } from './BaseView';
 
 export class MenuView extends BaseView {
     // body: HTMLElement;
     // header: HTMLElement;
-    mainMenu: HTMLElement;
-    wrapper: HTMLElement;
-    container: HTMLElement;
+    mainMenu!: HTMLElement;
+    wrapper!: HTMLElement;
+    container!: HTMLElement;
     //footer: HTMLElement;
 
     private menuCategories = ['STARTERS', 'ENTREE SALADS', 'SOUP & SALAD', 'HOUSE SALADS'];
 
     constructor() {
         super();
-        // this.body = getElement('body') as HTMLElement;
-        //this.body.innerHTML = '';
-        //this.mainContent.innerHTML = '';
-
-        // this.header = displayHeader();
-        //this.main = createElement('main', 'main-menu');
 
         this.main.innerHTML = '';
         this.mainMenu = createElement('main', 'main-menu');
@@ -37,14 +27,21 @@ export class MenuView extends BaseView {
 
         this.mainMenu.append(this.wrapper);
         this.main.append(this.mainMenu);
-        // this.footer = displayFooter();
-        //this.body.append(this.header, this.main, this.footer);
-
-        //this.mainContent.append(this.header, this.carousel, this.main, this.footer);
-        //this.formWrap.append(this.form);
-        //this.wrap.append(this.mainContent, this.formWrap);
-        //this.body.append(this.wrap);
     }
+
+    // createMenuPage() {
+    //     this.main.innerHTML = '';
+    //     this.mainMenu = createElement('main', 'main-menu');
+
+    //     this.wrapper = createElement('div', 'wrapper');
+
+    //     this.container = createElement('div', 'container');
+    //     this.wrapper.append(this.container);
+    //     this.createMenu();
+
+    //     this.mainMenu.append(this.wrapper);
+    //     this.main.append(this.mainMenu);
+    // }
 
     public createMenu() {
         this.menuCategories.forEach((category) => {

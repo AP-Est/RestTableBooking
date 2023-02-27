@@ -67,12 +67,12 @@ export function displayCarousel() {
     phoneRef.href = 'tel:+(375) 25 - 374-9233';
     const address = createElement('div', 'booking-address');
     const addressImg = createElement('img', 'booking-img') as HTMLImageElement;
-    addressImg.src = 'https://leclick.ru/img/icons/loc.svg';
+    addressImg.src = './image/loc.svg';
     const addressSpan = createElement('span', 'booking-span');
     addressSpan.textContent = 'st. Rolling Scopes q3';
     const metro = createElement('div', 'booking-metro');
     const metroImg = createElement('img', 'booking-img') as HTMLImageElement;
-    metroImg.src = 'https://leclick.ru/img/icons/metro.svg';
+    metroImg.src = './image/metro.svg';
     const metroSpan = createElement('span', 'booking-span');
     metroSpan.textContent = 'Rsclone';
     const mainBooking = createElement('div', 'booking-main');

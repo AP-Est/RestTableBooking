@@ -10,7 +10,6 @@ export class BaseController {
         this.view = view;
         this.model = model;
 
-        //this.onChangeModelBase(this.model.state);
         this.view.bindClickMenu();
         this.view.bindClickButtonReserv();
         this.view.bindClickMainPage();
@@ -37,7 +36,6 @@ export class BaseController {
     };
 
     handleWindowLoad = () => {
-        console.log('handleWindowLoad');
         this.model.loadWindow();
     };
 
@@ -46,7 +44,6 @@ export class BaseController {
     };
 
     onChangeModelBase = (state: string) => {
-        console.log('onChangeModelBase state', state);
         this.view.renderBasePage(state);
     };
 }

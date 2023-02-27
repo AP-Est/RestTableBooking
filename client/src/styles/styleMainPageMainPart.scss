@@ -207,3 +207,103 @@ p{
     background-color: black;
     opacity: 0.5;
 }
+
+@media screen and (max-width: 850px) {
+
+    .main {
+        max-width: 750px;
+    }
+
+    .main-wrap {
+        flex-direction: column;
+    }
+
+    .rColumn {
+        position: relative;
+    }
+
+    .main-inf {
+        max-width: 100%;
+    }
+
+    .rColumn {
+        width: 100%;
+    }
+
+    .rColumn-type {
+        margin-bottom: 5px;
+    }
+
+    .rColumn__address, 
+    .rColumn__metro {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+    .main {
+        max-width: 650px;
+    }
+
+    .inf__text {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+}
+
+@media screen and (max-width: 670px) {
+
+    .main {
+        max-width: 550px;
+    }
+
+    .inf__text {
+        font-size: 25px;
+    }
+
+    .inf{
+        margin-bottom: 20px;
+    }
+
+    .main-inf__descr-p {
+        font-size: 18px;
+    }
+
+    .mapClass {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+
+    .main {
+        max-width: 450px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+
+    .main {
+        max-width: 350px;
+    }
+
+    .inf__text {
+        font-size: 20px;
+    }
+
+    .main-inf__wText {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+
+    .main {
+        max-width: 300px;
+    }
+
+    .main-inf__wText {
+        font-size: 16px;
+    }
+}

@@ -279,3 +279,237 @@ ul {
     display: block;
 }
 
+@media screen and (max-width: 920px) {
+
+    .header-text {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+
+    .link-tel-header {
+        display: none;
+    }
+
+    .header-top-main {
+        width: 55%;
+    }
+
+    .logo {
+        margin-right: 50px;
+    }
+
+    .links {
+        margin-left: 50px;
+        width: 60%;
+    }
+
+    .user {
+        margin-left: 20px;
+    }
+
+    .header-top-logo {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .booking {
+        width: 200px;
+    }
+
+    .header-main__wrapper {
+        height: 350px;
+    }
+
+    .header-text {
+        font-size: 18px;
+    }
+
+    .booking-address, .booking-metro {
+        padding-left: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .button {
+        margin-bottom: 0px;
+        height: 42px;
+        line-height: 0px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .booking {
+        width: 180px;
+    }
+
+    .header-main__wrapper {
+        height: 300px;
+    }
+
+    .header-top__wrapper {
+        height: 80px;
+    }
+
+    .header-top-logo {
+        display: none;
+    }
+
+    .header-top-main {
+        width: 80%;
+    }
+
+    .booking {
+        right: 50px;
+        width: 200px;
+        top: 60px;
+    }
+
+    .booking-phone__ref {
+        font-size: 16px;
+    }
+
+    .button {
+        font-size: 14px;
+    }
+
+    .booking-span {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+
+    .header-main__wrapper {
+        height: 250px;
+    }
+
+    .booking {
+        width: 150px;
+        padding: 10px;
+    }
+
+    .booking-phone__ref {
+        font-size: 12px;
+        line-height: 0px;
+    }
+
+    .booking-span {
+        font-size: 12px;
+    }
+
+    .booking-img {
+        margin-right: 0px; 
+    }
+
+    .button{
+        height: 30px;
+        margin-top: 5px;
+    }
+
+    .links {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .booking {
+        width: 120px;
+        padding: 10px;
+        right: 25px;
+        top: 30px;
+    }
+
+    .header-main__wrapper {
+        height: 200px;
+    }
+
+    .header-text {
+        font-size: 20px;
+    }
+
+    .header-top-main {
+        width: 90%;
+    }
+
+    .booking-phone__ref {
+        font-size: 12px;
+    }
+
+    .booking-span {
+        font-size: 10px;
+    }
+
+    .button{
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .header-top__wrapper {
+        margin: 20px 20px 0px 0px;
+    }
+
+    .logo__link {
+        width: 80px;
+    }
+
+    .links__creator-link {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .links__creator-link {
+        font-size: 16px;
+    }
+
+    .logo__link {
+        width: 60px;
+    }
+
+    .logo {
+        margin-right: 25px;
+    }
+
+    .links {
+        margin-left: 25px;
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 370px) {
+
+    .header-main__wrapper {
+        height: 180px;
+    }
+
+    .header-text {
+        font-size: 16px;
+    }
+
+    .header-top__wrapper {
+        height: 60px;
+    }
+
+    .booking {
+        width: 100px;
+    }
+
+    .booking-phone__ref {
+        font-size: 8px;
+    }
+
+    .booking-span {
+        font-size: 8px;
+    }
+
+    .booking-phone {
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+    }
+}
