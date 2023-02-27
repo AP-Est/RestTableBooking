@@ -1,5 +1,4 @@
 import createElement from '../Utils/createElement';
-import { stateHeader } from '../types/types';
 
 export function displaySignUpLogIn() {
     const form = createElement('div', 'form');

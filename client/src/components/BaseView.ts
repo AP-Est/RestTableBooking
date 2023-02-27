@@ -10,7 +10,7 @@ import { signUpLogInDisable } from '../templates/signUpLogInDisable';
 import { displayLogIn } from '../templates/displayLogIn';
 import getElement from '../Utils/getElement';
 import createElement from '../Utils/createElement';
-import { IRegisteredUser, ISignIn, stateHeader } from '../types/types';
+import { IRegisteredUser, ISignIn } from '../types/types';
 
 export class BaseView {
     header!: HTMLElement;
@@ -34,7 +34,6 @@ export class BaseView {
     }
 
     renderBasePage(state: string) {
-        console.log('renderBasePage state', state);
         this.body.innerHTML = '';
 
         this.wrap = createElement('div', 'wrap');
@@ -46,11 +45,9 @@ export class BaseView {
         if (!this.main) {
             this.main = createElement('main');
         }
-        console.log('renderBasePage this.main', this.main);
         this.carousel = displayCarousel();
         this.footer = displayFooter();
 
-        //this.mainContent.append(this.header, this.carousel, this.main, this.footer);
         window.location.hash.split('/')[0] == '#reservation'
             ? this.mainContent.append(this.header, this.main, this.footer)
             : this.mainContent.append(this.header, this.carousel, this.main, this.footer);
@@ -68,7 +65,6 @@ export class BaseView {
             p2.textContent = 'Please, enter another email';
 
             const fieldBeforeError = document.querySelector('.field-before-error');
-            console.log('fieldBeforeError', fieldBeforeError);
 
             div.append(p1, p2);
             fieldBeforeError?.after(div);
@@ -83,7 +79,6 @@ export class BaseView {
             p2.textContent = 'Please, try again';
 
             const fieldBeforeError = document.querySelector('.field-before-error');
-            console.log('fieldBeforeError', fieldBeforeError);
 
             div.append(p1, p2);
             fieldBeforeError?.after(div);
@@ -96,7 +91,6 @@ export class BaseView {
             p1.textContent = 'You are registered! ';
 
             const fieldBeforeError = document.querySelector('.field-before-error');
-            console.log('fieldBeforeError', fieldBeforeError);
 
             div.append(p1);
             fieldBeforeError?.after(div);
@@ -112,7 +106,6 @@ export class BaseView {
             p2.textContent = 'Please, try again';
 
             const fieldBeforeError = document.querySelector('.field-before-error-login');
-            console.log('fieldBeforeError', fieldBeforeError);
 
             div.append(p1, p2);
             fieldBeforeError?.after(div);
@@ -128,7 +121,6 @@ export class BaseView {
             p2.textContent = 'Please, try again';
 
             const fieldBeforeError = document.querySelector('.field-before-error-login');
-            console.log('fieldBeforeError', fieldBeforeError);
 
             div.append(p1, p2);
             fieldBeforeError?.after(div);
@@ -144,24 +136,19 @@ export class BaseView {
             p2.textContent = 'Please, try again';
 
             const fieldBeforeError = document.querySelector('.field-before-error-login');
-            console.log('fieldBeforeError', fieldBeforeError);
 
             div.append(p1, p2);
             fieldBeforeError?.after(div);
         }
         if (state === 'signOutOk') {
             signUpLogInDisable();
-            //signUpLogInEnable();
-            //displayLogIn();
         }
     }
 
     bindClickMenu() {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
-            //console.log('BaseView bindClickMenu');
             if (target.classList.contains('header-menu')) {
-                //console.log('BaseView bindClickMenu target', target);
                 window.location.hash = `menu`;
             }
         });
@@ -215,10 +202,8 @@ export class BaseView {
 
     bindClickSignUp() {
         this.body.addEventListener('click', (event) => {
-            //console.log('bindClickLogIn event', event.target);
             const target = event.target as Element;
             if (target.classList.contains('signup')) {
-                //console.log('sign up');
                 const signUp = document.querySelector('.tab-content > div:first-child');
                 (signUp as HTMLElement).style.display = 'block';
                 const logIn = document.querySelector('.tab-content > div:last-child');
@@ -243,10 +228,8 @@ export class BaseView {
     bindClickForm() {
         this.body.addEventListener('click', (event) => {
             const target = event.target as HTMLInputElement;
-            //console.log('bindClickForm target', target);
             if (target.classList.contains('tab-input')) {
                 const label = target.previousElementSibling;
-                //console.log('bindClickForm label', label);
                 label?.classList.add('tab-label-active');
                 label?.classList.add('tab-label-highlight');
             }
@@ -256,10 +239,8 @@ export class BaseView {
     bindBlurForm() {
         this.body.addEventListener('focusout', (event) => {
             const target = event.target as HTMLInputElement;
-            //console.log('bindBlurForm target', target);
             if (target.classList.contains('tab-input') && target.value === '') {
                 const label = target.previousElementSibling;
-                console.log('bindBlurForm label', label);
                 label?.classList.remove('tab-label-active');
                 label?.classList.remove('tab-label-highlight');
             }
@@ -275,11 +256,9 @@ export class BaseView {
                 for (let i = 0; i < inputArray.length; i++) {
                     if ((inputArray[i] as HTMLInputElement).validity.valid === false) {
                         valid = false;
-                        console.log('inputArray[i]', inputArray[i]);
                     }
                 }
                 if (valid) {
-                    console.log('all ok');
                     const inputName = document.querySelector('.input-reg-name') as HTMLInputElement;
                     const inputPhone = document.querySelector('.input-reg-tel') as HTMLInputElement;
                     const inputEmail = document.querySelector('.input-reg-email') as HTMLInputElement;
@@ -292,8 +271,6 @@ export class BaseView {
                     };
                     event.preventDefault();
                     handler(registeredUserObject);
-                } else {
-                    console.log('all not ok');
                 }
             }
         });
@@ -308,22 +285,17 @@ export class BaseView {
                 for (let i = 0; i < inputArray.length; i++) {
                     if ((inputArray[i] as HTMLInputElement).validity.valid === false) {
                         valid = false;
-                        console.log('inputArray[i]', inputArray[i]);
                     }
                 }
                 if (valid) {
-                    console.log('all ok');
                     const inputEmailLogIn = document.querySelector('.input-login-email') as HTMLInputElement;
                     const inputPasswordLogIn = document.querySelector('.input-login-password') as HTMLInputElement;
                     const signInUserObject: ISignIn = {
                         email: inputEmailLogIn.value,
                         password: inputPasswordLogIn.value,
                     };
-                    console.log('bindClickButtonLogIn');
                     event.preventDefault();
                     handler(signInUserObject);
-                } else {
-                    console.log('all not ok');
                 }
             }
         });
@@ -331,7 +303,6 @@ export class BaseView {
 
     bindLoad(handler: () => void) {
         window.addEventListener('load', () => {
-            console.log('bindLoad');
             handler();
         });
     }
@@ -339,9 +310,7 @@ export class BaseView {
     bindClickExitSignInButton(handler: () => void) {
         this.body.addEventListener('click', (event) => {
             const target = event.target as Element;
-            //console.log('bindClickExitSignInButton target', target);
             if (target.classList.contains('user-button')) {
-                //console.log('yes');
                 handler();
             }
         });

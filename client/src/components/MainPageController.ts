@@ -11,10 +11,10 @@ export class MainPageController extends BaseController {
         this.view = view;
         this.model = model;
 
+        this.onChangeModel(this.model.mainInf, this.model.additInf);
         this.view.bindClickMoreMainInf(this.handlMainInf);
         this.view.bindClickMoreAdditInf(this.handlAdditInf);
         this.model.bindChangeModel(this.onChangeModel);
-        this.onChangeModel(this.model.mainInf, this.model.additInf);
     }
 
     handlMainInf = () => {
@@ -27,6 +27,5 @@ export class MainPageController extends BaseController {
 
     onChangeModel = (moreMainInf: boolean, moreAdditInf: boolean) => {
         this.view.renderPage(moreMainInf, moreAdditInf);
-        console.log('onChangeModel');
     };
 }
