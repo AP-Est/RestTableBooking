@@ -4,8 +4,8 @@ export function displaySignUpLogIn() {
     const form = createElement('div', 'form');
     form.innerHTML = `
   <ul class="tab-buttons">
-    <li class="tab active"><a class="signup">Sign Up</a></li>
-    <li class="tab"><a class="login">Log In</a></li>
+    <li class="tab active"><a class="signup tab-text">Sign Up</a></li>
+    <li class="tab"><a class="login tab-text">Log In</a></li>
   </ul>
   
   <div class="tab-content">
