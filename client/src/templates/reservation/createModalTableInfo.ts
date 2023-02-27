@@ -50,7 +50,7 @@ function createScheduleBlock(timeView: ITimeView) {
         scheduleH.innerText = `${i + 12}:00`;
         const scheduleStatus = createElement('div', 'scheduleH__status');
         if (timeView.dayTableSchedule[i] === 1) {
-            scheduleStatus.innerText = `Busy`;
+            scheduleStatus.innerText = `Occupied`;
             scheduleStatus.classList.add('busyTable');
         } else {
             const button = createButton('Reservation', 'reservation__button');
