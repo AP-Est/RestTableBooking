@@ -135,8 +135,8 @@ export class ReservationModel extends BaseModel {
                 this.reservationWindow.resTimeNum + this.reservationWindow.tableDuration + 12
             }:00:00.000Z`;
             this.baseTableOrder.userPhone = this.reservationWindow.userPhone;
+            this.postReservation();
         }
-        this.postReservation();
     }
     private postReservation() {
         const service = new ServiceReviews();
